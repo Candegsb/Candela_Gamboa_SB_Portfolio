@@ -319,7 +319,7 @@ model-viewer::part(default-progress-bar){display:none!important}
     <div class="w-full border-t border-b border-black grid grid-cols-2 md:grid-cols-6 font-mono text-xs uppercase tracking-wider divide-y md:divide-y-0 md:divide-x divide-black bg-white">
       <div class="p-4 md:p-6 text-gray-500 font-semibold flex items-center col-span-2 md:col-span-1">FIND ME HERE</div>
       <a href="https://www.linkedin.com/in/candela-gamboa-s%C3%A1nchez-blanco" target="_blank" class="p-4 md:p-6 flex justify-between items-center hover:bg-black/5 transition-colors group"><span>LINKEDIN</span><span class="text-rose-500 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">↗</span></a>
-      <a href="https://www.artstation.com/cande_gamboa_sb" target="_blank" class="p-4 md:p-6 flex justify-between items-center hover:bg-black/5 transition-colors group"><span>ARTSTATION</span><span class="text-rose-500 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">↗</span></a>
+      <a href="https://cande_gamboa_sb.artstation.com" target="_blank" class="p-4 md:p-6 flex justify-between items-center hover:bg-black/5 transition-colors group"><span>ARTSTATION</span><span class="text-rose-500 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">↗</span></a>
       <a href="mailto:candelagamboasanchez@gmail.com" class="col-span-2 md:col-span-1 p-4 md:p-6 flex justify-between items-center hover:bg-black/5 transition-colors group"><span>EMAIL</span><span class="text-rose-500 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">↗</span></a>
       <a href="Candela_Gamboa_CV.pdf" download class="p-4 md:p-6 flex justify-between items-center hover:bg-black/5 transition-colors group"><span>CV (ES)</span><span class="text-rose-500 group-hover:translate-y-1 transition-transform">↓</span></a>
       <a href="Candela_Gamboa_CV_English.pdf" download class="p-4 md:p-6 flex justify-between items-center hover:bg-black/5 transition-colors group"><span>CV (EN)</span><span class="text-rose-500 group-hover:translate-y-1 transition-transform">↓</span></a>
@@ -340,15 +340,17 @@ model-viewer::part(default-progress-bar){display:none!important}
 <!-- MODAL -->
 <div id="projectModal" class="fixed inset-0 z-[60] flex items-center justify-center bg-[#f9f9f7]/90 backdrop-blur-sm opacity-0 invisible">
   <button id="closeModalBtn" class="absolute top-4 right-4 md:top-8 md:right-10 flex items-center gap-2 text-gray-600 hover:text-black transition-colors group cursor-pointer z-10"><span class="font-mono text-sm tracking-widest uppercase">Close</span><span class="text-2xl leading-none group-hover:rotate-90 transition-transform duration-300">×</span></button>
-  <div class="w-[calc(100%-2rem)] max-w-6xl h-[84vh] mt-10 bg-white rounded-2xl shadow-xl border border-gray-100 flex flex-col md:flex-row overflow-y-auto md:overflow-hidden">
-    <div id="modalMedia" class="md:w-3/5 md:overflow-y-auto p-4 md:p-6 space-y-4 bg-gray-50 md:flex-shrink-0"></div>
-    <div class="md:w-2/5 md:overflow-y-auto p-6 md:p-10 flex flex-col">
+  <div class="w-[calc(100%-2rem)] max-w-6xl h-[84vh] mt-10 bg-white rounded-2xl shadow-xl border border-gray-100 flex flex-col md:flex-row overflow-y-auto md:overflow-hidden relative">
+    <div id="modalMedia" class="md:w-3/5 md:overflow-y-auto p-4 md:p-6 space-y-4 bg-gray-50 md:flex-shrink-0 relative"></div>
+    <div class="md:w-2/5 md:overflow-y-auto p-6 md:p-10 flex flex-col relative">
       <p id="modalCategory" class="font-mono text-xs uppercase tracking-widest text-gray-500 mb-3"></p>
       <h2 id="modalTitle" class="font-serif text-3xl md:text-4xl text-gray-900 mb-5 leading-tight"></h2>
       <div class="w-12 h-[1px] bg-rose-400 mb-5"></div>
       <div id="modalTabs" class="flex overflow-x-auto border-b border-gray-200 mb-6 -mx-1"></div>
-      <div id="modalPanel" class="text-gray-600 text-sm md:text-base leading-relaxed"></div>
+      <div id="modalPanel" class="text-gray-600 text-sm md:text-base leading-relaxed pb-8"></div>
     </div>
+    <!-- Floating Date -->
+    <div id="modalDate" class="hidden absolute bottom-4 right-4 md:bottom-6 md:right-8 font-mono text-[10px] uppercase tracking-widest text-gray-500 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded border border-gray-200 shadow-sm z-50"></div>
   </div>
 </div>
 
@@ -370,6 +372,7 @@ const PROJECTS = [
     id: 'kingscross', span: true, aspect: 'aspect-[21/9]',
     title: "King's Cross Station: WWII Field Hospital",
     category: '3D Environment / VIDEOGAMES',
+    date: '09 / 2026', dateLabel: 'Completed',
     cover: 'KingsCross/KingsCross_Render_01.jpeg',
     media: ['KingsCross/KingsCross_Render_01.jpeg','KingsCross/KingsCross_Render_02.jpeg','KingsCross/KingsCross_Video_01.mp4','KingsCross/KingsCross_Video_02.mp4','KingsCross/KingsCross_Video_03_WIP.mp4'],
     description: "A real-time environment recreating an alternate WWII scenario where King’s Cross Station has been repurposed into a frontline triage base and medical train depot for wounded soldiers. The project was built as a game-ready environment, with modular assets and PBR materials, and rendered in Unreal Engine 5.",
@@ -382,6 +385,7 @@ const PROJECTS = [
     id: 'revolver', aspect: 'aspect-[4/3]',
     title: 'Smith & Wesson PERFORMANCE CENTER MODEL 327',
     category: '3D Props / VIDEOGAMES',
+    date: '05 / 2026', dateLabel: 'Completed',
     cover: 'Revolver/Render_03.jpg',
     media: ['Revolver/Render_03.jpg','Revolver/Render_02.jpg','Revolver/Render_05.jpg','Revolver/render_01_wireframe.jpg'],
     description: 'Replica of the Smith & Wesson Performance Center Model 327 revolver, built as a game-ready hard-surface prop with PBR materials.',
@@ -394,6 +398,7 @@ const PROJECTS = [
     id: 'bebe', aspect: 'aspect-[4/3]',
     title: 'Bebe 3D Character',
     category: '3D Character / VIDEOGAMES',
+    date: '03 / 2026', dateLabel: 'Completed',
     cover: 'Bebe/Bebe_01.png',
     media: ['Bebe/Bebe_01.png','Bebe/Bebe_02.png','Bebe/Bebe_03.png','Bebe/Bebe_04.png','Bebe/bebe3.png','Bebe/Bebe_Video.mp4'],
     description: 'Character design and modeling, from concept to final presentation.',
@@ -406,6 +411,7 @@ const PROJECTS = [
     id: 'chubby', span: true, aspect: 'aspect-[21/9]',
     title: 'Chubby Gummies',
     category: '3D Character / PRODUCT DESIGN',
+    date: '06 / 2026', dateLabel: 'Published',
     cover: 'chubby_gummies/CG_01.png',
     media: ['chubby_gummies/CG_01.png','chubby_gummies/CG_02.png','chubby_gummies/CG_03.png','chubby_gummies/final_render_20.png','chubby_gummies/CG_poster.png'],
     description: 'A blind-box collectible series: a family of chubby gummy characters, their packaging and the poster that ties them together. The same models power the box on the home page.',
@@ -416,9 +422,9 @@ const PROJECTS = [
   }
 ];
 const OTHER = [
-  ['Sketchbook','2D Exploration','A collection of rough ideas before they hit the 3D viewport.','https://placehold.co/600x600/e2e8f0/64748b?text=Sketchbook'],
-  ['Prop Design','Hard-Surface','Quick modeling studies focused on mechanical joints.','https://placehold.co/600x600/f1f5f9/94a3b8?text=Prop+Design'],
-  ['Lighting tests','Rendering','Playing with mood and atmosphere in Unreal Engine.','https://placehold.co/600x600/f8fafc/cbd5e1?text=Lighting+tests']
+  ['Sketchbook','2D Exploration','A collection of rough ideas before they hit the 3D viewport.','https://placehold.co/600x600/e2e8f0/64748b?text=Sketchbook','2023'],
+  ['Prop Design','Hard-Surface','Quick modeling studies focused on mechanical joints.','https://placehold.co/600x600/f1f5f9/94a3b8?text=Prop+Design','2024'],
+  ['Lighting tests','Rendering','Playing with mood and atmosphere in Unreal Engine.','https://placehold.co/600x600/f8fafc/cbd5e1?text=Lighting+tests','2025']
 ];
 const isVideo = f => /\.(mp4|webm|mov)$/i.test(f);
 const url = f => ASSETS + f;
@@ -531,9 +537,10 @@ document.addEventListener('DOMContentLoaded', () => {
     card.innerHTML = `
       <div class="relative w-full ${p.aspect} rounded-2xl overflow-hidden shadow-sm bg-gray-100 transition-transform duration-500 group-hover:scale-[1.01] border border-gray-200">
         <img src="${url(p.cover)}" class="w-full h-full object-cover project-img" alt="${p.title}"><span class="view-pill">View project</span></div>
-      <div class="mt-4 flex flex-col md:flex-row md:justify-between items-start md:items-baseline gap-2 md:gap-4">
+      <div class="mt-4 flex justify-between items-start gap-4">
         <h3 class="text-lg font-semibold text-gray-900 group-hover:text-rose-600 transition-colors">${p.title}</h3>
-        <p class="font-mono text-xs text-gray-500 tracking-wider uppercase md:text-right flex-shrink-0">${p.category}</p></div>`;
+        <p class="font-mono text-xs text-gray-500 tracking-wider uppercase flex-shrink-0 text-right">${p.category}</p>
+      </div>`;
     grid.appendChild(card);
     const hoverImgs = p.media.filter(f => !isVideo(f)).map(url), img = card.querySelector('.project-img'); let id, i = 0;
     if (hoverImgs.length > 1) {
@@ -542,13 +549,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     card.addEventListener('click', () => openModal(p)); a11y(card, () => openModal(p));
   });
-  OTHER.forEach(([t, c, d, src]) => {
+  OTHER.forEach(([t, c, d, src, date]) => {
     const card = document.createElement('div');
     card.className = 'group cursor-pointer project-card';
     card.innerHTML = `
       <div class="relative w-full aspect-square rounded-xl overflow-hidden shadow-sm transition-transform duration-500 group-hover:scale-[1.02] border border-gray-200"><img src="${src}" class="w-full h-full object-cover" alt="${t}"><span class="view-pill">View</span></div>
-      <div class="mt-3 flex justify-between items-baseline gap-4"><h3 class="text-base font-semibold text-gray-900 group-hover:text-rose-600 transition-colors">${t}</h3><p class="font-mono text-[10px] text-gray-500 tracking-wider uppercase flex-shrink-0">${c}</p></div>`;
-    const op = () => openModal({ title: t, category: c, media: [], description: d, specs: [], software: [], breakdown: [], references: [], _src: src });
+      <div class="mt-3 flex justify-between items-start gap-4">
+        <h3 class="text-base font-semibold text-gray-900 group-hover:text-rose-600 transition-colors">${t}</h3>
+        <p class="font-mono text-[10px] text-gray-500 tracking-wider uppercase flex-shrink-0 text-right">${c}</p>
+      </div>`;
+    const op = () => openModal({ title: t, category: c, media: [], description: d, specs: [], software: [], breakdown: [], references: [], _src: src, date: date, dateLabel: 'Completed' });
     card.addEventListener('click', op); a11y(card, op);
     $('other-grid').appendChild(card);
   });
@@ -556,7 +566,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ================= MODAL =================
   const modal = $('projectModal'), mMedia = $('modalMedia'), mTabs = $('modalTabs'), mPanel = $('modalPanel');
   const TABS = [['description','Description'],['software','Software'],['breakdown','Breakdown'],['references','References']];
-  let current = null;
+  let current = null, vidIO = null;
   function renderPanel(key) {
     const p = current; let h = '';
     if (key === 'description') {
@@ -580,10 +590,23 @@ document.addEventListener('DOMContentLoaded', () => {
     mMedia.innerHTML = `<p class="font-hand text-lg text-gray-400 text-center -mb-1">Click a photo to enlarge</p>` + (p._src ? `<img src="${p._src}" class="lb-img w-full rounded-xl" data-i="0" alt="${p.title}">` : p.media.map(f => isVideo(f)
       ? `<video src="${url(f)}#t=0.1" class="w-full rounded-xl border border-gray-200 bg-black" controls muted loop playsinline preload="metadata"></video>`
       : `<img src="${url(f)}" class="lb-img w-full rounded-xl border border-gray-200 shadow-sm" loading="lazy" data-i="${ii++}" alt="${p.title}">`).join(''));
+    if (vidIO) vidIO.disconnect();
+    vidIO = new IntersectionObserver(en => en.forEach(x => { if (x.isIntersecting) x.target.play().catch(() => {}); else x.target.pause(); }), { threshold: .45 });
+    mMedia.querySelectorAll('video').forEach(v => { v.muted = true; vidIO.observe(v); });
     mMedia.scrollTop = 0;
     mTabs.innerHTML = TABS.map(([k, l]) => `<button class="tab-btn" data-tab="${k}">${l}</button>`).join('');
     mTabs.querySelectorAll('.tab-btn').forEach(b => b.addEventListener('click', () => renderPanel(b.dataset.tab)));
     renderPanel('description');
+    
+    // Set up the floating date
+    const modalDate = $('modalDate');
+    if (p.date) {
+      modalDate.innerHTML = `${p.dateLabel || 'Completed'} <span class="text-rose-500 font-bold text-sm">&middot;</span> ${p.date}`;
+      modalDate.style.display = 'block';
+    } else {
+      modalDate.style.display = 'none';
+    }
+
     modal.classList.remove('invisible', 'opacity-0'); modal.classList.add('opacity-100');
     document.body.classList.add('modal-open');
   }
@@ -591,6 +614,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function closeModal() {
     modal.classList.replace('opacity-100', 'opacity-0');
     mMedia.querySelectorAll('video').forEach(v => v.pause());
+    if (vidIO) vidIO.disconnect();
     setTimeout(() => { modal.classList.add('invisible'); document.body.classList.remove('modal-open'); mMedia.innerHTML = ''; }, 300);
   }
   $('closeModalBtn').addEventListener('click', closeModal);
@@ -642,7 +666,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 'smiski', icon: '🧸', name: 'Smiski Keychain', tip: 'Pure good luck.', st: { luck: 3, creativity: 1 } }
   ];
   const STATS = [['energy', 'Energy', '#f59e0b'], ['focus', 'Focus', '#3b82f6'], ['creativity', 'Creativity', '#ec4899'], ['luck', 'Luck', '#10b981']];
-  const poolEl = $('inv-pool'), slotEls = [...document.querySelectorAll('#inv-slots .slot')], resetBtn = $('reset-inv-btn'), tip = $('inv-tip');
+  const poolEl = $('inv-pool'), slotEls = [...document.querySelectorAll('#inv-slots .slot')], resetBtn = $('reset-inv-btn'), tip =$('inv-tip');
   let equipped = [null, null, null, null];
   $('inv-stats').innerHTML = STATS.map(([k, n, c]) => `<div class="flex items-center gap-2"><span class="w-20 font-mono text-[9px] uppercase tracking-widest text-gray-500">${n}</span><div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden"><div data-stat="${k}" class="h-full rounded-full" style="width:0;background:${c};transition:width .5s cubic-bezier(.3,1.4,.5,1)"></div></div></div>`).join('');
   ITEMS.forEach(it => {
@@ -659,7 +683,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     poolEl.querySelectorAll('.inv-item').forEach(b => b.classList.toggle('used', equipped.some(e => e && e.id === b.dataset.id)));
     const n = equipped.filter(Boolean).length;
-    $('inv-count').textContent = n + '/4'; $('inv-status').style.opacity = n === 4 ? 1 : 0; resetBtn.style.visibility = n ? 'visible' : 'hidden';
+    $('inv-count').textContent = n + '/4';$('inv-status').style.opacity = n === 4 ? 1 : 0; resetBtn.style.visibility = n ? 'visible' : 'hidden';
     if (n === 4) { $('inv').classList.remove('geared'); void $('inv').offsetWidth; $('inv').classList.add('geared'); }
     STATS.forEach(([k]) => { const v = equipped.reduce((a, e) => a + (e ? e.st[k] || 0 : 0), 0); document.querySelector(`[data-stat="${k}"]`).style.width = Math.min(v / 8, 1) * 100 + '%'; });
   }
@@ -677,8 +701,31 @@ document.addEventListener('DOMContentLoaded', () => {
   renderInv();
 
   // ================= SKILLS Y TRAITS =================
-  const SKILLS = [['Blender', 'Proficient', '#10b981'], ['Unreal Engine 5', 'Proficient', '#10b981'], ['Substance 3D Painter', 'Proficient', '#10b981'], ['Substance 3D Designer', 'Intermediate', '#f59e0b']];
-  $('skills').innerHTML = SKILLS.map(([n, l, c]) => `<div class="flex justify-between items-center py-3 border-b border-gray-100/50"><span class="font-mono text-sm text-gray-800">${n}</span><span class="font-hand text-lg" style="color:${c}">${l}</span></div>`).join('');
+  const SKILLS = [
+    ['Blender', 'Proficient', '#10b981', 'https://placehold.co/60x60/e2e8f0/64748b?text=BL'],
+    ['3ds Max', 'Intermediate', '#f59e0b', 'https://placehold.co/60x60/e2e8f0/64748b?text=MAX'],
+    ['ZBrush', 'Intermediate', '#f59e0b', 'https://placehold.co/60x60/e2e8f0/64748b?text=ZB'],
+    ['Substance Painter', 'Proficient', '#10b981', 'https://placehold.co/60x60/e2e8f0/64748b?text=SP'],
+    ['Substance Designer', 'Intermediate', '#f59e0b', 'https://placehold.co/60x60/e2e8f0/64748b?text=SD'],
+    ['Photoshop', 'Proficient', '#10b981', 'https://placehold.co/60x60/e2e8f0/64748b?text=PS'],
+    ['Illustrator', 'Intermediate', '#f59e0b', 'https://placehold.co/60x60/e2e8f0/64748b?text=AI'],
+    ['Adobe Suite', 'Proficient', '#10b981', 'https://placehold.co/60x60/e2e8f0/64748b?text=AD'],
+    ['Unreal Engine 5', 'Proficient', '#10b981', 'https://placehold.co/60x60/e2e8f0/64748b?text=UE5'],
+    ['Unity', 'Basic', '#6b7280', 'https://placehold.co/60x60/e2e8f0/64748b?text=UN'],
+    ['Canva', 'Proficient', '#10b981', 'https://placehold.co/60x60/e2e8f0/64748b?text=CA'],
+    ['Procreate', 'Proficient', '#10b981', 'https://placehold.co/60x60/e2e8f0/64748b?text=PR'],
+    ['VS Code', 'Intermediate', '#f59e0b', 'https://placehold.co/60x60/e2e8f0/64748b?text=VS'],
+    ['Nomad Sculpt', 'Basic', '#6b7280', 'https://placehold.co/60x60/e2e8f0/64748b?text=NS'],
+    ['Marmoset Toolbag', 'Proficient', '#10b981', 'https://placehold.co/60x60/e2e8f0/64748b?text=MT']
+  ];
+  $('skills').innerHTML = SKILLS.map(([n, l, c, icon]) => `
+    <div class="flex justify-between items-center py-1.5 border-b border-gray-100/50">
+      <div class="flex items-center gap-3">
+        <img src="${icon}" alt="${n}" class="w-5 h-5 rounded object-cover shadow-sm">
+        <span class="font-mono text-xs text-gray-800">${n}</span>
+      </div>
+      <span class="font-hand text-[15px]" style="color:${c}">${l}</span>
+    </div>`).join('');
   const TRAITS = [
     ['Adaptability', 'Years waiting tables taught me to read a room, handle pressure and switch gears in seconds.'],
     ['Creativity', 'I start from small everyday observations and turn them into playful worlds.'],
@@ -698,7 +745,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { icon: '🖥️', pos: { d: [80, 67.5], m: [50, 78] }, label: 'Gaya Studios', title: '3D Modeler at Gaya Studios', status: 'LATEST QUEST', desc: 'Internship focused on professional 3D modeling and texturing pipelines at Gaya Studios.', chips: ['Internship', '3D modeling'] },
     { icon: '🔒', pos: { d: [95, 50], m: [50, 92] }, label: 'Next mission', title: 'Next mission', status: 'LOCKED', desc: 'The path continues. Looking for the next studio and the next quest to unlock.', chips: [['Open to work', '#contact']], locked: true }
   ];
-  const qMap = $('quest-map'), qAvatar = $('map-avatar'), qWrap = $('quest-card-wrap'), mapSvg = $('map-svg-container');
+  const qMap = $('quest-map'), qAvatar =$('map-avatar'), qWrap = $('quest-card-wrap'), mapSvg =$('map-svg-container');
   const MAIN = QUESTS.map((q, i) => i).filter(i => !QUESTS[i].sideQuest);
   let qNodes = [], cur = 0, autoWalk = true, typeT, lastM = innerWidth < 768;
 

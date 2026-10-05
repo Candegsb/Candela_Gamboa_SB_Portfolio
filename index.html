@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Candela Gamboa | 3D Artist</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+body{background-color:#f9f9f7;background-image:repeating-linear-gradient(transparent,transparent 31px,#e5e7eb 31px,#e5e7eb 32px);font-family:'Inter',sans-serif;color:#2d2d2d;overflow-x:hidden;position:relative}
+.font-serif{font-family:'Playfair Display',serif}.font-mono{font-family:'Space Mono',monospace}
+.text-huge{font-size:clamp(3.5rem,8vw,6rem);line-height:1.1;letter-spacing:-.02em}
+::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:#f9f9f7}::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:4px}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.animate-marquee{display:flex;width:200%;animation:marquee 22s linear infinite}.animate-marquee:hover{animation-play-state:paused}
+
+/* ---------- BLIND BOX ---------- */
+.viewer{position:absolute;inset:0;width:100%;height:100%;background:transparent;cursor:grab;transition:opacity .4s ease,transform .4s ease}
+.viewer-on{opacity:1;pointer-events:auto;z-index:10}
+.viewer-off{opacity:0;pointer-events:none;z-index:0}
+@keyframes shake{0%,100%{transform:rotate(0) scale(1)}15%{transform:rotate(-7deg) scale(1.03)}30%{transform:rotate(6deg) scale(1.05)}45%{transform:rotate(-5deg) scale(1.05)}60%{transform:rotate(4deg) scale(1.03)}80%{transform:rotate(-2deg)}}
+.shake{animation:shake .7s ease-in-out}
+@keyframes pop{0%{transform:scale(.5) translateY(30px)}60%{transform:scale(1.08)}100%{transform:scale(1)}}
+.pop{animation:pop .55s cubic-bezier(.2,1.3,.4,1)}
+#open-box-btn:disabled{opacity:.6;cursor:wait}
+
+/* ---------- STICKERS (efecto pegatina que se despega) ---------- */
+@property --peel{syntax:'<length>';inherits:false;initial-value:12px}
+.draggable{cursor:grab;position:absolute;user-select:none;touch-action:none;z-index:10;filter:drop-shadow(2px 3px 4px rgba(0,0,0,.12));transition:transform .25s cubic-bezier(.2,1.2,.3,1),filter .25s ease}
+.draggable:hover{transform:translateY(-2px)}
+.draggable.is-dragging{cursor:grabbing;transform:scale(1.08) translateY(-6px);filter:drop-shadow(10px 16px 9px rgba(0,0,0,.25));z-index:999!important}
+.sticker{--peel:12px;position:relative;transition:--peel .3s cubic-bezier(.2,1.2,.3,1)}
+.draggable:hover .sticker{--peel:30px}
+.draggable.is-dragging .sticker{--peel:48px}
+.sticker img{display:block;pointer-events:none;clip-path:polygon(0 0,100% 0,100% calc(100% - var(--peel)),calc(100% - var(--peel)) 100%,0 100%)}
+/* la solapa doblada (reverso blanco de la pegatina) */
+.sticker::after{content:'';position:absolute;right:0;bottom:0;width:var(--peel);height:var(--peel);background:linear-gradient(135deg,#fafaf8 0%,#d6d6d1 50%,transparent 50%);border-top-left-radius:2px;filter:drop-shadow(-2px -2px 3px rgba(0,0,0,.28));pointer-events:none}
+
+#projectModal{transition:opacity .3s ease-in-out,visibility .3s ease-in-out}.modal-open{overflow:hidden}
+model-viewer::part(default-progress-bar) {
+    display: none !important;
+}
+</style>
+</head>
+<body class="antialiased min-h-screen pb-20">
+
+<!-- NAV -->
+<nav class="w-full max-w-7xl mx-auto px-8 md:px-14 lg:px-20 py-6 relative z-30">
+  <div class="flex justify-between items-start md:items-center">
+    <div class="flex flex-col">
+      <a href="#" class="font-bold text-2xl tracking-tight text-gray-900">CGSB.</a>
+      <div class="flex md:hidden items-center space-x-1.5 text-xs font-medium text-gray-600 mt-1"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span><span>Open to Work</span></div>
+    </div>
+    <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-600 items-center">
+      <a href="#" class="hover:text-black transition-colors">Home</a>
+      <a href="#works" class="hover:text-black transition-colors flex items-center gap-1"><span>Works</span><sup class="text-[10px] text-rose-500 font-mono font-bold">03</sup></a>
+      <a href="#profile" class="hover:text-black transition-colors">Profile</a>
+      <a href="#other-works" class="hover:text-black transition-colors">Other works</a>
+      <a href="#contact" class="hover:text-black transition-colors">Contact</a>
+    </div>
+    <div class="hidden md:flex items-center space-x-2 text-sm font-medium text-gray-600"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span><span>Open to Work</span></div>
+    <button id="mobileMenuBtn" class="md:hidden p-2 text-gray-800 hover:text-black focus:outline-none" aria-label="Toggle menu">
+      <svg id="hamburgerIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      <svg id="closeIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    </button>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-b border-gray-200 flex flex-col space-y-3 font-mono text-sm uppercase tracking-wider text-gray-700">
+    <a href="#" class="hover:text-rose-500 transition-colors py-1">Home</a>
+    <a href="#works" class="hover:text-rose-500 transition-colors py-1 flex items-center justify-between"><span>Works</span><span class="text-xs bg-rose-100 text-rose-600 px-2 py-0.5 rounded-full font-bold">03</span></a>
+    <a href="#profile" class="hover:text-rose-500 transition-colors py-1">Profile</a>
+    <a href="#other-works" class="hover:text-rose-500 transition-colors py-1">Other works</a>
+    <a href="#contact" class="hover:text-rose-500 transition-colors py-1">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<main class="w-full max-w-6xl mx-auto px-8 md:px-14 lg:px-20 relative z-10">
+  <section class="mt-14 mb-24 md:mb-32 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+    <div class="flex flex-col items-start space-y-6">
+      <div class="flex items-center space-x-3 text-xs font-mono font-semibold tracking-widest text-gray-500 uppercase"><span class="w-8 h-[1px] bg-rose-400"></span><span>3D ARTIST / MADRID, SPAIN /</span></div>
+      <h1 class="font-serif text-huge font-medium text-gray-900">Candela<br>Gamboa</h1>
+      <p class="text-gray-600 max-w-md text-lg leading-relaxed">3D artist, curious image-maker, and collector of everyday inspiration. Welcome to my corner of the internet.</p>
+    </div>
+
+    <div class="relative w-full max-w-lg mx-auto lg:mx-0 lg:ml-auto flex flex-col items-center">
+      <div class="no-drop w-full aspect-square relative">
+        <model-viewer id="box-viewer" class="viewer viewer-on" src="box_chubbiegummies.glb" alt="Chubby Gummies Box" camera-controls disable-zoom camera-orbit="180deg auto auto" interaction-prompt="auto"></model-viewer>
+        <!-- el src se asigna por JS al azar al pulsar el botón -->
+        <model-viewer id="character-viewer" class="viewer viewer-off" alt="Chubby Gummy" camera-controls disable-zoom camera-orbit="180deg auto auto" auto-rotate auto-rotate-delay="2500" interaction-prompt="none"></model-viewer>
+      </div>
+      <div class="flex flex-col items-center gap-2 mt-6 z-20">
+        <button id="open-box-btn" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-rose-500 to-pink-500 text-white font-mono text-xs uppercase tracking-widest font-bold shadow-lg hover:shadow-xl hover:from-rose-600 hover:to-pink-600 transition-all cursor-pointer -rotate-2 transform hover:scale-105">Open the BlindBox to discover</button>
+        <span id="character-name" class="font-mono text-xs text-gray-500 tracking-wider uppercase mt-1">Mystery Box</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- TICKER -->
+<div class="w-full border-y border-black overflow-hidden bg-transparent my-16 py-2.5">
+  <div class="animate-marquee whitespace-nowrap text-sm font-mono tracking-widest uppercase text-gray-800 flex items-center">
+    <span class="mx-4">VIDEOGAMES</span><span>·</span><span class="mx-4">PRODUCT DESIGN</span><span>·</span><span class="mx-4">ADAPTABILITY</span><span>·</span><span class="mx-4">ENVIRONMENT ART</span><span>·</span><span class="mx-4">HARD-SURFACE</span><span>·</span><span class="mx-4">TEXTURING</span><span>·</span>
+    <span class="mx-4">VIDEOGAMES</span><span>·</span><span class="mx-4">PRODUCT DESIGN</span><span>·</span><span class="mx-4">ADAPTABILITY</span><span>·</span><span class="mx-4">ENVIRONMENT ART</span><span>·</span><span class="mx-4">HARD-SURFACE</span><span>·</span><span class="mx-4">TEXTURING</span><span>·</span>
+  </div>
+</div>
+
+<main class="w-full max-w-6xl mx-auto px-8 md:px-14 lg:px-20 relative z-10">
+
+  <!-- WORKS -->
+  <section id="works" class="mb-40 pt-10">
+    <div class="flex items-baseline gap-3 mb-2"><h2 class="text-3xl font-serif text-gray-900">01 / Selected works</h2><span class="text-xs font-mono text-rose-500 font-bold bg-rose-50 border border-rose-200 px-2 py-0.5 rounded-full">03 items</span></div>
+    <p class="text-gray-500 mb-10">3D explorations in shape, texture, and a little bit of play.</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div class="md:col-span-2 group cursor-pointer project-card" data-title="Soft gravity" data-category="Form Study / 3D Render" data-images='["https://placehold.co/1200x500/fecaca/ef4444?text=Soft+Gravity+-+Render+01","https://placehold.co/1200x500/fcd34d/f59e0b?text=Soft+Gravity+-+Render+02"]' data-desc="An exploration of weightlessness and material softness.">
+        <div class="w-full aspect-[21/9] rounded-2xl overflow-hidden shadow-sm transition-transform duration-500 group-hover:scale-[1.01]"><img src="https://placehold.co/1200x500/fecaca/ef4444?text=Soft+Gravity+-+Render+01" class="w-full h-full object-cover project-img" alt="Cover"></div>
+        <div class="mt-4 flex justify-between items-baseline"><h3 class="text-lg font-semibold text-gray-900">King's Cross Station: WWII Field Hospital</h3><p class="font-mono text-xs text-gray-500 tracking-wider uppercase"> 3D Enviroment / VIDEOGAMES</p></div>
+      </div>
+      <div class="group cursor-pointer project-card" data-title="Ripple room" data-category="Material Exploration / 3D Render" data-images='["https://placehold.co/800x600/e9d5ff/a855f7?text=Ripple+Room+-+01","https://placehold.co/800x600/fbcfe8/ec4899?text=Ripple+Room+-+02"]' data-desc="A study on procedural materials and organic distortion in Unreal Engine 5.">
+        <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-sm transition-transform duration-500 group-hover:scale-[1.01]"><img src="https://placehold.co/800x600/e9d5ff/a855f7?text=Ripple+Room+-+01" class="w-full h-full object-cover project-img" alt="Cover"></div>
+        <div class="mt-4 flex justify-between items-baseline"><h3 class="text-lg font-semibold text-gray-900">Bebe 3d Characther</h3><p class="font-mono text-xs text-gray-500 tracking-wider uppercase"> 3D Character /VIDEOGAMES</p></div>
+      </div>
+      <div class="group cursor-pointer project-card" data-title="Balancing act" data-category="Sculptural Study / 3D Render" data-images='["https://placehold.co/800x600/fed7aa/f97316?text=Balancing+Act+-+01"]' data-desc="Visual poem about tension and equilibrium.">
+        <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-sm transition-transform duration-500 group-hover:scale-[1.01]"><img src="https://placehold.co/800x600/fed7aa/f97316?text=Balancing+Act+-+01" class="w-full h-full object-cover project-img" alt="Cover"></div>
+        <div class="mt-4 flex justify-between items-baseline"><h3 class="text-lg font-semibold text-gray-900">Smith & Wesson PERFORMANCE CENTER MODEL 327</h3><p class="font-mono text-xs text-gray-500 tracking-wider uppercase">3D Props /VIDEOGAMES</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFILE -->
+  <section id="profile" class="mb-32 pt-10">
+    <h2 class="text-3xl font-serif mb-12 text-gray-900">02 / The person behind the pixels</h2>
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16">
+      <div class="md:col-span-5 flex flex-col items-center md:items-start space-y-8 no-drop">
+        <div class="relative flex-shrink-0 w-64 md:w-72">
+          <div class="bg-white p-4 pb-16 shadow-xl -rotate-3 rounded-sm border border-gray-100">
+            <div class="w-full aspect-square bg-gradient-to-br from-gray-200 to-gray-300 rounded-sm"></div>
+            <p class="absolute bottom-6 left-0 right-0 text-center text-gray-400 font-serif text-sm italic">Candela, behind the scenes.</p>
+          </div>
+        </div>
+        <div class="space-y-4 text-gray-700 leading-relaxed text-sm md:text-base">
+          <p>I'm Candela, a 3D artist drawn to tactile details, unexpected colors, and objects that feel almost alive. I turn small observations into playful visual worlds, from the first sketch to the final render.</p>
+          <p>Away from the viewport, you'll find me filling sketchbooks, taking photos, and finding inspiration in the ordinary. Having worked in hospitality as a waitress, I've developed a sharp eye for pacing, adaptability, and understanding how people interact with their environment.</p>
+        </div>
+      </div>
+      <div class="md:col-span-7 flex flex-col">
+        <h3 class="font-mono text-xs font-semibold tracking-widest text-gray-400 uppercase mb-6 border-b pb-4 border-gray-200">Toolkit &amp; Proficiency</h3>
+        <div class="flex flex-col space-y-2">
+          <div class="flex items-center justify-between py-3 border-b border-gray-100 hover:bg-gray-50 px-2 rounded transition-colors"><span class="font-mono text-sm text-gray-800">Blender</span><span class="text-[10px] bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full uppercase tracking-widest font-bold">Proficient</span></div>
+          <div class="flex items-center justify-between py-3 border-b border-gray-100 hover:bg-gray-50 px-2 rounded transition-colors"><span class="font-mono text-sm text-gray-800">Unreal Engine 5</span><span class="text-[10px] bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full uppercase tracking-widest font-bold">Proficient</span></div>
+          <div class="flex items-center justify-between py-3 border-b border-gray-100 hover:bg-gray-50 px-2 rounded transition-colors"><span class="font-mono text-sm text-gray-800">Substance 3D Painter</span><span class="text-[10px] bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full uppercase tracking-widest font-bold">Proficient</span></div>
+          <div class="flex items-center justify-between py-3 border-b border-gray-100 hover:bg-gray-50 px-2 rounded transition-colors"><span class="font-mono text-sm text-gray-800">Substance 3D Designer</span><span class="text-[10px] bg-amber-100 text-amber-800 px-3 py-1 rounded-full uppercase tracking-widest font-bold">Intermediate</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OTHER WORKS -->
+  <section id="other-works" class="mb-32 pt-10 border-t border-gray-200">
+    <h2 class="text-3xl font-serif mb-2 text-gray-900 mt-10">03 / Other works</h2>
+    <p class="text-gray-500 mb-10">Experiments, sketchbook entries, and side quests.</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="group cursor-pointer project-card" data-title="Sketchbook" data-category="2D Exploration" data-images='["https://placehold.co/600x600/e2e8f0/64748b?text=Sketchbook"]' data-desc="A collection of rough ideas before they hit the 3D viewport.">
+        <div class="w-full aspect-square rounded-xl overflow-hidden shadow-sm transition-transform duration-500 group-hover:scale-[1.02]"><img src="https://placehold.co/600x600/e2e8f0/64748b?text=Sketchbook" class="w-full h-full object-cover project-img" alt="Cover"></div>
+        <div class="mt-3"><h3 class="text-base font-semibold text-gray-900">Sketchbook</h3><p class="font-mono text-[10px] text-gray-500 tracking-wider uppercase">2D Exploration</p></div>
+      </div>
+      <div class="group cursor-pointer project-card" data-title="Prop Design" data-category="Hard-Surface" data-images='["https://placehold.co/600x600/f1f5f9/94a3b8?text=Prop+Design"]' data-desc="Quick modeling studies focused on mechanical joints.">
+        <div class="w-full aspect-square rounded-xl overflow-hidden shadow-sm transition-transform duration-500 group-hover:scale-[1.02]"><img src="https://placehold.co/600x600/f1f5f9/94a3b8?text=Prop+Design" class="w-full h-full object-cover project-img" alt="Cover"></div>
+        <div class="mt-3"><h3 class="text-base font-semibold text-gray-900">Prop Design</h3><p class="font-mono text-[10px] text-gray-500 tracking-wider uppercase">Hard-Surface</p></div>
+      </div>
+      <div class="group cursor-pointer project-card" data-title="Lighting tests" data-category="Rendering" data-images='["https://placehold.co/600x600/f8fafc/cbd5e1?text=Lighting+tests"]' data-desc="Playing with mood and atmosphere in Unreal Engine.">
+        <div class="w-full aspect-square rounded-xl overflow-hidden shadow-sm transition-transform duration-500 group-hover:scale-[1.02]"><img src="https://placehold.co/600x600/f8fafc/cbd5e1?text=Lighting+tests" class="w-full h-full object-cover project-img" alt="Cover"></div>
+        <div class="mt-3"><h3 class="text-base font-semibold text-gray-900">Lighting tests</h3><p class="font-mono text-[10px] text-gray-500 tracking-wider uppercase">Rendering</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="pt-8 pb-16">
+    <div class="w-full border-t border-b border-black grid grid-cols-2 md:grid-cols-5 font-mono text-xs uppercase tracking-wider divide-y md:divide-y-0 md:divide-x divide-black">
+      <div class="p-4 md:p-6 text-gray-500 font-semibold flex items-center col-span-2 md:col-span-1">FIND ME HERE</div>
+      <a href="https://linkedin.com" target="_blank" class="p-4 md:p-6 flex justify-between items-center hover:bg-black/5 transition-colors group"><span>LINKEDIN</span><span class="text-rose-500 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">↗</span></a>
+      <a href="https://artstation.com" target="_blank" class="p-4 md:p-6 flex justify-between items-center hover:bg-black/5 transition-colors group"><span>ARTSTATION</span><span class="text-rose-500 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">↗</span></a>
+      <a href="mailto:tuemail@ejemplo.com" class="p-4 md:p-6 flex justify-between items-center hover:bg-black/5 transition-colors group"><span>EMAIL</span><span class="text-rose-500 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">↗</span></a>
+      <a href="#resume" class="p-4 md:p-6 flex justify-between items-center hover:bg-black/5 transition-colors group"><span>RESUME</span><span class="text-rose-500 group-hover:translate-y-1 transition-transform">↓</span></a>
+    </div>
+    <div class="mt-8 flex flex-col md:flex-row justify-between items-center text-xs font-mono text-gray-500 uppercase tracking-wider space-y-4 md:space-y-0">
+      <div>© 2026 CGSB</div><div>MADE WITH CURIOSITY &amp; A FEW TOO MANY POLYGONS</div>
+      <a href="#" class="hover:text-black transition-colors flex items-center gap-1">BACK TO TOP <span>↑</span></a>
+    </div>
+  </section>
+</main>
+
+<!-- PEGATINAS: cada una es .draggable > .sticker > img -->
+<div class="draggable hidden md:block" style="top:15%;left:3%"><div class="sticker rotate-12"><img src="https://placehold.co/100x100/fecaca/ef4444?text=Sticker+1" class="w-20 h-20 object-cover rounded-xl" alt="Sticker 1"></div></div>
+<div class="draggable hidden md:block" style="top:35%;left:92%"><div class="sticker -rotate-6"><img src="https://placehold.co/100x100/bbf7d0/22c55e?text=Sticker+2" class="w-24 h-24 object-cover rounded-xl" alt="Sticker 2"></div></div>
+<div class="draggable hidden md:block" style="top:70%;left:2%"><div class="sticker -rotate-12"><img src="https://placehold.co/90x110/bfdbfe/3b82f6?text=Sticker+3" class="w-20 h-24 object-cover rounded-xl" alt="Sticker 3"></div></div>
+<div class="draggable hidden md:block" style="top:85%;left:93%"><div class="sticker rotate-6"><img src="https://placehold.co/90x90/fef08a/eab308?text=Sticker+4" class="w-20 h-20 object-cover rounded-xl" alt="Sticker 4"></div></div>
+
+<!-- MODAL -->
+<div id="projectModal" class="fixed inset-0 z-50 flex items-center justify-center bg-[#f9f9f7]/85 backdrop-blur-sm opacity-0 invisible">
+  <button id="closeModalBtn" class="absolute top-6 right-6 md:top-10 md:right-10 flex items-center gap-2 text-gray-600 hover:text-black transition-colors group cursor-pointer z-50"><span class="font-mono text-sm tracking-widest uppercase">Close</span><span class="text-2xl leading-none group-hover:rotate-90 transition-transform duration-300">×</span></button>
+  <div class="w-full max-w-6xl mx-auto p-6 md:p-12 max-h-[90vh] overflow-y-auto">
+    <div class="w-full bg-white rounded-2xl shadow-xl p-6 md:p-12 flex flex-col md:flex-row gap-10 md:gap-16 border border-gray-100">
+      <div id="modalImageContainer" class="w-full md:w-3/5 aspect-video md:aspect-[4/3] flex-shrink-0"></div>
+      <div class="w-full md:w-2/5 flex flex-col justify-center">
+        <p id="modalCategory" class="font-mono text-xs uppercase tracking-widest text-gray-500 mb-4"></p>
+        <h2 id="modalTitle" class="font-serif text-4xl md:text-5xl text-gray-900 mb-6 leading-tight"></h2>
+        <div class="w-12 h-[1px] bg-rose-400 mb-6"></div>
+        <p id="modalDesc" class="text-gray-600 text-base md:text-lg leading-relaxed"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ================= BLIND BOX =================
+  // >>> EDITA AQUÍ: añade o cambia tus muñecos (nombre de archivo .glb + etiqueta) <<<
+  const CHARACTERS = [
+    { src: 'chubby_gummies_purple.glb', BRAM: 'Purple Edition' },
+    { src: 'chubby_gummies_pink.glb',   PIP: 'Pink Edition' },
+    { src: 'chubby_gummies_blue.glb',   FROST: 'Blue Edition' },
+    { src: 'chubby_gummies_green.glb',  SPICA: 'Green Edition' },
+    { src: 'chubby_gummies_orange.glb', FUZZ: 'Orange Edition' },
+    { src: 'chubby_gummies_dark.glb',  TUTTI: 'Green Edition' },
+    { src: 'chubby_gummies_yellow.glb',  ZESTY: 'Yellow Edition' }
+  ];
+
+  const boxV = document.getElementById('box-viewer');
+  const charV = document.getElementById('character-viewer');
+  const nameLabel = document.getElementById('character-name');
+  const btn = document.getElementById('open-box-btn');
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  let pool = [...CHARACTERS], last = null, isOpen = false, busy = false;
+
+  const setBtn = (open) => {
+    btn.textContent = open ? 'Try another' : 'Open to discover';
+    btn.classList.toggle('bg-gray-800', open);
+    btn.classList.toggle('hover:bg-black', open);
+    ['from-rose-500','to-pink-500','hover:from-rose-600','hover:to-pink-600'].forEach(c => btn.classList.toggle(c, !open));
+  };
+  const show = (v) => { v.classList.replace('viewer-off', 'viewer-on'); };
+  const hide = (v) => { v.classList.replace('viewer-on', 'viewer-off'); };
+
+  function pickRandom() {
+    const options = pool.filter(c => c !== last);
+    const list = options.length ? options : pool;
+    return list[Math.floor(Math.random() * list.length)];
+  }
+
+  // Carga un modelo; devuelve true si cargó, false si falló (archivo inexistente, etc.)
+  function loadCharacter(c) {
+    return new Promise(resolve => {
+      if (charV.getAttribute('src') === c.src) return resolve(true);
+      let done = false;
+      const finish = ok => { if (done) return; done = true; charV.removeEventListener('load', onLoad); charV.removeEventListener('error', onErr); resolve(ok); };
+      const onLoad = () => finish(true), onErr = () => finish(false);
+      charV.addEventListener('load', onLoad);
+      charV.addEventListener('error', onErr);
+      setTimeout(() => finish(false), 10000);
+      charV.src = c.src;
+    });
+  }
+
+  async function reveal() {
+    busy = true; btn.disabled = true;
+    const from = isOpen ? charV : boxV;
+    btn.textContent = 'Opening...';
+    from.classList.remove('shake'); void from.offsetWidth; from.classList.add('shake');
+    await wait(700);
+
+    let chosen = null;
+    while (pool.length && !chosen) {
+      const c = pickRandom();
+      if (await loadCharacter(c)) chosen = c; else pool = pool.filter(x => x !== c); // descarta los que no existen
+    }
+    from.classList.remove('shake');
+
+    if (!chosen) {
+      nameLabel.textContent = 'No models found - check .glb names';
+      pool = [...CHARACTERS]; setBtn(isOpen); busy = false; btn.disabled = false; return;
+    }
+    last = chosen;
+    charV.setAttribute('camera-orbit', '180deg auto auto');
+    charV.classList.remove('pop'); void charV.offsetWidth; charV.classList.add('pop');
+    hide(boxV); show(charV);
+    nameLabel.textContent = chosen.name;
+    isOpen = true; setBtn(true); busy = false; btn.disabled = false;
+  }
+
+  btn.addEventListener('click', () => { if (!busy) reveal(); });
+  // Doble clic en el nombre = volver a la caja
+  nameLabel.addEventListener('dblclick', () => {
+    if (!isOpen || busy) return;
+    hide(charV); show(boxV); nameLabel.textContent = 'Mystery Box'; isOpen = false; setBtn(false);
+  });
+
+  // ================= MENÚ MÓVIL =================
+  const mBtn = document.getElementById('mobileMenuBtn'), mMenu = document.getElementById('mobileMenu');
+  const ham = document.getElementById('hamburgerIcon'), cls = document.getElementById('closeIcon');
+  const setMenu = open => { mMenu.classList.toggle('hidden', !open); ham.classList.toggle('hidden', open); cls.classList.toggle('hidden', !open); };
+  mBtn.addEventListener('click', () => setMenu(mMenu.classList.contains('hidden')));
+  mMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+  // ================= PROYECTOS + MODAL =================
+  document.querySelectorAll('.project-card').forEach(card => {
+    let id, i = 0;
+    const img = card.querySelector('.project-img');
+    const images = JSON.parse(card.dataset.images || '[]');
+    if (images.length > 1) {
+      card.addEventListener('mouseenter', () => { id = setInterval(() => { i = (i + 1) % images.length; img.src = images[i]; }, 1000); });
+      card.addEventListener('mouseleave', () => { clearInterval(id); i = 0; img.src = images[0]; });
+    }
+    card.addEventListener('click', () => openModal(card));
+  });
+
+  const modal = document.getElementById('projectModal');
+  function openModal(card) {
+    document.getElementById('modalTitle').textContent = card.dataset.title;
+    document.getElementById('modalCategory').textContent = card.dataset.category;
+    document.getElementById('modalDesc').textContent = card.dataset.desc;
+    const images = JSON.parse(card.dataset.images || '[]');
+    if (images.length) document.getElementById('modalImageContainer').innerHTML = `<img src="${images[0]}" class="w-full h-full object-cover rounded-2xl shadow-md" alt="Project preview">`;
+    modal.classList.remove('invisible', 'opacity-0'); modal.classList.add('opacity-100');
+    document.body.classList.add('modal-open');
+  }
+  function closeModal() {
+    modal.classList.replace('opacity-100', 'opacity-0');
+    setTimeout(() => { modal.classList.add('invisible'); document.body.classList.remove('modal-open'); }, 300);
+  }
+  document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.classList.contains('invisible')) closeModal(); });
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+  // ================= PEGATINAS (drag + rebote) =================
+  let active = null, xOff = 0, yOff = 0, z = 50, origL = '', origT = '';
+  const pt = e => e.type.includes('touch') ? (e.touches[0] || e.changedTouches[0]) : e;
+
+  function dragStart(e) {
+    if (e.type === 'mousedown' && e.button !== 0) return;
+    active = this; active.style.zIndex = ++z;
+    // pasa todo a left/top en px (evita que se estiren los que usaban right/bottom)
+    active.style.left = active.offsetLeft + 'px'; active.style.top = active.offsetTop + 'px';
+    active.style.right = 'auto'; active.style.bottom = 'auto';
+    origL = active.style.left; origT = active.style.top;
+    active.style.transition = 'transform .25s cubic-bezier(.2,1.2,.3,1), filter .25s ease';
+    active.classList.add('is-dragging');
+    const p = pt(e), r = active.getBoundingClientRect();
+    xOff = p.clientX - r.left; yOff = p.clientY - r.top;
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('touchmove', drag, { passive: false });
+    document.addEventListener('mouseup', dragEnd);
+    document.addEventListener('touchend', dragEnd);
+  }
+  function drag(e) {
+    if (!active) return; e.preventDefault();
+    const p = pt(e);
+    active.style.left = (p.clientX - xOff + window.scrollX) + 'px';
+    active.style.top = (p.clientY - yOff + window.scrollY) + 'px';
+  }
+  function dragEnd(e) {
+    if (!active) return;
+    const el = active, p = pt(e);
+    el.style.visibility = 'hidden';
+    const under = document.elementsFromPoint(p.clientX, p.clientY);
+    el.style.visibility = 'visible';
+    const restricted = under.some(n => n.closest('.project-card') || n.closest('.no-drop') || n.closest('#projectModal') || n.tagName.toLowerCase() === 'model-viewer' || n.tagName.toLowerCase() === 'img');
+    if (restricted) {
+      el.style.transition = 'left .4s ease, top .4s ease, transform .25s cubic-bezier(.2,1.2,.3,1), filter .25s ease';
+      el.style.left = origL; el.style.top = origT;
+      setTimeout(() => { el.style.transition = 'transform .25s cubic-bezier(.2,1.2,.3,1), filter .25s ease'; }, 400);
+    }
+    el.classList.remove('is-dragging'); active = null;
+    document.removeEventListener('mousemove', drag); document.removeEventListener('touchmove', drag);
+    document.removeEventListener('mouseup', dragEnd); document.removeEventListener('touchend', dragEnd);
+  }
+  document.querySelectorAll('.draggable').forEach(s => {
+    s.addEventListener('mousedown', dragStart);
+    s.addEventListener('touchstart', dragStart, { passive: false });
+  });
+});
+</script>
+</body>
+</html>

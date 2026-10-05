@@ -2,17 +2,25 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Candela Gamboa | 3D Artist</title>
 <meta name="description" content="Portfolio of Candela Gamboa, 3D artist based in Madrid. Environments, props and characters for videogames.">
 <meta name="theme-color" content="#f9f9f7">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%8E%A8%3C/text%3E%3C/svg%3E">
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@300;400;500;600;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 html{scroll-behavior:smooth}
 ::selection{background:#fecdd3;color:#111}
-body{background-color:#f9f9f7;background-image:repeating-linear-gradient(transparent,transparent 31px,#e5e7eb 31px,#e5e7eb 32px);font-family:'Inter',sans-serif;color:#2d2d2d;overflow-x:hidden;position:relative}
+body{
+  background-color:#f9f9f7;
+  background-image: linear-gradient(#e5e7eb 1px, transparent 1px);
+  background-size: 100% 32px;
+  font-family:'DM Sans',sans-serif;
+  color:#2d2d2d;
+  overflow-x:hidden;
+  position:relative;
+}
 .font-serif{font-family:'Playfair Display',serif}.font-mono{font-family:'Space Mono',monospace}.font-hand{font-family:'Caveat',cursive}
 .text-huge{font-size:clamp(3.5rem,8vw,6rem);line-height:1.1;letter-spacing:-.02em}
 ::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:#f9f9f7}::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:4px}
@@ -35,67 +43,60 @@ body{background-color:#f9f9f7;background-image:repeating-linear-gradient(transpa
 .highlight-marker::before{content:'';position:absolute;bottom:6px;left:0;right:0;height:45%;background:#bfdbfe;z-index:-1;transform:rotate(-1.5deg);transition:transform .3s}
 .highlight-marker:hover::before{transform:rotate(0) scaleY(1.2)}
 .highlight-red::before{background:#fecaca}.highlight-yellow::before{background:#fef08a}.highlight-green::before{background:#bbf7d0}
-.scrap-paper{background:#fff;padding:24px;border:1px solid #e5e7eb;box-shadow:3px 4px 15px rgba(0,0,0,.05);position:relative;transform:rotate(var(--r,1deg));transition:transform .3s,box-shadow .3s}
+
+.scrap-paper{background:#fff;padding:16px;border:1px solid #e5e7eb;box-shadow:3px 4px 15px rgba(0,0,0,.05);position:relative;transform:rotate(var(--r,1deg));transition:transform .3s,box-shadow .3s}
+@media (min-width: 768px) { .scrap-paper{padding:24px;} }
 .scrap-paper:hover{transform:rotate(0) translateY(-3px);box-shadow:4px 10px 24px rgba(0,0,0,.09)}
-.scrap-flat:hover{transform:none;box-shadow:3px 4px 15px rgba(0,0,0,.05)}
 .scrap-tape{position:absolute;top:-12px;left:50%;transform:translateX(-50%) rotate(-3deg);width:90px;height:28px;background:rgba(253,230,138,.8);box-shadow:0 1px 3px rgba(0,0,0,.1);backdrop-filter:blur(2px);z-index:20}
 
 /* POLAROIDS */
 .polaroid-stack{position:relative;width:100%;aspect-ratio:4/5;margin-bottom:1.5rem;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.polaroid{position:absolute;inset:0;background:#fff;padding:10px 10px 46px;border-radius:4px;box-shadow:0 4px 15px rgba(0,0,0,.12);border:1px solid #e5e7eb;transform:var(--tf);transition:transform .6s cubic-bezier(.3,1.35,.5,1),box-shadow .3s;transform-origin:center bottom;will-change:transform}
+.polaroid{position:absolute;inset:0;background:#fff;padding:10px 10px 38px 10px;border-radius:4px;box-shadow:0 4px 15px rgba(0,0,0,.12);border:1px solid #e5e7eb;transform:var(--tf);transition:transform .6s cubic-bezier(.3,1.35,.5,1),box-shadow .3s;transform-origin:center bottom;will-change:transform}
 .polaroid.top:hover{transform:var(--tfh);box-shadow:0 14px 28px rgba(0,0,0,.18)}
 .polaroid.toss{transition:transform .38s cubic-bezier(.5,0,.8,.4)}
 .polaroid img{width:100%;height:100%;object-fit:cover;background:#f3f4f6;pointer-events:none;border-radius:2px}
-.polaroid::before{content:'';position:absolute;top:-10px;left:50%;width:70px;height:22px;transform:translateX(-50%) rotate(-3deg);background:rgba(253,230,138,.85);box-shadow:0 1px 3px rgba(0,0,0,.12);opacity:0;transition:opacity .3s}
-.polaroid.top::before{opacity:1}
-.polaroid-cap{position:absolute;left:0;right:0;bottom:11px;text-align:center;font-family:'Caveat',cursive;font-size:22px;color:#4b5563}
 .polaroid.fresh img{animation:develop 1s ease-out}
 @keyframes develop{0%{filter:brightness(1.8) saturate(0) blur(3px)}60%{filter:brightness(1.1) saturate(.5) blur(1px)}100%{filter:none}}
 
 /* INVENTARIO */
 .blink{animation:blink 1.2s steps(2) infinite}
 @keyframes blink{50%{opacity:.25}}
-.inv{background:#fdfbf7;border:2px dashed #cbd5e1;border-radius:16px;padding:18px;position:relative}
+.inv{background:#f3f4f6;border:1px solid #e5e7eb;box-shadow:3px 4px 15px rgba(0,0,0,.03);border-radius:18px;position:relative}
 .inv-link{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#9ca3af;transition:color .2s}
 .inv-link:hover{color:#fb7185}
 .slot{aspect-ratio:1;border:2px dashed #cbd5e1;border-radius:12px;background:#fff;display:grid;place-items:center;position:relative;cursor:pointer;transition:border-color .2s,background .2s,box-shadow .2s,transform .15s}
 .slot:hover{border-color:#fb7185}
 .slot i{position:absolute;top:3px;left:7px;font:700 9px 'Space Mono',monospace;color:#cbd5e1;font-style:normal}
 .slot.full{border-style:solid;border-color:#111;background:#eff6ff;box-shadow:2px 2px 0 #111}
-.slot .em{font-size:1.8rem;line-height:1}
+.slot .em{font-size:2rem;line-height:1}
 .slot .em.fresh{animation:equip .5s cubic-bezier(.2,1.6,.4,1)}
 @keyframes equip{0%{transform:scale(0) rotate(-40deg)}100%{transform:scale(1) rotate(0)}}
 .slot.nope{animation:nope .35s}
 @keyframes nope{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
-.inv-item{width:42px;height:42px;display:grid;place-items:center;background:#fff;border:1px solid #d1d5db;border-radius:10px;font-size:1.3rem;box-shadow:0 1px 2px rgba(0,0,0,.06);transition:transform .15s,box-shadow .15s,opacity .3s,filter .3s}
+.inv-item{width:46px;height:46px;display:grid;place-items:center;background:#fff;border:1px solid #d1d5db;border-radius:12px;font-size:1.5rem;box-shadow:0 1px 2px rgba(0,0,0,.06);transition:transform .15s,box-shadow .15s,opacity .3s,filter .3s}
 .inv-item:hover{transform:translateY(-3px) rotate(-4deg);box-shadow:2px 3px 0 #111}
 .inv-item.used{opacity:.25;filter:grayscale(1);pointer-events:none}
 .geared{animation:geared .6s}
-@keyframes geared{40%{transform:scale(1.04)}}
+@keyframes geared{40%{transform:scale(1.02)}}
 
 /* MAPA */
-.map-wrap{overflow-x:auto;overflow-y:hidden}
-.map{position:relative;width:100%;background:radial-gradient(circle at 15% 85%,#b4d08f 0,transparent 45%),radial-gradient(circle at 85% 15%,#cfe3ad 0,transparent 40%),linear-gradient(135deg,#c4d9a5,#a8c58a)}
-.map::before{content:'';position:absolute;inset:0;background:radial-gradient(rgba(0,0,0,.07) 1px,transparent 1.5px) 0 0/22px 22px;pointer-events:none}
+.map{position:relative;width:100%;height:100%;background:transparent;}
 .map>svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .flow{animation:flow 1s linear infinite}
 @keyframes flow{to{stroke-dashoffset:-16}}
-.node{position:absolute;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:50%;border:3px solid #111;background:#fff;font-family:'Space Mono',monospace;font-weight:700;display:grid;place-items:center;cursor:pointer;box-shadow:3px 3px 0 #111;transition:transform .2s;z-index:3}
-.node-ico{font-size:1.5rem;line-height:1}
+.node{position:absolute;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:50%;border:3px solid #111;background:#fff;font-family:'Space Mono',monospace;font-weight:700;display:grid;place-items:center;cursor:pointer;box-shadow:3px 3px 0 #111;transition:transform .2s;z-index:3;padding:4px}
 .node:hover{transform:translate(-50%,-50%) scale(1.12)}
 .node.done{background:#fff}
 .node.sel{outline:3px solid #fbbf24;outline-offset:3px}
 .node.locked{background:#cbd5c0;animation:nodePulse 1.6s infinite}
-.node.side-quest{width:40px;height:40px;background:#fbbf24;border-width:2px;box-shadow:2px 2px 0 #111}
-.node.side-quest .node-ico{font-size:1.1rem}
+.node.side-quest{width:40px;height:40px;background:#fbbf24;border-width:2px;box-shadow:2px 2px 0 #111;padding:2px}
 .node-num{position:absolute;top:-9px;left:-9px;width:21px;height:21px;border-radius:50%;background:#111;color:#fff;font-size:10px;display:grid;place-items:center}
 @keyframes nodePulse{50%{box-shadow:3px 3px 0 #111,0 0 0 9px rgba(255,255,255,.55)}}
-.node-label{position:absolute;font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:#fff;color:#111;border:2px solid #111;border-radius:6px;padding:1px 6px;white-space:nowrap;pointer-events:none}
-.map-avatar{position:absolute;width:46px;height:46px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px #111,0 4px 8px rgba(0,0,0,.3);background:center/cover url('Foto_Perfil_CandelaGamboa.jpeg') #fda4af;transform:translate(-50%,calc(-100% - 36px));transition:left .9s cubic-bezier(.5,0,.2,1),top .9s cubic-bezier(.5,0,.2,1);z-index:6;pointer-events:none}
+.node-label{position:absolute;top:calc(100% + 9px);left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:#fff;color:#111;border:2px solid #111;border-radius:6px;padding:1px 6px;white-space:nowrap;pointer-events:none}
+.map-avatar{position:absolute;width:46px;height:46px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px #111,0 4px 8px rgba(0,0,0,.3);background:center/cover url('fotos_candela/Foto_Perfil_CandelaGamboa.jpeg') #fda4af;transform:translate(-50%,calc(-100% - 36px));transition:left .9s cubic-bezier(.5,0,.2,1),top .9s cubic-bezier(.5,0,.2,1);z-index:6;pointer-events:none}
 .map-avatar::after{content:'';position:absolute;left:50%;bottom:-11px;transform:translateX(-50%);border:6px solid transparent;border-top:8px solid #111}
 .map-avatar.hop{animation:hop .55s .85s}
 @keyframes hop{40%{margin-top:-16px}}
-.quest-dialog{background:#fff;border:2px solid #111;border-radius:16px;box-shadow:6px 6px 0 #111;padding:22px 26px}
 .reward{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;border:1px solid #d1d5db;border-radius:8px;padding:4px 10px;background:#fafaf8}
 .reward::before{content:'+ ';color:#fb7185;font-weight:700}
 .reward-btn{display:inline-block;font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#fb7185;color:#fff;border:2px solid #111;border-radius:8px;padding:4px 12px;box-shadow:2px 2px 0 #111;transition:transform .12s,box-shadow .12s}
@@ -110,12 +111,7 @@ body{background-color:#f9f9f7;background-image:repeating-linear-gradient(transpa
 .q-btn:active{transform:translate(2px,2px);box-shadow:0 0 0 #111}
 .q-dot{width:10px;height:10px;border-radius:50%;border:2px solid #111;background:#fff;transition:background .2s,transform .2s}
 .q-dot.on{background:#fb7185;transform:scale(1.3)}
-@media (min-width:768px){
-  .map{aspect-ratio:5/2;min-width:760px}
-  .node-label{top:calc(100% + 9px);left:50%;transform:translateX(-50%)}
-}
 @media (max-width:767px){
-  .map{height:720px}
   .node-label{left:calc(100% + 15px);top:50%;transform:translateY(-50%)}
   .map-avatar{transform:translate(calc(-100% - 36px),-50%)}
   .map-avatar::after{bottom:50%;left:100%;transform:translateY(50%);border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:8px solid #111}
@@ -159,7 +155,7 @@ model-viewer::part(default-progress-bar){display:none!important}
 
 <!-- NAV -->
 <nav id="main-nav" class="sticky top-0 w-full z-50 bg-[#f9f9f7]/85 backdrop-blur-md border-b border-transparent transition-all duration-300">
-  <div id="nav-container" class="max-w-7xl mx-auto px-8 md:px-14 lg:px-20 py-6 transition-all duration-300 relative">
+  <div id="nav-container" class="max-w-7xl mx-auto px-4 md:px-14 lg:px-20 py-4 md:py-6 transition-all duration-300 relative">
     <div class="flex justify-between items-start md:items-center">
       <div class="flex flex-col">
         <a href="#" class="font-bold text-2xl tracking-tight text-gray-900">CGSB.</a>
@@ -189,9 +185,9 @@ model-viewer::part(default-progress-bar){display:none!important}
 </nav>
 
 <!-- HERO -->
-<main class="w-full max-w-6xl mx-auto px-8 md:px-14 lg:px-20 relative z-10 pt-4">
+<main class="w-full max-w-6xl mx-auto px-4 md:px-14 lg:px-20 relative z-10 pt-4">
   <div class="bg-giant-text">PORTFOLIO</div>
-  <section class="mb-24 md:mb-32 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center relative">
+  <section class="mb-16 md:mb-24 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center relative">
     <div class="flex flex-col items-start space-y-6 relative z-10">
       <div class="flex items-center space-x-3 text-xs font-mono font-semibold tracking-widest text-gray-500 uppercase"><span class="w-8 h-[1px] bg-rose-400"></span><span>3D ARTIST / MADRID, SPAIN /</span></div>
       <h1 class="font-serif text-huge font-medium text-gray-900 relative">Candela<br>Gamboa<span class="absolute -bottom-6 -right-2 md:-right-12 font-hand text-3xl text-blue-500 -rotate-6">Hi there!</span></h1>
@@ -200,9 +196,9 @@ model-viewer::part(default-progress-bar){display:none!important}
     <div class="relative w-full max-w-lg mx-auto lg:mx-0 lg:ml-auto flex flex-col items-center">
       <div class="no-drop w-full aspect-square relative">
         <model-viewer id="box-viewer" class="viewer viewer-on" src="box_chubbiegummies.glb" alt="Chubby Gummies Box" camera-controls disable-zoom camera-orbit="180deg auto auto" interaction-prompt="auto"></model-viewer>
-        <model-viewer id="character-viewer" class="viewer viewer-off" alt="Chubby Gummy" camera-controls disable-zoom camera-orbit="180deg auto auto" auto-rotate auto-rotate-delay="2500" interaction-prompt="none"></model-viewer>
+        <model-viewer id="character-viewer" class="viewer viewer-off" alt="Chubby Gummy" camera-controls disable-zoom camera-orbit="180deg auto auto" auto-rotate auto-rotate-delay="2500" animation-name="box_chubbiegummies" interaction-prompt="none"></model-viewer>
       </div>
-      <div class="flex flex-col items-center gap-2 mt-6 z-20">
+      <div class="flex flex-col items-center gap-2 mt-2 z-20">
         <button id="open-box-btn" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-rose-500 to-pink-500 text-white font-mono text-xs uppercase tracking-widest font-bold shadow-lg hover:shadow-xl hover:from-rose-600 hover:to-pink-600 transition-all cursor-pointer -rotate-2 transform hover:scale-105">Open the BlindBox</button>
         <span id="character-name" class="font-mono text-xs text-gray-500 tracking-wider uppercase mt-1">Mystery Box</span>
       </div>
@@ -211,98 +207,118 @@ model-viewer::part(default-progress-bar){display:none!important}
 </main>
 
 <!-- TICKER -->
-<div class="w-full border-y border-black overflow-hidden bg-transparent my-16 py-2.5">
+<div class="w-full border-y border-black overflow-hidden bg-transparent my-8 py-2.5">
   <div class="animate-marquee whitespace-nowrap text-sm font-mono tracking-widest uppercase text-gray-900 font-bold flex items-center">
     <span class="mx-4">VIDEOGAMES</span><span>·</span><span class="mx-4">PRODUCT DESIGN</span><span>·</span><span class="mx-4">ADAPTABILITY</span><span>·</span><span class="mx-4">ENVIRONMENT ART</span><span>·</span><span class="mx-4">HARD-SURFACE</span><span>·</span><span class="mx-4">TEXTURING</span><span>·</span>
     <span class="mx-4">VIDEOGAMES</span><span>·</span><span class="mx-4">PRODUCT DESIGN</span><span>·</span><span class="mx-4">ADAPTABILITY</span><span>·</span><span class="mx-4">ENVIRONMENT ART</span><span>·</span><span class="mx-4">HARD-SURFACE</span><span>·</span><span class="mx-4">TEXTURING</span><span>·</span>
   </div>
 </div>
 
-<main class="w-full max-w-6xl mx-auto px-8 md:px-14 lg:px-20 relative z-10">
+<main class="w-full max-w-6xl mx-auto px-4 md:px-14 lg:px-20 relative z-10">
 
   <!-- WORKS -->
-  <section id="works" class="mb-40 pt-10 scroll-mt-24">
+  <section id="works" class="mb-24 pt-10 scroll-mt-24">
     <div class="flex items-baseline gap-3 mb-2"><h2 class="text-4xl font-serif text-gray-900 highlight-marker"><span class="relative z-10">01 / Selected works</span></h2></div>
-    <p class="mb-10 font-hand text-xl mt-4 text-gray-600">3D explorations in shape, texture, and a little bit of play.</p>
-    <div id="works-grid" class="grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-10"></div>
+    <p class="mb-10 text-lg mt-4 text-gray-600">3D explorations in shape, texture, and a little bit of play.</p>
+    <div id="works-grid" class="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-10"></div>
   </section>
 
   <!-- ABOUT ME -->
-  <section id="profile" class="mb-32 pt-10 scroll-mt-24">
-    <h2 class="text-4xl font-serif mb-4 text-gray-900 highlight-marker highlight-red"><span class="relative z-10">02 / About me</span></h2>
-    <div class="max-w-3xl space-y-4 text-gray-700 leading-relaxed text-sm md:text-base mb-16 mt-6">
-      <p>I'm Candela, a 3D artist drawn to tactile details, unexpected colors, and objects that feel almost alive. I turn small observations into playful visual worlds, from the first sketch to the final render.</p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
-      <!-- COLUMNA 1: PERSONAJE E INVENTARIO -->
-      <div class="flex flex-col no-drop max-w-sm w-full mx-auto md:mx-0">
-        <div class="flex justify-between items-end mb-3 px-1">
-          <span class="font-mono text-[11px] font-bold uppercase tracking-widest text-gray-900">Player 1</span>
-          <span class="font-mono text-[10px] text-rose-500 blink uppercase tracking-widest">Click to change skin</span>
-        </div>
-        <div class="polaroid-stack" id="polaroid-stack"></div>
-        <div class="text-center mb-6 mt-2">
+  <section id="profile" class="mb-20 pt-10 scroll-mt-24">
+    <h2 class="text-4xl font-serif mb-10 text-gray-900 highlight-marker highlight-red"><span class="relative z-10">02 / About me</span></h2>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+      
+      <!-- FILA 1: COLUMNA IZQUIERDA (Polaroids + Info) -->
+      <div class="lg:col-span-5 xl:col-span-4 flex flex-col w-full max-w-[320px] mx-auto lg:mx-0 lg:max-w-none">
+        <div class="polaroid-stack w-full mt-4" id="polaroid-stack"></div>
+        <div class="text-center lg:text-left mb-5 mt-2 px-2">
           <h3 class="font-serif text-3xl text-gray-900 font-bold">Candela Gamboa</h3>
           <p class="font-mono text-[11px] text-gray-500 tracking-widest uppercase mt-2">3D Artist</p>
         </div>
-
-        <div class="inv" id="inv">
-          <div class="absolute -top-3 -right-2 rotate-12 text-2xl">📌</div>
-          <div class="flex justify-between items-center mb-3">
-            <span class="font-mono text-[10px] uppercase tracking-widest text-gray-500">Inventory <b id="inv-count" class="text-gray-900">0/4</b></span>
-            <span class="flex gap-3"><button id="rand-inv-btn" class="inv-link">Random</button><button id="reset-inv-btn" class="inv-link" style="visibility:hidden">Reset</button></span>
-          </div>
-          <div class="grid grid-cols-4 gap-2" id="inv-slots">
-            <div class="slot" data-index="0"></div><div class="slot" data-index="1"></div><div class="slot" data-index="2"></div><div class="slot" data-index="3"></div>
-          </div>
-          <div id="inv-stats" class="mt-4 space-y-1.5"></div>
-          <p id="inv-status" class="font-hand text-xl text-emerald-500 mt-2 text-center -rotate-2" style="opacity:0;transition:opacity .3s">All geared up!</p>
-          <div class="flex flex-wrap justify-center gap-2 mt-3" id="inv-pool"></div>
-          <p id="inv-tip" class="font-hand text-lg text-gray-500 text-center mt-2 min-h-[1.6em] leading-tight"></p>
+        <div class="text-gray-700 leading-relaxed text-sm md:text-base text-center lg:text-left px-2">
+          <p>I'm Candela, a 3D artist drawn to tactile details, unexpected colors, and objects that feel almost alive. I turn small observations into playful visual worlds, from the first sketch to the final render.</p>
         </div>
       </div>
 
-      <!-- COLUMNA 2: HARD SKILLS -->
-      <div class="flex flex-col relative z-10">
-        <div class="scrap-paper h-full">
+      <!-- FILA 1: COLUMNA DERECHA (Hard Skills) -->
+      <div class="lg:col-span-7 xl:col-span-8 flex flex-col relative z-10 w-full">
+        <div class="scrap-paper w-full flex flex-col border border-gray-200" style="--r: 0.5deg;">
           <div class="scrap-tape"></div>
-          <h3 class="font-hand text-2xl text-rose-600 mb-6 border-b-2 border-dashed border-rose-200 pb-2 -rotate-1">Hard Skills</h3>
-          <div id="skills" class="flex flex-col gap-1"></div>
+          <h3 class="font-serif text-2xl text-gray-900 font-bold mb-6 border-b border-gray-200 pb-3">Hard Skills</h3>
+          <div id="skills" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1"></div>
         </div>
       </div>
 
-      <!-- COLUMNA 3: SOFT SKILLS -->
-      <div class="flex flex-col relative z-10">
-        <div class="scrap-paper h-full" style="--r:-1deg;background:#fdfbf7">
-          <div class="scrap-tape" style="transform:translateX(-50%) rotate(2deg);background:rgba(186,230,253,.8)"></div>
-          <h3 class="font-hand text-2xl text-blue-600 mb-6 border-b-2 border-dashed border-blue-200 pb-2 rotate-1">Soft Skills</h3>
-          <ul id="traits" class="space-y-4"></ul>
+      <!-- FILA 2: COLUMNA IZQUIERDA (Inventario Horizontal) -->
+      <div class="lg:col-span-8 flex flex-col w-full relative z-10 mt-2">
+        <div class="inv w-full p-4 md:p-6 lg:p-8" id="inv">
+          <div class="absolute -top-3 -right-2 rotate-12 text-2xl hidden md:block">📌</div>
+          <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex-1 w-full flex flex-col justify-center">
+              <div class="flex justify-between items-end mb-4">
+                <span class="font-mono text-[10px] uppercase tracking-widest text-gray-500">Pick my accessories! <b id="inv-count" class="text-gray-900 ml-1">0/4</b></span>
+                <span class="flex gap-3"><button id="rand-inv-btn" class="inv-link">Random</button><button id="reset-inv-btn" class="inv-link" style="visibility:hidden">Reset</button></span>
+              </div>
+              <div class="flex gap-3 w-full justify-between" id="inv-slots">
+                <div class="slot flex-1 max-w-[80px]" data-index="0"></div>
+                <div class="slot flex-1 max-w-[80px]" data-index="1"></div>
+                <div class="slot flex-1 max-w-[80px]" data-index="2"></div>
+                <div class="slot flex-1 max-w-[80px]" data-index="3"></div>
+              </div>
+              <div id="inv-stats" class="mt-5 grid grid-cols-2 gap-x-4 gap-y-2"></div>
+            </div>
+            <div class="flex-1 w-full md:border-l md:border-dashed border-gray-300 md:pl-8 flex flex-col justify-center min-h-[140px]">
+              <p id="inv-status" class="font-mono text-xs uppercase tracking-widest text-emerald-600 font-bold mb-4 text-center md:text-left" style="opacity:0;transition:opacity .3s">All geared up!</p>
+              <div class="flex flex-wrap justify-center md:justify-start gap-2" id="inv-pool"></div>
+              <p id="inv-tip" class="text-sm text-gray-500 text-center md:text-left mt-4 min-h-[1.6em] leading-tight"></p>
+            </div>
+          </div>
         </div>
       </div>
+
+      <!-- FILA 2: COLUMNA DERECHA (Soft Skills Post-it) -->
+      <div class="lg:col-span-4 flex items-center justify-center relative z-10 mt-4 lg:mt-2 h-full">
+        <div class="bg-[#fef08a] p-6 lg:p-8 shadow-md relative transform rotate-2 w-full max-w-[280px] border border-black/5 hover:rotate-0 hover:-translate-y-1 transition-transform duration-300">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-12 h-5 bg-white/50 backdrop-blur border border-black/5 -rotate-3"></div>
+          <h3 class="font-hand text-3xl text-gray-900 mb-4 border-b border-yellow-400 pb-2">Soft Skills</h3>
+          <ul class="text-[15px] text-gray-800 leading-relaxed space-y-2 font-medium">
+            <li>&bull; Spanish & Fluent English</li>
+            <li>&bull; Adaptability</li>
+            <li>&bull; Creativity</li>
+            <li>&bull; Teamwork</li>
+            <li>&bull; Fast learning</li>
+          </ul>
+        </div>
+      </div>
+
     </div>
+  </section>
 
-    <!-- MAPA DE MISIONES -->
-    <div class="mt-32">
-      <div class="flex items-baseline gap-3 mb-2"><h3 class="text-3xl font-serif text-gray-900 highlight-marker highlight-yellow"><span class="relative z-10">My journey</span></h3></div>
-      <p class="mb-8 font-hand text-xl mt-4 text-gray-600">Click a checkpoint to see what happened there.</p>
-      <div class="relative no-drop">
-        <div class="scrap-tape" style="transform:translateX(-50%) rotate(-1deg)"></div>
-        <div class="map-wrap rounded-2xl shadow-md">
-          <div id="quest-map" class="map">
-            <svg id="map-svg-container" preserveAspectRatio="none"></svg>
+  <!-- MAPA DE MISIONES -->
+  <div class="mt-32">
+    <div class="flex items-baseline gap-3 mb-2"><h3 class="text-3xl font-serif text-gray-900 highlight-marker highlight-yellow"><span class="relative z-10">My journey</span></h3></div>
+    <p class="mb-8 text-lg mt-4 text-gray-600">Click a checkpoint to see what happened there.</p>
+    
+    <div class="relative no-drop">
+      <div class="scrap-tape" style="transform:translateX(-50%) rotate(-1deg)"></div>
+      <div class="scrap-paper !p-1 md:!p-3 border-none shadow-sm" style="background: #b8c9a6; transform: rotate(0deg);">
+        <div class="rounded-xl overflow-hidden relative">
+          <div id="quest-map" class="map h-[760px] md:h-[400px]">
+            <svg id="map-svg-container" preserveAspectRatio="none" class="absolute inset-0 w-full h-full pointer-events-none"></svg>
             <div id="map-avatar" class="map-avatar"></div>
           </div>
         </div>
       </div>
-      <div id="quest-card-wrap" class="mt-10 relative z-20"></div>
     </div>
-  </section>
+
+    <div id="quest-card-wrap" class="mt-10 relative z-20"></div>
+  </div>
 
   <!-- OTHER WORKS -->
-  <section id="other-works" class="mb-32 pt-10 border-t-2 border-dashed border-gray-300 scroll-mt-24">
+  <section id="other-works" class="mb-20 pt-10 border-t-2 border-dashed border-gray-300 scroll-mt-24 mt-20">
     <h2 class="text-3xl font-serif mb-2 text-gray-900 mt-10 highlight-marker highlight-green"><span class="relative z-10">03 / Other works</span></h2>
-    <p class="font-hand text-xl text-gray-500 mb-10 mt-4">Experiments, sketchbook entries, and side quests.</p>
+    <p class="text-lg text-gray-500 mb-10 mt-4">Experiments, sketchbook entries, and side quests.</p>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="other-grid"></div>
   </section>
 
@@ -316,17 +332,27 @@ model-viewer::part(default-progress-bar){display:none!important}
       </a>
       <svg class="mt-5 w-8 h-8 text-rose-500 animate-bounce" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m0 0l-6-6m6 6l6-6"/></svg>
     </div>
-    <div class="w-full border-t border-b border-black grid grid-cols-2 md:grid-cols-6 font-mono text-xs uppercase tracking-wider divide-y md:divide-y-0 md:divide-x divide-black bg-white">
+    
+    <!-- GRID DE CONTACTO TRANSPARENTE -->
+    <div class="w-full border-t border-b border-black grid grid-cols-2 md:grid-cols-6 font-mono text-xs uppercase tracking-wider divide-y md:divide-y-0 md:divide-x divide-black bg-transparent">
       <div class="p-4 md:p-6 text-gray-500 font-semibold flex items-center col-span-2 md:col-span-1">FIND ME HERE</div>
       <a href="https://www.linkedin.com/in/candela-gamboa-s%C3%A1nchez-blanco" target="_blank" class="p-4 md:p-6 flex justify-between items-center hover:bg-black/5 transition-colors group"><span>LINKEDIN</span><span class="text-rose-500 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">↗</span></a>
       <a href="https://cande_gamboa_sb.artstation.com" target="_blank" class="p-4 md:p-6 flex justify-between items-center hover:bg-black/5 transition-colors group"><span>ARTSTATION</span><span class="text-rose-500 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">↗</span></a>
       <a href="mailto:candelagamboasanchez@gmail.com" class="col-span-2 md:col-span-1 p-4 md:p-6 flex justify-between items-center hover:bg-black/5 transition-colors group"><span>EMAIL</span><span class="text-rose-500 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">↗</span></a>
-      <a href="Candela_Gamboa_CV.pdf" download class="p-4 md:p-6 flex justify-between items-center hover:bg-black/5 transition-colors group"><span>CV (ES)</span><span class="text-rose-500 group-hover:translate-y-1 transition-transform">↓</span></a>
-      <a href="Candela_Gamboa_CV_English.pdf" download class="p-4 md:p-6 flex justify-between items-center hover:bg-black/5 transition-colors group"><span>CV (EN)</span><span class="text-rose-500 group-hover:translate-y-1 transition-transform">↓</span></a>
+      <a href="Candela_Gamboa_CV.pdf" download class="p-4 md:p-6 flex justify-between items-center hover:bg-black/5 transition-colors group"><span>CV (ESPAÑOL)</span><span class="text-rose-500 group-hover:translate-y-1 transition-transform">↓</span></a>
+      <a href="Candela_Gamboa_CV_English.pdf" download class="p-4 md:p-6 flex justify-between items-center hover:bg-black/5 transition-colors group"><span>CV (ENGLISH)</span><span class="text-rose-500 group-hover:translate-y-1 transition-transform">↓</span></a>
     </div>
-    <div class="mt-8 flex flex-col md:flex-row justify-between items-center text-xs font-mono text-gray-500 uppercase tracking-wider space-y-4 md:space-y-0">
-      <div>© 2026 CGSB</div><div>MADE WITH CURIOSITY &amp; A FEW TOO MANY POLYGONS</div>
-      <a href="#" class="hover:text-black transition-colors flex items-center gap-1">BACK TO TOP <span>↑</span></a>
+    
+    <!-- FOOTER DISTRIBUIDO -->
+    <div class="mt-8 flex flex-col md:flex-row justify-between items-center text-xs font-mono text-gray-500 uppercase tracking-wider gap-4">
+      <div class="md:w-1/3 text-center md:text-left">© 2026 CGSB</div>
+      <div class="md:w-1/3 text-center flex flex-col gap-1">
+        <span class="text-[10px] lowercase">Designed by Candela Gamboa & Coded with Gemini IA</span>
+        <span class="text-[10px] lowercase">Last update: October 2026</span>
+      </div>
+      <div class="md:w-1/3 flex justify-center md:justify-end">
+        <a href="#" class="hover:text-black transition-colors flex items-center gap-1">BACK TO TOP <span>↑</span></a>
+      </div>
     </div>
   </section>
 </main>
@@ -340,17 +366,16 @@ model-viewer::part(default-progress-bar){display:none!important}
 <!-- MODAL -->
 <div id="projectModal" class="fixed inset-0 z-[60] flex items-center justify-center bg-[#f9f9f7]/90 backdrop-blur-sm opacity-0 invisible">
   <button id="closeModalBtn" class="absolute top-4 right-4 md:top-8 md:right-10 flex items-center gap-2 text-gray-600 hover:text-black transition-colors group cursor-pointer z-10"><span class="font-mono text-sm tracking-widest uppercase">Close</span><span class="text-2xl leading-none group-hover:rotate-90 transition-transform duration-300">×</span></button>
-  <div class="w-[calc(100%-2rem)] max-w-6xl h-[84vh] mt-10 bg-white rounded-2xl shadow-xl border border-gray-100 flex flex-col md:flex-row overflow-y-auto md:overflow-hidden relative">
-    <div id="modalMedia" class="md:w-3/5 md:overflow-y-auto p-4 md:p-6 space-y-4 bg-gray-50 md:flex-shrink-0 relative"></div>
-    <div class="md:w-2/5 md:overflow-y-auto p-6 md:p-10 flex flex-col relative">
-      <p id="modalCategory" class="font-mono text-xs uppercase tracking-widest text-gray-500 mb-3"></p>
-      <h2 id="modalTitle" class="font-serif text-3xl md:text-4xl text-gray-900 mb-5 leading-tight"></h2>
+  <div class="w-[calc(100%-1rem)] md:w-[calc(100%-2rem)] max-w-6xl h-[90vh] md:h-[84vh] mt-6 md:mt-10 bg-white rounded-2xl shadow-xl border border-gray-100 flex flex-col md:flex-row overflow-y-auto md:overflow-hidden relative">
+    <div id="modalMedia" class="md:w-3/5 md:overflow-y-auto p-3 md:p-6 space-y-4 bg-gray-50 md:flex-shrink-0 relative"></div>
+    <div class="md:w-2/5 md:overflow-y-auto p-5 md:p-10 flex flex-col relative">
+      <p id="modalCategory" class="font-mono text-xs uppercase tracking-widest text-gray-500 mb-2 md:mb-3"></p>
+      <h2 id="modalTitle" class="font-serif text-2xl md:text-4xl text-gray-900 mb-4 md:mb-5 leading-tight"></h2>
       <div class="w-12 h-[1px] bg-rose-400 mb-5"></div>
       <div id="modalTabs" class="flex overflow-x-auto border-b border-gray-200 mb-6 -mx-1"></div>
-      <div id="modalPanel" class="text-gray-600 text-sm md:text-base leading-relaxed pb-8"></div>
+      <div id="modalPanel" class="text-gray-600 text-sm md:text-base leading-relaxed pb-12 md:pb-8"></div>
     </div>
-    <!-- Floating Date -->
-    <div id="modalDate" class="hidden absolute bottom-4 right-4 md:bottom-6 md:right-8 font-mono text-[10px] uppercase tracking-widest text-gray-500 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded border border-gray-200 shadow-sm z-50"></div>
+    <div id="modalDate" class="hidden absolute bottom-2 right-2 md:bottom-6 md:right-8 font-mono text-[10px] uppercase tracking-widest text-gray-500 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded border border-gray-200 shadow-sm z-50"></div>
   </div>
 </div>
 
@@ -358,7 +383,7 @@ model-viewer::part(default-progress-bar){display:none!important}
 <div id="lightbox" class="fixed inset-0 z-[70] flex items-center justify-center bg-black/85 backdrop-blur-sm opacity-0 invisible transition-opacity duration-300">
   <button id="lb-close" class="absolute top-4 right-5 text-white/80 hover:text-white text-4xl leading-none" aria-label="Close">×</button>
   <button id="lb-prev" class="lb-nav left-3 md:left-8" aria-label="Previous">‹</button>
-  <img id="lb-img" class="max-w-[88vw] max-h-[86vh] object-contain rounded-lg shadow-2xl select-none" alt="" draggable="false">
+  <img id="lb-img" class="w-full h-full max-w-[95vw] max-h-[86vh] object-contain rounded-lg shadow-2xl select-none" alt="" draggable="false">
   <button id="lb-next" class="lb-nav right-3 md:right-8" aria-label="Next">›</button>
   <div id="lb-count" class="absolute bottom-5 left-1/2 -translate-x-1/2 font-mono text-xs tracking-widest text-white/70"></div>
 </div>
@@ -422,7 +447,7 @@ const PROJECTS = [
   }
 ];
 const OTHER = [
-  ['Sketchbook','2D Exploration','A collection of rough ideas before they hit the 3D viewport.','https://placehold.co/600x600/e2e8f0/64748b?text=Sketchbook','2023'],
+  ['Character Design','2D Exploration','Character design concepts and exploration.','personajes_worldbuilding/Gamboa.Candela_CA_3.2_Personajes_Color.jpg','2023'],
   ['Prop Design','Hard-Surface','Quick modeling studies focused on mechanical joints.','https://placehold.co/600x600/f1f5f9/94a3b8?text=Prop+Design','2024'],
   ['Lighting tests','Rendering','Playing with mood and atmosphere in Unreal Engine.','https://placehold.co/600x600/f8fafc/cbd5e1?text=Lighting+tests','2025']
 ];
@@ -517,7 +542,7 @@ document.addEventListener('DOMContentLoaded', () => {
   $('lb-prev').addEventListener('click', () => showLB(lbI - 1, -1));
   $('lb-next').addEventListener('click', () => showLB(lbI + 1, 1));
   $('lb-close').addEventListener('click', closeLB);
-  lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });   // clic fuera de la foto = volver atrás
+  lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
   lb.addEventListener('touchstart', e => { lbX = e.touches[0].clientX; }, { passive: true });
   lb.addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - lbX; if (Math.abs(dx) > 50 && lbList.length > 1) showLB(lbI + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1); });
   document.addEventListener('keydown', e => {
@@ -537,9 +562,9 @@ document.addEventListener('DOMContentLoaded', () => {
     card.innerHTML = `
       <div class="relative w-full ${p.aspect} rounded-2xl overflow-hidden shadow-sm bg-gray-100 transition-transform duration-500 group-hover:scale-[1.01] border border-gray-200">
         <img src="${url(p.cover)}" class="w-full h-full object-cover project-img" alt="${p.title}"><span class="view-pill">View project</span></div>
-      <div class="mt-4 flex justify-between items-start gap-4">
+      <div class="mt-4 flex flex-col md:flex-row md:justify-between items-start md:items-baseline gap-2 md:gap-4">
         <h3 class="text-lg font-semibold text-gray-900 group-hover:text-rose-600 transition-colors">${p.title}</h3>
-        <p class="font-mono text-xs text-gray-500 tracking-wider uppercase flex-shrink-0 text-right">${p.category}</p>
+        <p class="font-mono text-xs text-gray-500 tracking-wider uppercase md:text-right flex-shrink-0">${p.category}</p>
       </div>`;
     grid.appendChild(card);
     const hoverImgs = p.media.filter(f => !isVideo(f)).map(url), img = card.querySelector('.project-img'); let id, i = 0;
@@ -558,7 +583,12 @@ document.addEventListener('DOMContentLoaded', () => {
         <h3 class="text-base font-semibold text-gray-900 group-hover:text-rose-600 transition-colors">${t}</h3>
         <p class="font-mono text-[10px] text-gray-500 tracking-wider uppercase flex-shrink-0 text-right">${c}</p>
       </div>`;
-    const op = () => openModal({ title: t, category: c, media: [], description: d, specs: [], software: [], breakdown: [], references: [], _src: src, date: date, dateLabel: 'Completed' });
+    
+    const mediaList = src.includes('Personajes_Color') 
+      ? ['personajes_worldbuilding/Gamboa.Candela_CA_3.2_Personajes_Color.jpg', 'personajes_worldbuilding/Gamboa.Candela_CA_3.2_Personajes_BN.JPG']
+      : [];
+
+    const op = () => openModal({ title: t, category: c, media: mediaList, description: d, specs: [], software: [], breakdown: [], references: [], _src: src, date: date, dateLabel: 'Completed' });
     card.addEventListener('click', op); a11y(card, op);
     $('other-grid').appendChild(card);
   });
@@ -573,11 +603,11 @@ document.addEventListener('DOMContentLoaded', () => {
       h = `<p>${p.description || ''}</p>`;
       if (p.specs && p.specs.length) h += `<dl class="mt-6 divide-y divide-gray-100 border-y border-gray-100">${p.specs.map(([k, v]) => `<div class="flex justify-between py-2.5"><dt class="font-mono text-[11px] uppercase tracking-widest text-gray-400">${k}</dt><dd class="text-gray-800 text-sm text-right">${v}</dd></div>`).join('')}</dl>`;
     } else if (key === 'software') {
-      h = (p.software || []).map(([n, u]) => `<div class="flex items-center justify-between py-3 border-b border-gray-100"><span class="font-mono text-sm text-gray-800">${n}</span><span class="text-[10px] bg-blue-50 text-blue-600 border border-blue-200 px-3 py-1 rounded-full uppercase tracking-widest font-bold">${u}</span></div>`).join('') || '<p class="text-gray-400">Coming soon.</p>';
+      h = (p.software || []).map(([n, u]) => `<div class="flex items-center justify-between py-3 border-b border-gray-100"><span class="font-sans text-sm text-gray-800">${n}</span><span class="text-[10px] bg-blue-50 text-blue-600 border border-blue-200 px-3 py-1 rounded-full uppercase tracking-widest font-bold">${u}</span></div>`).join('') || '<p class="text-gray-400">Coming soon.</p>';
     } else if (key === 'breakdown') {
-      h = (p.breakdown || []).length ? `<ol class="space-y-4">${p.breakdown.map((s, i) => `<li class="flex gap-4"><span class="font-hand text-xl text-rose-500 font-bold pt-1">${String(i + 1).padStart(2, '0')}</span><span>${s}</span></li>`).join('')}</ol>` : '<p class="text-gray-400">Coming soon.</p>';
+      h = (p.breakdown || []).length ? `<ol class="space-y-4">${p.breakdown.map((s, i) => `<li class="flex gap-4"><span class="font-mono text-sm text-rose-500 font-bold pt-1">${String(i + 1).padStart(2, '0')}</span><span>${s}</span></li>`).join('')}</ol>` : '<p class="text-gray-400">Coming soon.</p>';
     } else {
-      h = (p.references || []).length ? `<ul class="space-y-3">${p.references.map(([t, l]) => `<li class="flex gap-3"><span class="text-rose-400">↗</span>${l ? `<a href="${l}" target="_blank" class="underline decoration-gray-300 hover:decoration-rose-400 font-hand text-lg">${t}</a>` : `<span class="font-hand text-lg">${t}</span>`}</li>`).join('')}</ul>` : '<p class="text-gray-400">Coming soon.</p>';
+      h = (p.references || []).length ? `<ul class="space-y-3">${p.references.map(([t, l]) => `<li class="flex gap-3"><span class="text-rose-400">↗</span>${l ? `<a href="${l}" target="_blank" class="underline decoration-gray-300 hover:decoration-rose-400 font-sans text-base">${t}</a>` : `<span class="font-sans text-base">${t}</span>`}</li>`).join('')}</ul>` : '<p class="text-gray-400">Coming soon.</p>';
     }
     mPanel.innerHTML = `<div class="tab-panel">${h}</div>`;
     mTabs.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === key));
@@ -585,11 +615,18 @@ document.addEventListener('DOMContentLoaded', () => {
   function openModal(p) {
     current = p;
     $('modalTitle').textContent = p.title; $('modalCategory').textContent = p.category;
-    lbList = p._src ? [p._src] : p.media.filter(f => !isVideo(f)).map(url);
+    
+    lbList = p.media && p.media.length > 0 ? p.media.filter(f => !isVideo(f)).map(url) : [p._src];
+    
     let ii = 0;
-    mMedia.innerHTML = `<p class="font-hand text-lg text-gray-400 text-center -mb-1">Click a photo to enlarge</p>` + (p._src ? `<img src="${p._src}" class="lb-img w-full rounded-xl" data-i="0" alt="${p.title}">` : p.media.map(f => isVideo(f)
-      ? `<video src="${url(f)}#t=0.1" class="w-full rounded-xl border border-gray-200 bg-black" controls muted loop playsinline preload="metadata"></video>`
-      : `<img src="${url(f)}" class="lb-img w-full rounded-xl border border-gray-200 shadow-sm" loading="lazy" data-i="${ii++}" alt="${p.title}">`).join(''));
+    const mediaContent = p.media && p.media.length > 0 
+      ? p.media.map(f => isVideo(f)
+          ? `<video src="${url(f)}#t=0.1" class="w-full rounded-xl border border-gray-200 bg-black" controls muted loop playsinline preload="metadata"></video>`
+          : `<img src="${url(f)}" class="lb-img w-full rounded-xl border border-gray-200 shadow-sm" loading="lazy" data-i="${ii++}" alt="${p.title}">`).join('')
+      : `<img src="${p._src}" class="lb-img w-full rounded-xl border border-gray-200 shadow-sm" loading="lazy" data-i="0" alt="${p.title}">`;
+
+    mMedia.innerHTML = `<p class="font-sans text-sm text-gray-400 text-center -mb-1">Click a photo to enlarge</p>` + mediaContent;
+    
     if (vidIO) vidIO.disconnect();
     vidIO = new IntersectionObserver(en => en.forEach(x => { if (x.isIntersecting) x.target.play().catch(() => {}); else x.target.pause(); }), { threshold: .45 });
     mMedia.querySelectorAll('video').forEach(v => { v.muted = true; vidIO.observe(v); });
@@ -598,7 +635,6 @@ document.addEventListener('DOMContentLoaded', () => {
     mTabs.querySelectorAll('.tab-btn').forEach(b => b.addEventListener('click', () => renderPanel(b.dataset.tab)));
     renderPanel('description');
     
-    // Set up the floating date
     const modalDate = $('modalDate');
     if (p.date) {
       modalDate.innerHTML = `${p.dateLabel || 'Completed'} <span class="text-rose-500 font-bold text-sm">&middot;</span> ${p.date}`;
@@ -621,39 +657,55 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.classList.contains('invisible')) closeModal(); });
   modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
 
-  // ================= POLAROIDS (se lanza la de arriba y vuelve al fondo del montón) =================
+  // ================= POLAROIDS =================
   const SKINS = [
-    { src: 'Foto_Perfil_CandelaGamboa.jpeg', cap: 'skin 01' },
-    { src: 'https://placehold.co/800x1000/e9d5ff/a855f7?text=Skin+2', cap: 'skin 02' },
-    { src: 'https://placehold.co/800x1000/fbcfe8/ec4899?text=Skin+3', cap: 'skin 03' }
+    { src: 'fotos_candela/Foto_Perfil_CandelaGamboa.jpeg' },
+    { src: 'fotos_candela/Candela_02.jpeg' },
+    { src: 'fotos_candela/Candela_03.jpeg' }
   ];
   const SLOTS = [{ x: 0, y: 0, r: 0, s: 1, z: 30 }, { x: -16, y: 10, r: -5, s: .96, z: 20 }, { x: 16, y: 18, r: 5, s: .92, z: 10 }];
   const tf = s => `translate(${s.x}px,${s.y}px) rotate(${s.r}deg) scale(${s.s})`;
   const stack = $('polaroid-stack'); let order = SKINS.map((_, i) => i), pBusy = false;
+  
   const pEls = SKINS.map((s, i) => {
     const el = document.createElement('div'); el.className = 'polaroid';
-    el.innerHTML = `<img src="${s.src}" alt="Skin ${i + 1}"><span class="polaroid-cap">${s.cap}</span>`;
-    el.addEventListener('click', e => { e.stopPropagation(); bring(i === order[0] ? order[1] : i); });
-    stack.appendChild(el); return el;
+    el.innerHTML = `<img src="${s.src}" alt="Skin ${i + 1}">`;
+    
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      if (i === order[0]) bring(order[1]); 
+    });
+    
+    stack.appendChild(el); 
+    return el;
   });
+
   function place(idx, slot) {
     const el = pEls[idx], sl = SLOTS[slot];
     el.style.zIndex = sl.z; el.style.setProperty('--tf', tf(sl));
     el.style.setProperty('--tfh', slot === 0 ? 'translate(0,-8px) rotate(-1.5deg) scale(1.02)' : tf(sl));
     el.classList.toggle('top', slot === 0);
   }
+
   function bring(k) {
     if (pBusy || k === order[0]) return; pBusy = true;
     const old = order[0], oldEl = pEls[old];
     oldEl.classList.add('toss'); oldEl.classList.remove('top'); oldEl.style.zIndex = 40;
-    oldEl.style.setProperty('--tf', 'translate(118%,-8%) rotate(18deg)'); oldEl.style.setProperty('--tfh', 'translate(118%,-8%) rotate(18deg)');
+    
+    oldEl.style.setProperty('--tf', 'translate(130%, -15%) rotate(25deg)'); 
+    oldEl.style.setProperty('--tfh', 'translate(130%, -15%) rotate(25deg)');
+    
     order = [k, ...order.filter(x => x !== k && x !== old), old];
     order.forEach((idx, slot) => { if (idx !== old) place(idx, slot); });
     pEls.forEach(e => e.classList.remove('fresh')); void pEls[k].offsetWidth; pEls[k].classList.add('fresh');
-    setTimeout(() => { oldEl.classList.remove('toss'); place(old, 2); pBusy = false; }, 380);
+    
+    setTimeout(() => { 
+        oldEl.classList.remove('toss'); 
+        place(old, 2); 
+        pBusy = false; 
+    }, 380);
   }
   order.forEach((idx, slot) => place(idx, slot));
-  stack.addEventListener('click', () => bring(order[1]));
 
   // ================= INVENTARIO =================
   const ITEMS = [
@@ -700,50 +752,44 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   renderInv();
 
-  // ================= SKILLS Y TRAITS =================
+  // ================= HARD SKILLS =================
   const SKILLS = [
-    ['Blender', 'Proficient', '#10b981', 'https://placehold.co/60x60/e2e8f0/64748b?text=BL'],
-    ['3ds Max', 'Intermediate', '#f59e0b', 'https://placehold.co/60x60/e2e8f0/64748b?text=MAX'],
-    ['ZBrush', 'Intermediate', '#f59e0b', 'https://placehold.co/60x60/e2e8f0/64748b?text=ZB'],
-    ['Substance Painter', 'Proficient', '#10b981', 'https://placehold.co/60x60/e2e8f0/64748b?text=SP'],
-    ['Substance Designer', 'Intermediate', '#f59e0b', 'https://placehold.co/60x60/e2e8f0/64748b?text=SD'],
-    ['Photoshop', 'Proficient', '#10b981', 'https://placehold.co/60x60/e2e8f0/64748b?text=PS'],
-    ['Illustrator', 'Intermediate', '#f59e0b', 'https://placehold.co/60x60/e2e8f0/64748b?text=AI'],
-    ['Adobe Suite', 'Proficient', '#10b981', 'https://placehold.co/60x60/e2e8f0/64748b?text=AD'],
-    ['Unreal Engine 5', 'Proficient', '#10b981', 'https://placehold.co/60x60/e2e8f0/64748b?text=UE5'],
-    ['Unity', 'Basic', '#6b7280', 'https://placehold.co/60x60/e2e8f0/64748b?text=UN'],
-    ['Canva', 'Proficient', '#10b981', 'https://placehold.co/60x60/e2e8f0/64748b?text=CA'],
-    ['Procreate', 'Proficient', '#10b981', 'https://placehold.co/60x60/e2e8f0/64748b?text=PR'],
-    ['VS Code', 'Intermediate', '#f59e0b', 'https://placehold.co/60x60/e2e8f0/64748b?text=VS'],
-    ['Nomad Sculpt', 'Basic', '#6b7280', 'https://placehold.co/60x60/e2e8f0/64748b?text=NS'],
-    ['Marmoset Toolbag', 'Proficient', '#10b981', 'https://placehold.co/60x60/e2e8f0/64748b?text=MT']
+    ['Blender', 'Proficient', '#10b981', 'logos/logo_blender.webp', '3D Modeling & Anim'],
+    ['3ds Max', 'Intermediate', '#f59e0b', 'logos/logo_max.png', '3D Modeling'],
+    ['ZBrush', 'Intermediate', '#f59e0b', 'logos/logo_zbrush.png', 'Digital Sculpting'],
+    ['Substance Painter', 'Proficient', '#10b981', 'logos/logo_painter.png', '3D Texturing'],
+    ['Substance Designer', 'Intermediate', '#f59e0b', 'logos/logo_designer.png', 'Procedural Mats'],
+    ['Photoshop', 'Proficient', '#10b981', 'https://placehold.co/60x60/e2e8f0/64748b?text=PS', 'Image Editing'],
+    ['Illustrator', 'Intermediate', '#f59e0b', 'logos/logo_ilustrator.webp', 'Vector Graphics'],
+    ['Adobe Suite', 'Proficient', '#10b981', 'https://placehold.co/60x60/e2e8f0/64748b?text=AD', 'Graphic Design'],
+    ['Unreal Engine 5', 'Proficient', '#10b981', 'logos/logo_unreal.png', 'Game Engine & Render'],
+    ['Unity', 'Basic', '#6b7280', 'https://placehold.co/60x60/e2e8f0/64748b?text=UN', 'Game Engine'],
+    ['Canva', 'Proficient', '#10b981', 'https://placehold.co/60x60/e2e8f0/64748b?text=CA', 'Quick Layouts'],
+    ['Procreate', 'Proficient', '#10b981', 'https://placehold.co/60x60/e2e8f0/64748b?text=PR', 'Digital Painting'],
+    ['VS Code', 'Intermediate', '#f59e0b', 'https://placehold.co/60x60/e2e8f0/64748b?text=VS', 'Scripting'],
+    ['Nomad Sculpt', 'Basic', '#6b7280', 'logos/logo_nomad.png', 'Mobile Sculpting'],
+    ['Marmoset Toolbag', 'Proficient', '#10b981', 'logos/logo_marmoset.png', 'Rendering & Baking']
   ];
-  $('skills').innerHTML = SKILLS.map(([n, l, c, icon]) => `
-    <div class="flex justify-between items-center py-1.5 border-b border-gray-100/50">
-      <div class="flex items-center gap-3">
-        <img src="${icon}" alt="${n}" class="w-5 h-5 rounded object-cover shadow-sm">
-        <span class="font-mono text-xs text-gray-800">${n}</span>
+  $('skills').innerHTML = SKILLS.map(([n, l, c, icon, use]) => `
+    <div class="flex justify-between items-center py-2.5 border-b border-gray-200/60">
+      <div class="flex items-center gap-3 w-1/2">
+        <img src="${icon}" alt="${n}" class="w-6 h-6 rounded object-cover shadow-sm">
+        <div class="flex flex-col">
+          <span class="font-sans text-sm text-gray-900 font-semibold">${n}</span>
+          <span class="font-mono text-[9px] text-gray-500 uppercase tracking-wider mt-0.5">${use}</span>
+        </div>
       </div>
-      <span class="font-hand text-[15px]" style="color:${c}">${l}</span>
+      <span class="font-mono text-[10px] uppercase tracking-widest font-bold w-1/2 text-right" style="color:${c}">${l}</span>
     </div>`).join('');
-  const TRAITS = [
-    ['Adaptability', 'Years waiting tables taught me to read a room, handle pressure and switch gears in seconds.'],
-    ['Creativity', 'I start from small everyday observations and turn them into playful worlds.'],
-    ['Diversity', 'I enjoy working with people from different backgrounds; the best ideas come from mixing perspectives.'],
-    ['Fluent English', 'Comfortable working, presenting and collaborating in English.'],
-    ['Teamwork', 'Clear communication, open feedback and sharing the credit.']
-  ];
-  $('traits').innerHTML = TRAITS.map(([t, d]) => `<li class="flex flex-col"><b class="font-mono text-xs uppercase tracking-widest text-blue-600">${t}</b><p class="text-sm text-gray-700 font-hand text-lg leading-tight mt-1">${d}</p></li>`).join('');
 
   // ================= MAPA DE MISIONES =================
-  // pos.d = [x%, y%] escritorio · pos.m = [x%, y%] móvil · icon = emoji del checkpoint
   const QUESTS = [
-    { icon: '🎓', pos: { d: [9, 62.5], m: [50, 10] }, label: '2022', title: 'Bachillerato Científico Tecnológico', status: 'COMPLETED', desc: 'Graduated from Colegio Nuestra Señora de Loreto with a strong foundation in science and technology.', chips: ['Average grade: 8.77 / 10', 'Science & Tech'] },
-    { icon: '🍽️', pos: { d: [23, 37.5], m: [60, 25] }, label: 'Side Quest', title: 'Waitress', status: 'COMPLETED', desc: 'Serving tables when the rest of the world went out. Learning adaptability, pacing, and human interaction.', chips: ['Side quest', 'Waitress', 'Soft skills'], sideQuest: true },
-    { icon: '🎮', pos: { d: [38, 70], m: [50, 40] }, label: '2022 - 2026', title: 'Degree in Video Game Design', status: 'COMPLETED', desc: 'UDIT (University of Design, Innovation and Technology). Four years of intense training in 3D art, environment creation, and real-time videogame production.', chips: ['Average grade: 8.74 / 10', 'UDIT'] },
-    { icon: '✨', pos: { d: [60, 30], m: [25, 60] }, label: 'Internship', title: 'The Dust Mote', status: 'COMPLETED', desc: "Internship on a project about a speck of dust from a children's story.", chips: ['Internship', "Children's story"] },
-    { icon: '🖥️', pos: { d: [80, 67.5], m: [50, 78] }, label: 'Gaya Studios', title: '3D Modeler at Gaya Studios', status: 'LATEST QUEST', desc: 'Internship focused on professional 3D modeling and texturing pipelines at Gaya Studios.', chips: ['Internship', '3D modeling'] },
-    { icon: '🔒', pos: { d: [95, 50], m: [50, 92] }, label: 'Next mission', title: 'Next mission', status: 'LOCKED', desc: 'The path continues. Looking for the next studio and the next quest to unlock.', chips: [['Open to work', '#contact']], locked: true }
+    { icon: 'https://placehold.co/60x60/e2e8f0/64748b?text=IMG', pos: { d: [9, 62.5], m: [50, 15] }, label: '2022', title: 'School', status: 'COMPLETED', desc: 'Graduated from Colegio Nuestra Señora de Loreto with a strong foundation in science and technology.', chips: ['Average grade: 8.77 / 10', 'Science & Tech'] },
+    { icon: 'https://placehold.co/60x60/e2e8f0/64748b?text=IMG', pos: { d: [23, 37.5], m: [70, 30] }, label: 'Side Quest', title: 'Waitress', status: 'COMPLETED', desc: 'Serving tables when the rest of the world went out. Learning adaptability, pacing, and human interaction.', chips: ['Side quest', 'Waitress', 'Soft skills'], sideQuest: true },
+    { icon: 'https://placehold.co/60x60/e2e8f0/64748b?text=IMG', pos: { d: [38, 70], m: [50, 45] }, label: '2022 - 2026', title: 'University', status: 'COMPLETED', desc: 'UDIT (University of Design, Innovation and Technology). Four years of intense training in 3D art, environment creation, and real-time videogame production.', chips: ['Average grade: 8.74 / 10', 'UDIT'] },
+    { icon: 'https://placehold.co/60x60/e2e8f0/64748b?text=IMG', pos: { d: [60, 30], m: [25, 65] }, label: 'Internship', title: 'Internship', status: 'COMPLETED', desc: "Internship on a project about a speck of dust from a children's story.", chips: ['Internship', "Children's story"] },
+    { icon: 'https://placehold.co/60x60/e2e8f0/64748b?text=IMG', pos: { d: [80, 67.5], m: [50, 80] }, label: 'Gaya Studios', title: 'Gaya Studios', status: 'LATEST QUEST', desc: 'Internship focused on professional 3D modeling and texturing pipelines at Gaya Studios.', chips: ['Internship', '3D modeling'] },
+    { icon: 'https://placehold.co/60x60/e2e8f0/64748b?text=IMG', pos: { d: [95, 50], m: [50, 93] }, label: 'Next mission', title: 'Next mission', status: 'LOCKED', desc: 'The path continues. Looking for the next studio and the next quest to unlock.', chips: [['Open to work', '#contact']], locked: true }
   ];
   const qMap = $('quest-map'), qAvatar =$('map-avatar'), qWrap = $('quest-card-wrap'), mapSvg =$('map-svg-container');
   const MAIN = QUESTS.map((q, i) => i).filter(i => !QUESTS[i].sideQuest);
@@ -755,20 +801,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const P = i => QUESTS[i].pos[k].map((v, j) => v * (j ? sy : sx));
     const seg = (a, b) => { const [ax, ay] = P(a), [bx, by] = P(b); return M ? `M${ax} ${ay}C${ax} ${(ay + by) / 2},${bx} ${(ay + by) / 2},${bx} ${by}` : `M${ax} ${ay}C${(ax + bx) / 2} ${ay},${(ax + bx) / 2} ${by},${bx} ${by}`; };
     const segs = MAIN.slice(1).map((b, j) => [MAIN[j], b]);
-    mapSvg.innerHTML = `      <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-      ${segs.map(([a, b], j) => { const last = j === segs.length - 1; return `<path class="${last ? '' : 'flow'}" d="${seg(a, b)}" stroke="${last ? '#9ca3af' : '#fb7185'}" stroke-width="5" stroke-dasharray="2 14"/>`; }).join('')}
-      <path class="flow" d="${seg(0, 1)}" stroke="#f59e0b" stroke-width="4" stroke-dasharray="1 9"/></g>`;
+    
+    if (M) {
+      mapSvg.innerHTML = `
+        <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path class="flow" d="M200 150 C 200 230, 280 250, 280 300" stroke="#fb7185" stroke-width="5" stroke-dasharray="2 14"/>
+          <path class="flow" d="M280 300 C 280 370, 200 380, 200 450" stroke="#fb7185" stroke-width="5" stroke-dasharray="2 14"/>
+          <path class="flow" d="M200 450 C 200 550, 100 580, 100 650" stroke="#fb7185" stroke-width="5" stroke-dasharray="2 14"/>
+          <path class="flow" d="M100 650 C 100 730, 200 750, 200 800" stroke="#fb7185" stroke-width="5" stroke-dasharray="2 14"/>
+          <path d="M200 800 C 200 870, 200 890, 200 930" stroke="#9ca3af" stroke-width="5" stroke-dasharray="2 14"/>
+        </g>`;
+    } else {
+      mapSvg.innerHTML = `      
+        <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+        ${segs.map(([a, b], j) => { const last = j === segs.length - 1; return `<path class="${last ? '' : 'flow'}" d="${seg(a, b)}" stroke="${last ? '#9ca3af' : '#fb7185'}" stroke-width="5" stroke-dasharray="2 14"/>`; }).join('')}
+        <path class="flow" d="${seg(0, 1)}" stroke="#f59e0b" stroke-width="4" stroke-dasharray="1 9"/></g>`;
+    }
+
     qMap.querySelectorAll('.node').forEach(n => n.remove());
     qNodes = QUESTS.map((q, i) => {
       const n = document.createElement('button');
       n.className = 'node ' + (q.locked ? 'locked' : 'done') + (q.sideQuest ? ' side-quest' : '') + (q.pos.d[0] >= 90 ? ' edge' : '');
       n.style.left = q.pos[k][0] + '%'; n.style.top = q.pos[k][1] + '%';
       const num = q.sideQuest ? '' : `<span class="node-num">${q.locked ? '?' : MAIN.indexOf(i) + 1}</span>`;
-      n.innerHTML = `<span class="node-ico">${q.icon}</span>${num}<span class="node-label font-mono">${q.label}</span>`;
+      n.innerHTML = `<img src="${q.icon}" alt="icon" class="w-full h-full rounded-full object-cover">${num}<span class="node-label font-mono">${q.label}</span>`;
       n.addEventListener('click', () => { autoWalk = false; selectQuest(i); });
       qMap.appendChild(n); return n;
     });
-    qAvatar.style.left = qNodes[cur].style.left; qAvatar.style.top = qNodes[cur].style.top;
+    
+    if (typeof cur !== 'undefined' && qNodes[cur]) {
+      qAvatar.style.left = qNodes[cur].style.left; 
+      qAvatar.style.top = qNodes[cur].style.top;
+    }
   }
   function typeText(el, text) {
     clearInterval(typeT); el.textContent = ''; let i = 0;
@@ -781,28 +845,26 @@ document.addEventListener('DOMContentLoaded', () => {
     qNodes.forEach((nd, k) => nd.classList.toggle('sel', k === i));
     const badge = q.locked ? 'bg-gray-200 text-gray-600' : (q.status === 'LATEST QUEST' ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800');
     const cp = q.sideQuest ? 'SIDE QUEST' : `CHECKPOINT ${MAIN.indexOf(i) + 1}/${MAIN.length}`;
-    qWrap.innerHTML = `<div class="quest-dialog tab-panel">
-      <div class="flex flex-wrap items-center gap-3 mb-3"><span class="text-2xl">${q.icon}</span><span class="font-mono text-xs uppercase tracking-widest text-gray-500">${q.label}</span><span class="text-[10px] ${badge} px-3 py-1 rounded-full uppercase tracking-widest font-bold">${q.status}</span><span class="font-mono text-[10px] text-gray-400 ml-auto">${cp}</span></div>
-      <h4 class="font-serif text-2xl md:text-3xl text-gray-900">${q.title}</h4>
-      <p id="quest-desc" class="text-gray-600 mt-3 leading-relaxed text-sm md:text-base min-h-[3.4em]"></p>
-      <div class="flex flex-wrap gap-2 mt-4">${q.chips.map(c => Array.isArray(c) ? `<a href="${c[1]}" class="reward-btn">${c[0]} &rarr;</a>` : `<span class="reward">${c}</span>`).join('')}</div>
-      <div class="flex items-center justify-between mt-5 pt-4 border-t border-dashed border-gray-300">
-        <div class="flex gap-2">${QUESTS.map((_, k) => `<button data-go="${k}" class="q-dot ${k === i ? 'on' : ''}" aria-label="Quest ${k + 1}"></button>`).join('')}</div>
-        <div class="flex gap-2"><button data-go="prev" class="q-btn" aria-label="Previous">◀</button><button data-go="next" class="q-btn" aria-label="Next">▶</button></div>
-      </div></div>`;
-    typeText($('quest-desc'), q.desc);
+    qWrap.innerHTML = `
+      <div class="tab-panel relative border-0 shadow-none bg-transparent !p-0">
+        <div class="flex flex-wrap items-center gap-3 mb-3">
+          <span class="font-mono text-xs uppercase tracking-widest text-gray-500">${q.label}</span>
+          <span class="text-[10px] ${badge} px-3 py-1 rounded-full uppercase tracking-widest font-bold">${q.status}</span>
+          <span class="font-mono text-[10px] text-gray-400 ml-auto">${cp}</span>
+        </div>
+        <h4 class="font-serif text-2xl md:text-3xl text-gray-900">${q.title}</h4>
+        <p class="text-gray-600 mt-3 leading-relaxed text-sm md:text-base">${q.desc}</p>
+        <div class="flex flex-wrap gap-2 mt-4">
+          ${q.chips.map(c => `<span class="font-mono text-[11px] uppercase tracking-wider border border-gray-300 rounded-lg px-2.5 py-1 bg-white">${c}</span>`).join('')}
+        </div>
+      </div>`;
   }
-  qWrap.addEventListener('click', e => {
-    const b = e.target.closest('[data-go]'); if (!b) return; autoWalk = false;
-    const g = b.dataset.go, n = QUESTS.length;
-    selectQuest(g === 'prev' ? (cur - 1 + n) % n : g === 'next' ? (cur + 1) % n : +g);
-  });
   renderMap(); selectQuest(0);
   window.addEventListener('resize', () => { const M = innerWidth < 768; if (M !== lastM) { lastM = M; renderMap(); selectQuest(cur); } });
   new IntersectionObserver((en, ob) => {
     if (!en[0].isIntersecting) return; ob.disconnect();
     let i = 0; const t = setInterval(() => { if (!autoWalk || i >= 4) return clearInterval(t); selectQuest(++i); }, 1500);
-  }, { threshold: .35 }).observe(qMap);
+  }, { threshold: .35 }).observe(document.querySelector('.map'));
 
   // ================= REVEAL AL HACER SCROLL =================
   const rv = new IntersectionObserver(en => en.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); rv.unobserve(x.target); } }), { threshold: .12 });

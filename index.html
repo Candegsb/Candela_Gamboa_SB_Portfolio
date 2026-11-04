@@ -11,119 +11,68 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-
 <style>
-:root {
-  --bg: #F3F1EC; --bg-alt: #E7E3DA; --surface: #FFFFFF; --surface-glass: rgba(243, 241, 236, 0.9);
-  --ink: #141413; --muted: #65625D; --line: rgba(20, 20, 19, 0.12); --backdrop-text: #E4DFD3;
-  --c-yellow: #F5C518; --c-blue: #1956B4; --c-red: #E04328; --c-green: #12944B;
-  --tone-0: #F8DFC8; --tone-1: #CFE2F8; --tone-2: #FCE373; --tone-3: #C9ECDA; --tone-ink: #141413;
-}
-html.dark {
-  --bg: #111110; --bg-alt: #1C1C1A; --surface: #1A1A18; --surface-glass: rgba(17, 17, 16, 0.9);
-  --ink: #F3F1EC; --muted: #A09C94; --line: rgba(243, 241, 236, 0.12); --backdrop-text: #1B1B19;
-  --tone-0: #2C1E17; --tone-1: #152336; --tone-2: #302811; --tone-3: #132A1F; --tone-ink: #F3F1EC;
-}
-html { scroll-behavior: smooth; }
-::selection { background: var(--c-yellow); color: #141413; }
-body { background-color: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; color: var(--ink); overflow-x: hidden; transition: background-color .35s ease, color .35s ease; }
-.font-display { font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: -0.035em; }
-.font-editorial { font-family: 'Cormorant Garamond', serif; }
-.font-mono { font-family: 'Space Mono', monospace; }
-.surf { background-color: var(--surface); border-color: var(--line); transition: background-color .35s ease, border-color .35s ease; }
-.surf-alt { background-color: var(--bg-alt); border-color: var(--line); }
-.bdr { border-color: var(--line); }
-.txt-muted { color: var(--muted); }
-.backdrop-word { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(3.3rem, 15.5vw, 15.5rem); line-height: 0.82; letter-spacing: -0.055em; color: var(--backdrop-text); user-select: none; pointer-events: none; transition: color .35s ease; }
-.part-num { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(2.1rem, 5vw, 4.5rem); line-height: 0.9; letter-spacing: -0.05em; }
-.vertical-text { writing-mode: vertical-rl; text-orientation: mixed; letter-spacing: 0.22em; text-transform: uppercase; }
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 4px; }
-.reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.8,.2,1); }
-.reveal.in { opacity: 1; transform: none; }
-#main-nav { background-color: var(--surface-glass); }
-.nav-link { position: relative; padding-bottom: 4px; }
-.nav-link::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: var(--c-red); transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
-.nav-link:hover::after { transform: scaleX(1); }
-.circle-arrow { width: 34px; height: 34px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); font-size: 13px; transition: all .25s cubic-bezier(.2,.8,.2,1); }
-@media (min-width: 1024px) { .circle-arrow { width: 42px; height: 42px; font-size: 16px; } }
-.group:hover .circle-arrow, .circle-arrow:hover { background: var(--c-red); color: #fff; border-color: var(--c-red); transform: translateX(3px); }
-.tone-0 { background-color: var(--tone-0); color: var(--tone-ink); }
-.tone-1 { background-color: var(--tone-1); color: var(--tone-ink); }
-.tone-2 { background-color: var(--tone-2); color: var(--tone-ink); }
-.tone-3 { background-color: var(--tone-3); color: var(--tone-ink); }
-
-/* Indicador de carga de tres puntitos (Loader) */
-.media-wrapper { position: relative; width: 100%; height: 100%; background: var(--bg-alt); overflow: hidden; }
-.media-loader { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 6px; background: var(--bg-alt); z-index: 5; transition: opacity .3s ease; pointer-events: none; }
-.media-loader span { width: 8px; height: 8px; background: var(--muted); border-radius: 50%; animation: bounceDot 1.4s infinite ease-in-out both; }
-.media-loader span:nth-child(2) { animation-delay: .2s; }
-.media-loader span:nth-child(3) { animation-delay: .4s; }
-@keyframes bounceDot { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
-.media-loaded .media-loader { opacity: 0; visibility: hidden; }
-
-.polaroid-stack { position: relative; width: 100%; aspect-ratio: 4/5; margin-bottom: 1.25rem; cursor: pointer; -webkit-tap-highlight-color: transparent; }
-.polaroid { position: absolute; inset: 0; background: var(--surface); padding: 8px 8px 28px 8px; border-radius: 14px; box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.14); border: 1px solid var(--line); transform: var(--tf); transition: transform .6s cubic-bezier(.3,1.35,.5,1), box-shadow .3s, background-color .35s; transform-origin: center bottom; will-change: transform; }
-@media (min-width: 1024px) { .polaroid { padding: 12px 12px 42px 12px; border-radius: 18px; } }
-.polaroid.top:hover { transform: var(--tfh); box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.22); }
-.polaroid.toss { transition: transform .38s cubic-bezier(.5,0,.8,.4); }
-.polaroid img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
-.viewer { position: absolute; inset: 0; width: 100%; height: 100%; background: transparent; cursor: grab; transition: opacity .4s ease, transform .4s ease; }
-.viewer-on { opacity: 1; pointer-events: auto; z-index: 10; }
-.viewer-off { opacity: 0; pointer-events: none; z-index: 0; }
-.studio-pedestal { background: radial-gradient(circle at 50% 52%, rgba(245, 197, 24, 0.18) 0%, rgba(25, 86, 180, 0.06) 45%, transparent 70%); }
-html.dark .studio-pedestal { background: radial-gradient(circle at 50% 52%, rgba(245, 197, 24, 0.15) 0%, rgba(25, 86, 180, 0.12) 48%, transparent 72%); }
-@keyframes shake { 0%,100% { transform: rotate(0) scale(1); } 20% { transform: rotate(-5deg) scale(1.02); } 40% { transform: rotate(5deg) scale(1.03); } 60% { transform: rotate(-3deg) scale(1.02); } 80% { transform: rotate(2deg); } }
-.shake { animation: shake .6s ease-in-out; }
-@keyframes pop { 0% { transform: scale(.65) translateY(20px); } 65% { transform: scale(1.04); } 100% { transform: scale(1); } }
-.pop { animation: pop .5s cubic-bezier(.2,1.3,.4,1); }
-#open-box-btn:disabled { opacity: .5; cursor: wait; }
-model-viewer::part(default-progress-bar) { display: none !important; }
-#projectModal { transition: opacity .3s ease-in-out, visibility .3s ease-in-out; }
-.modal-open { overflow: hidden; }
-.tab-btn, .skill-tab { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; padding: .5rem .95rem; border-radius: 9999px; color: var(--muted); transition: all .2s ease; white-space: nowrap; font-weight: 700; cursor: pointer; }
-.tab-btn:hover, .skill-tab:hover { color: var(--ink); }
-.tab-btn.active, .skill-tab.active { background-color: var(--c-blue); color: #FFFFFF; box-shadow: 0 4px 10px rgba(25, 86, 180, 0.25); }
-.j-num-btn { font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; padding: 0.5rem 0; border-radius: 12px; border: 1px solid var(--line); background-color: var(--surface); color: var(--muted); transition: all .2s ease; text-align: center; }
-.j-num-btn.active { background-color: var(--c-blue); color: #FFFFFF; border-color: var(--c-blue); box-shadow: 0 4px 12px rgba(25, 86, 180, 0.28); transform: translateY(-1px); }
-.modal-ext-nav { position: fixed; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border-radius: 9999px; background-color: var(--surface); color: var(--ink); border: 2px solid var(--line); box-shadow: 0 10px 25px rgba(0,0,0,0.25); display: flex; align-items: center; justify-content: center; font-size: 26px; z-index: 65; cursor: pointer; transition: all .2s ease; }
-.modal-ext-nav:hover { background-color: var(--c-blue); color: #FFFFFF; border-color: var(--c-blue); transform: translateY(-50%) scale(1.08); }
-@media (max-width: 767px) { .modal-ext-nav { top: auto; bottom: 14px; transform: none; width: 42px; height: 42px; font-size: 22px; } }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-.tab-panel { animation: fadeUp .25s ease; }
-.lb-img { cursor: zoom-in; transition: transform .25s, box-shadow .25s; }
-.lb-img:hover { transform: scale(1.01); box-shadow: 0 12px 30px rgba(0,0,0,.15); }
-.lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 46px; height: 46px; border-radius: 50%; background: rgba(255,255,255,.15); color: #fff; font-size: 26px; display: grid; place-items: center; transition: all .2s; }
-.lb-nav:hover { background: rgba(255,255,255,.3); transform: translateY(-50%) scale(1.06); }
-.journey-item { transition: all .22s ease; border-left: 3px solid transparent; }
-.journey-item.active { background-color: var(--surface); border-left-color: var(--c-blue); padding-left: 1.25rem; padding-right: 1.25rem; box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.08); }
+:root{--bg:#F3F1EC;--bg-alt:#E7E3DA;--surface:#FFF;--surface-glass:rgba(243,241,236,.9);--ink:#141413;--muted:#65625D;--line:rgba(20,20,19,.12);--backdrop-text:#E4DFD3;--c-yellow:#F5C518;--c-blue:#1956B4;--c-red:#E04328;--c-green:#12944B;--tone-0:#F8DFC8;--tone-1:#CFE2F8;--tone-2:#FCE373;--tone-3:#C9ECDA;--tone-ink:#141413}
+html.dark{--bg:#111110;--bg-alt:#1C1C1A;--surface:#1A1A18;--surface-glass:rgba(17,17,16,.9);--ink:#F3F1EC;--muted:#A09C94;--line:rgba(243,241,236,.12);--backdrop-text:#1B1B19;--tone-0:#2C1E17;--tone-1:#152336;--tone-2:#302811;--tone-3:#132A1F;--tone-ink:#F3F1EC}
+html{scroll-behavior:smooth}::selection{background:var(--c-yellow);color:#141413}
+body{background-color:var(--bg);font-family:'Plus Jakarta Sans',sans-serif;color:var(--ink);overflow-x:hidden;transition:background-color .35s,color .35s}
+.font-display{font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:-.035em}.font-editorial{font-family:'Cormorant Garamond',serif}.font-mono{font-family:'Space Mono',monospace}
+.surf{background-color:var(--surface);border-color:var(--line);transition:background-color .35s,border-color .35s}.surf-alt{background-color:var(--bg-alt);border-color:var(--line)}.bdr{border-color:var(--line)}.txt-muted{color:var(--muted)}
+.backdrop-word{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:clamp(3.3rem,15.5vw,15.5rem);line-height:.82;letter-spacing:-.055em;color:var(--backdrop-text);user-select:none;pointer-events:none;transition:color .35s}
+.part-num{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:clamp(2.1rem,5vw,4.5rem);line-height:.9;letter-spacing:-.05em}
+.vertical-text{writing-mode:vertical-rl;text-orientation:mixed;letter-spacing:.22em;text-transform:uppercase}
+::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--muted);border-radius:4px}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s cubic-bezier(.2,.8,.2,1)}.reveal.in{opacity:1;transform:none}
+#main-nav{background-color:var(--surface-glass)}.nav-link{position:relative;padding-bottom:4px}.nav-link::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:2px;background:var(--c-red);transform:scaleX(0);transform-origin:left;transition:transform .25s}.nav-link:hover::after{transform:scaleX(1)}
+.circle-arrow{width:34px;height:34px;border-radius:9999px;display:inline-flex;align-items:center;justify-content:center;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font-size:13px;transition:all .25s}
+@media(min-width:1024px){.circle-arrow{width:42px;height:42px;font-size:16px}}.group:hover .circle-arrow,.circle-arrow:hover{background:var(--c-red);color:#fff;border-color:var(--c-red);transform:translateX(3px)}
+.tone-0{background-color:var(--tone-0);color:var(--tone-ink)}.tone-1{background-color:var(--tone-1);color:var(--tone-ink)}.tone-2{background-color:var(--tone-2);color:var(--tone-ink)}.tone-3{background-color:var(--tone-3);color:var(--tone-ink)}
+.media-wrapper{position:relative;width:100%;height:100%;background:var(--bg-alt);overflow:hidden}
+.media-loader{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:6px;background:var(--bg-alt);z-index:5;transition:opacity .3s,visibility .3s;pointer-events:none}
+.media-loader span{width:8px;height:8px;background:var(--muted);border-radius:50%;animation:bounceDot 1.4s infinite ease-in-out both}
+.media-loader span:nth-child(2){animation-delay:.2s}.media-loader span:nth-child(3){animation-delay:.4s}
+@keyframes bounceDot{0%,80%,100%{transform:scale(0)}40%{transform:scale(1)}}
+.media-loaded .media-loader{opacity:0;visibility:hidden}
+.polaroid-stack{position:relative;width:100%;aspect-ratio:4/5;margin-bottom:1.25rem;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.polaroid{position:absolute;inset:0;background:var(--surface);padding:8px 8px 28px 8px;border-radius:14px;box-shadow:0 10px 24px -8px rgba(0,0,0,.14);border:1px solid var(--line);transform:var(--tf);transition:transform .6s cubic-bezier(.3,1.35,.5,1),box-shadow .3s,background-color .35s;transform-origin:center bottom}
+@media(min-width:1024px){.polaroid-stack{margin-bottom:1.5rem}.polaroid{padding:12px 12px 42px 12px;border-radius:18px}}
+.polaroid.top:hover{transform:var(--tfh);box-shadow:0 20px 40px -10px rgba(0,0,0,.22)}.polaroid.toss{transition:transform .38s cubic-bezier(.5,0,.8,.4)}
+.polaroid img{width:100%;height:100%;object-fit:cover;border-radius:8px}.polaroid.fresh img{animation:develop .7s ease-out}
+@keyframes develop{0%{filter:brightness(1.25) saturate(0)}100%{filter:none}}
+.viewer{position:absolute;inset:0;width:100%;height:100%;background:transparent;cursor:grab;transition:opacity .4s,transform .4s}.viewer-on{opacity:1;pointer-events:auto;z-index:10}.viewer-off{opacity:0;pointer-events:none;z-index:0}
+.studio-pedestal{background:radial-gradient(circle at 50% 52%,rgba(245,197,24,.18) 0%,rgba(25,86,180,.06) 45%,transparent 70%)}
+html.dark .studio-pedestal{background:radial-gradient(circle at 50% 52%,rgba(245,197,24,.15) 0%,rgba(25,86,180,.12) 48%,transparent 72%)}
+@keyframes shake{0%,100%{transform:rotate(0) scale(1)}20%{transform:rotate(-5deg) scale(1.02)}40%{transform:rotate(5deg) scale(1.03)}60%{transform:rotate(-3deg) scale(1.02)}80%{transform:rotate(2deg)}}.shake{animation:shake .6s ease-in-out}
+@keyframes pop{0%{transform:scale(.65) translateY(20px)}65%{transform:scale(1.04)}100%{transform:scale(1)}}.pop{animation:pop .5s cubic-bezier(.2,1.3,.4,1)}
+#open-box-btn:disabled{opacity:.5;cursor:wait}model-viewer::part(default-progress-bar){display:none!important}
+#projectModal{transition:opacity .3s,visibility .3s}.modal-open{overflow:hidden}
+.tab-btn,.skill-tab{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:.5rem .95rem;border-radius:9999px;color:var(--muted);transition:all .2s;white-space:nowrap;font-weight:700;cursor:pointer}
+.tab-btn:hover,.skill-tab:hover{color:var(--ink)}.tab-btn.active,.skill-tab.active{background-color:var(--c-blue);color:#FFF;box-shadow:0 4px 10px rgba(25,86,180,.25)}
+.j-num-btn{font-family:'Space Mono',monospace;font-size:11px;font-weight:700;padding:.5rem 0;border-radius:12px;border:1px solid var(--line);background-color:var(--surface);color:var(--muted);transition:all .2s;text-align:center}
+.j-num-btn.active{background-color:var(--c-blue);color:#FFF;border-color:var(--c-blue);box-shadow:0 4px 12px rgba(25,86,180,.28);transform:translateY(-1px)}
+@keyframes progress8s{from{width:0%}to{width:100%}}.journey-progress{height:3px;background-color:var(--c-red);animation:progress8s 8s linear infinite}
+.modal-ext-nav{position:fixed;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:9999px;background-color:var(--surface);color:var(--ink);border:2px solid var(--line);box-shadow:0 10px 25px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;font-size:26px;z-index:65;cursor:pointer;transition:all .2s}
+.modal-ext-nav:hover{background-color:var(--c-blue);color:#FFF;border-color:var(--c-blue);transform:translateY(-50%) scale(1.08)}
+@media(max-width:767px){.modal-ext-nav{top:auto;bottom:14px;transform:none;width:42px;height:42px;font-size:22px}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}.tab-panel{animation:fadeUp .25s ease}
+.lb-img{cursor:zoom-in;transition:transform .25s,box-shadow .25s}.lb-img:hover{transform:scale(1.01);box-shadow:0 12px 30px rgba(0,0,0,.15)}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;font-size:26px;display:grid;place-items:center;transition:all .2s}.lb-nav:hover{background:rgba(255,255,255,.3);transform:translateY(-50%) scale(1.06)}
+.journey-item{transition:all .22s;border-left:3px solid transparent}.journey-item.active{background-color:var(--surface);border-left-color:var(--c-blue);padding-left:1.25rem;padding-right:1.25rem;box-shadow:0 8px 24px -8px rgba(0,0,0,.08)}
 </style>
 </head>
 <body class="antialiased">
 
-<!-- DISCLAIMER MÓVIL -->
 <div id="device-banner" class="lg:hidden w-full surf-alt border-b bdr px-3 py-1.5 flex items-center justify-between gap-2 text-[10px] font-mono txt-muted">
-  <div class="flex items-center gap-2 truncate">
-    <span class="w-1.5 h-1.5 rounded-full bg-[#1956B4] flex-shrink-0"></span>
-    <span class="truncate">Desktop view is recommended for the full interactive 3D experience.</span>
-  </div>
+  <div class="flex items-center gap-2 truncate"><span class="w-1.5 h-1.5 rounded-full bg-[#1956B4] flex-shrink-0"></span><span class="truncate">Desktop view is recommended for the full interactive 3D experience.</span></div>
   <button type="button" onclick="document.getElementById('device-banner').style.display='none'" class="px-1.5 font-bold hover:opacity-70">&times;</button>
 </div>
 
-<!-- NAVBAR -->
 <nav id="main-nav" class="sticky top-0 w-full z-50 backdrop-blur-md border-b border-transparent transition-all duration-300">
   <div id="nav-container" class="max-w-[1380px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 py-3.5 md:py-5 transition-all duration-300">
     <div class="flex justify-between items-center gap-4">
       <div class="flex items-center gap-2.5 sm:gap-4">
-        <a href="#" class="flex items-center gap-2.5 group">
-          <span class="w-3 h-3 rounded-sm bg-[#1956B4] group-hover:bg-[#E04328] transition-colors"></span>
-          <span class="font-display font-extrabold text-xs sm:text-base tracking-tight uppercase">Candela Gamboa</span>
-        </a>
-        <button id="theme-toggle" type="button" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full surf border bdr text-[9px] sm:text-[10px] font-mono uppercase tracking-widest hover:border-[#1956B4] transition-all cursor-pointer">
-          <span id="theme-dot" class="w-2 h-2 rounded-full bg-[#F5C518] transition-colors"></span>
-          <span id="theme-label">Dark</span>
-        </button>
+        <a href="#" class="flex items-center gap-2.5 group"><span class="w-3 h-3 rounded-sm bg-[#1956B4] group-hover:bg-[#E04328] transition-colors"></span><span class="font-display font-extrabold text-xs sm:text-base tracking-tight uppercase">Candela Gamboa</span></a>
+        <button id="theme-toggle" type="button" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full surf border bdr text-[9px] sm:text-[10px] font-mono uppercase tracking-widest hover:border-[#1956B4] transition-all cursor-pointer"><span id="theme-dot" class="w-2 h-2 rounded-full bg-[#F5C518] transition-colors"></span><span id="theme-label">Dark</span></button>
       </div>
       <div class="hidden lg:flex items-center space-x-8 text-xs font-medium txt-muted">
         <a href="#works" class="nav-link">works<sup class="font-mono text-[10px] text-[#E04328] font-bold">04</sup></a>
@@ -134,13 +83,10 @@ model-viewer::part(default-progress-bar) { display: none !important; }
         <a href="#contact" class="nav-link">contact</a>
       </div>
       <div class="hidden sm:flex items-center gap-3">
-        <a href="#contact" class="px-4 py-2 rounded-full surf border bdr font-mono text-[10px] uppercase tracking-widest flex items-center gap-2 hover:bg-[#12944B] hover:text-white transition-colors">
-          <span class="w-2 h-2 rounded-full bg-[#12944B] animate-pulse"></span><span>Open to Work</span>
-        </a>
+        <a href="#contact" class="px-4 py-2 rounded-full surf border bdr font-mono text-[10px] uppercase tracking-widest flex items-center gap-2 hover:bg-[#12944B] hover:text-white transition-colors"><span class="w-2 h-2 rounded-full bg-[#12944B] animate-pulse"></span><span>Open to Work</span></a>
       </div>
       <button id="mobileMenuBtn" class="lg:hidden p-1.5 focus:outline-none" aria-label="Menu">
-        <svg id="hamburgerIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-        <svg id="closeIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 18L18 6M6 6l12 12"></path></svg>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16"></path></svg>
       </button>
     </div>
   </div>
@@ -154,7 +100,6 @@ model-viewer::part(default-progress-bar) { display: none !important; }
   </div>
 </nav>
 
-<!-- HERO -->
 <header class="w-full max-w-[1380px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 pt-4 pb-10 md:py-14 lg:py-20 relative">
   <div class="backdrop-word absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap z-0">portfolio</div>
   <div class="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-10 items-center relative z-10">
@@ -172,20 +117,24 @@ model-viewer::part(default-progress-bar) { display: none !important; }
       </p>
       <div class="flex flex-wrap items-center gap-3 lg:gap-3.5 pt-1 lg:pt-2">
         <a href="#works" class="px-5 py-2.5 lg:px-7 lg:py-3.5 rounded-full bg-[#E04328] text-white font-display font-bold text-[11px] lg:text-xs uppercase tracking-wider hover:bg-[#1956B4] transition-colors shadow-sm">Explore Works ↓</a>
-        <a href="#process" class="px-4 py-2.5 lg:px-6 lg:py-3.5 rounded-full surf border bdr font-mono text-[10px] lg:text-xs uppercase tracking-wider hover:border-[#F5C518] transition-colors">Pipeline</a>
+        <a href="#process" class="px-4 py-2.5 lg:px-6 lg:py-3.5 rounded-full surf border bdr font-mono text-[10px] lg:text-xs uppercase tracking-wider hover:border-[#F5C518] transition-colors">Production Pipeline</a>
       </div>
     </div>
     <div class="md:col-span-6 flex flex-col items-center relative">
+      <div class="hidden xl:flex flex-col items-center gap-3 absolute -right-2 top-1/2 -translate-y-1/2">
+        <span class="vertical-text font-mono text-[10px] txt-muted font-bold">INTERACTIVE 3D MODEL</span>
+        <span class="w-3.5 h-8 bg-[#1956B4] inline-block"></span>
+      </div>
       <div class="w-full max-w-[230px] sm:max-w-[290px] lg:max-w-[430px] xl:max-w-[460px] aspect-square relative studio-pedestal rounded-full flex items-center justify-center">
-        <model-viewer id="box-viewer" class="viewer viewer-on" src="box_chubbiegummies.glb" alt="Box" camera-controls disable-zoom camera-orbit="180deg auto auto" interaction-prompt="auto"></model-viewer>
-        <model-viewer id="character-viewer" class="viewer viewer-off" alt="Gummy" camera-controls disable-zoom camera-orbit="180deg auto auto" auto-rotate auto-rotate-delay="2500" animation-name="box_chubbiegummies" interaction-prompt="none"></model-viewer>
+        <model-viewer id="box-viewer" class="viewer viewer-on" src="box_chubbiegummies.glb" alt="Chubby Gummies Box" camera-controls disable-zoom camera-orbit="180deg auto auto" interaction-prompt="auto"></model-viewer>
+        <model-viewer id="character-viewer" class="viewer viewer-off" alt="Chubby Gummy" camera-controls disable-zoom camera-orbit="180deg auto auto" auto-rotate auto-rotate-delay="2500" animation-name="box_chubbiegummies" interaction-prompt="none"></model-viewer>
       </div>
       <div class="mt-2 inline-flex items-center gap-3 lg:gap-4 surf px-4 lg:px-5 py-2 lg:py-2.5 rounded-full border bdr shadow-sm z-20">
         <div class="flex items-center gap-2 pr-3 border-r bdr">
           <span class="w-2.5 h-2.5 rounded-full bg-[#F5C518]"></span>
           <span id="character-name" class="font-mono text-[10px] lg:text-[11px] uppercase tracking-wider font-bold">Mystery Box</span>
         </div>
-        <button id="open-box-btn" class="font-mono text-[10px] lg:text-[11px] uppercase tracking-widest font-bold text-[#E04328] hover:text-[#1956B4] transition-colors flex items-center gap-1.5 cursor-pointer">
+        <button id="open-box-btn" type="button" class="font-mono text-[10px] lg:text-[11px] uppercase tracking-widest font-bold text-[#E04328] hover:text-[#1956B4] transition-colors flex items-center gap-1.5 cursor-pointer">
           <span>Open the BlindBox</span><span>→</span>
         </button>
       </div>
@@ -202,7 +151,7 @@ model-viewer::part(default-progress-bar) { display: none !important; }
 
 <main class="w-full max-w-[1380px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 relative z-10">
 
-  <!-- 01 / WORKS -->
+  <!-- 01 / SELECTED WORKS (Cuadrícula 2 y 2) -->
   <section id="works" class="py-10 md:py-16 lg:py-24 border-t bdr scroll-mt-20">
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 lg:mb-14 gap-4 lg:gap-6">
       <div>
@@ -291,7 +240,7 @@ model-viewer::part(default-progress-bar) { display: none !important; }
     </div>
   </section>
 
-  <!-- 04 / PIPELINE -->
+  <!-- 04 / PRODUCTION PIPELINE -->
   <section id="process" class="py-10 md:py-16 lg:py-24 border-t bdr scroll-mt-20">
     <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-7 lg:mb-12 gap-4">
       <div>
@@ -306,28 +255,28 @@ model-viewer::part(default-progress-bar) { display: none !important; }
     <div class="surf rounded-[2rem] border bdr p-4 sm:p-7 lg:p-10 shadow-sm">
       <div id="proc-panel-3d" class="tab-panel">
         <div class="grid grid-cols-2 md:grid-cols-3 xl:flex xl:flex-row xl:items-stretch xl:justify-between gap-2.5 sm:gap-3.5 xl:gap-3">
-          <div class="xl:flex-1 p-3.5 sm:p-5 rounded-2xl tone-0 border bdr"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#E04328]"><span>01 / REFERENCES</span><span class="xl:hidden">→</span></div><h4 class="font-display font-extrabold text-sm sm:text-lg mt-1">PureRef</h4><p class="text-[11px] lg:text-xs opacity-80 mt-1">Moodboards &amp; proportions.</p></div>
+          <div class="xl:flex-1 p-3.5 sm:p-5 rounded-2xl tone-0 border bdr"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#E04328]"><span>01 / REFERENCES</span><span class="xl:hidden">→</span></div><h4 class="font-display font-extrabold text-sm sm:text-lg mt-1">PureRef</h4><p class="text-[11px] lg:text-xs opacity-80 mt-1">Moodboards, proportions &amp; callouts.</p></div>
           <div class="hidden xl:flex items-center justify-center txt-muted font-mono text-lg">→</div>
-          <div class="xl:flex-1 p-3.5 sm:p-5 rounded-2xl tone-1 border bdr"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#1956B4]"><span>02 / MODELING</span><span class="xl:hidden">→</span></div><h4 class="font-display font-extrabold text-sm sm:text-lg mt-1">Blender</h4><p class="text-[11px] lg:text-xs opacity-80 mt-1">Hard-surface &amp; UVs.</p></div>
+          <div class="xl:flex-1 p-3.5 sm:p-5 rounded-2xl tone-1 border bdr"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#1956B4]"><span>02 / MODELING</span><span class="xl:hidden">→</span></div><h4 class="font-display font-extrabold text-sm sm:text-lg mt-1">Blender</h4><p class="text-[11px] lg:text-xs opacity-80 mt-1">Hard-surface, low-poly &amp; clean UVs.</p></div>
           <div class="hidden xl:flex items-center justify-center txt-muted font-mono text-lg">→</div>
-          <div class="xl:flex-1 p-3.5 sm:p-5 rounded-2xl tone-2 border bdr"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#B47D00] dark:text-[#F5C518]"><span>03 / TEXTURING</span><span class="xl:hidden">→</span></div><h4 class="font-display font-extrabold text-sm sm:text-lg mt-1">Painter &amp; Designer</h4><p class="text-[11px] lg:text-xs opacity-80 mt-1">PBR textures &amp; shaders.</p></div>
+          <div class="xl:flex-1 p-3.5 sm:p-5 rounded-2xl tone-2 border bdr"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#B47D00] dark:text-[#F5C518]"><span>03 / TEXTURING</span><span class="xl:hidden">→</span></div><h4 class="font-display font-extrabold text-sm sm:text-lg mt-1">Painter &amp; Designer</h4><p class="text-[11px] lg:text-xs opacity-80 mt-1">PBR textures &amp; procedural shaders.</p></div>
           <div class="hidden xl:flex items-center justify-center txt-muted font-mono text-lg">→</div>
-          <div class="xl:flex-1 p-3.5 sm:p-5 rounded-2xl tone-3 border bdr"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#12944B]"><span>04 / RENDER</span><span class="xl:hidden">→</span></div><h4 class="font-display font-extrabold text-sm sm:text-lg mt-1">Marmoset Toolbag</h4><p class="text-[11px] lg:text-xs opacity-80 mt-1">Bakes &amp; turntables.</p></div>
+          <div class="xl:flex-1 p-3.5 sm:p-5 rounded-2xl tone-3 border bdr"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#12944B]"><span>04 / RENDER</span><span class="xl:hidden">→</span></div><h4 class="font-display font-extrabold text-sm sm:text-lg mt-1">Marmoset Toolbag</h4><p class="text-[11px] lg:text-xs opacity-80 mt-1">Map baking, lighting &amp; turntables.</p></div>
           <div class="hidden xl:flex items-center justify-center txt-muted font-mono text-lg">→</div>
-          <div class="xl:flex-1 p-3.5 sm:p-5 rounded-2xl surf-alt border bdr"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#1956B4]"><span>05 / ENGINE</span><span class="xl:hidden">→</span></div><h4 class="font-display font-extrabold text-sm sm:text-lg mt-1">Unity &amp; UE5</h4><p class="text-[11px] lg:text-xs opacity-80 mt-1">Integration &amp; collisions.</p></div>
+          <div class="xl:flex-1 p-3.5 sm:p-5 rounded-2xl surf-alt border bdr"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#1956B4]"><span>05 / ENGINE</span><span class="xl:hidden">→</span></div><h4 class="font-display font-extrabold text-sm sm:text-lg mt-1">Unity &amp; UE5</h4><p class="text-[11px] lg:text-xs opacity-80 mt-1">Engine integration &amp; collisions.</p></div>
           <div class="hidden xl:flex items-center justify-center txt-muted font-mono text-lg">→</div>
-          <div class="xl:flex-1 p-3.5 sm:p-5 rounded-2xl bg-[#1956B4] text-white"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#F5C518]"><span>06 / SCENE</span><span class="xl:hidden">✓</span></div><h4 class="font-display font-extrabold text-sm sm:text-lg mt-1">Set Dressing</h4><p class="text-[11px] lg:text-xs text-white/85 mt-1">Lighting &amp; storytelling.</p></div>
+          <div class="xl:flex-1 p-3.5 sm:p-5 rounded-2xl bg-[#1956B4] text-white"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#F5C518]"><span>06 / SCENE</span><span class="xl:hidden">✓</span></div><h4 class="font-display font-extrabold text-sm sm:text-lg mt-1">Set Dressing</h4><p class="text-[11px] lg:text-xs text-white/85 mt-1">Assembly, lighting &amp; storytelling.</p></div>
         </div>
       </div>
       <div id="proc-panel-design" class="tab-panel hidden">
         <div class="grid grid-cols-2 lg:flex lg:flex-row lg:items-stretch lg:justify-between gap-2.5 sm:gap-4">
-          <div class="lg:flex-1 p-4 sm:p-6 rounded-2xl tone-0 border bdr"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#E04328]"><span>01 / REFERENCES</span><span class="lg:hidden">→</span></div><h4 class="font-display font-extrabold text-base lg:text-xl mt-1">PureRef</h4><p class="text-[11px] lg:text-xs opacity-80 mt-1">Grids, type &amp; color direction.</p></div>
+          <div class="lg:flex-1 p-4 sm:p-6 rounded-2xl tone-0 border bdr"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#E04328]"><span>01 / REFERENCES</span><span class="lg:hidden">→</span></div><h4 class="font-display font-extrabold text-base lg:text-xl mt-1">PureRef</h4><p class="text-[11px] lg:text-xs opacity-80 mt-1">Editorial grids, typography &amp; color direction.</p></div>
           <div class="hidden lg:flex items-center justify-center txt-muted font-mono text-xl">→</div>
-          <div class="lg:flex-1 p-4 sm:p-6 rounded-2xl tone-1 border bdr"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#1956B4]"><span>02 / SKETCHING</span><span class="lg:hidden">→</span></div><h4 class="font-display font-extrabold text-base lg:text-xl mt-1">Procreate</h4><p class="text-[11px] lg:text-xs opacity-80 mt-1">Thumbnails &amp; wireframes.</p></div>
+          <div class="lg:flex-1 p-4 sm:p-6 rounded-2xl tone-1 border bdr"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#1956B4]"><span>02 / SKETCHING</span><span class="lg:hidden">→</span></div><h4 class="font-display font-extrabold text-base lg:text-xl mt-1">Procreate</h4><p class="text-[11px] lg:text-xs opacity-80 mt-1">Concept thumbnails, illustrations &amp; wireframes.</p></div>
           <div class="hidden lg:flex items-center justify-center txt-muted font-mono text-xl">→</div>
-          <div class="lg:flex-1 p-4 sm:p-6 rounded-2xl tone-2 border bdr"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#B47D00] dark:text-[#F5C518]"><span>03 / UI DESIGN</span><span class="lg:hidden">→</span></div><h4 class="font-display font-extrabold text-base lg:text-xl mt-1">Figma</h4><p class="text-[11px] lg:text-xs opacity-80 mt-1">Systems &amp; prototypes.</p></div>
+          <div class="lg:flex-1 p-4 sm:p-6 rounded-2xl tone-2 border bdr"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#B47D00] dark:text-[#F5C518]"><span>03 / UI DESIGN</span><span class="lg:hidden">→</span></div><h4 class="font-display font-extrabold text-base lg:text-xl mt-1">Figma</h4><p class="text-[11px] lg:text-xs opacity-80 mt-1">Layout systems, components &amp; prototypes.</p></div>
           <div class="hidden lg:flex items-center justify-center txt-muted font-mono text-xl">→</div>
-          <div class="lg:flex-1 p-4 sm:p-6 rounded-2xl bg-[#E04328] text-white"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#F5C518]"><span>04 / CODE</span><span class="lg:hidden">✓</span></div><h4 class="font-display font-extrabold text-base lg:text-xl mt-1">VS Code</h4><p class="text-[11px] lg:text-xs text-white/90 mt-1">HTML/CSS/JS build &amp; 3D web.</p></div>
+          <div class="lg:flex-1 p-4 sm:p-6 rounded-2xl bg-[#E04328] text-white"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#F5C518]"><span>04 / CODE</span><span class="lg:hidden">✓</span></div><h4 class="font-display font-extrabold text-base lg:text-xl mt-1">VS Code</h4><p class="text-[11px] lg:text-xs text-white/90 mt-1">Clean HTML/CSS/JS build &amp; 3D web integration.</p></div>
         </div>
       </div>
     </div>
@@ -345,7 +294,7 @@ model-viewer::part(default-progress-bar) { display: none !important; }
     <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8" id="other-grid"></div>
   </section>
 
-  <!-- 06 / CONTACT (Margen inferior optimizado y limpio) -->
+  <!-- 06 / CONTACT -->
   <section id="contact" class="pt-10 lg:pt-16 pb-4 border-t bdr scroll-mt-20">
     <div class="surf rounded-[2rem] lg:rounded-[2.5rem] p-6 sm:p-10 lg:p-14 border-2 bdr shadow-md mb-6 lg:mb-8 relative overflow-hidden">
       <div class="absolute top-0 left-0 right-0 h-2 bg-[#1956B4]"></div>
@@ -420,7 +369,7 @@ model-viewer::part(default-progress-bar) { display: none !important; }
 </div>
 
 <!-- LIGHTBOX -->
-<div id="lightbox" class="fixed inset-0 z-[70] flex items-center justify-center bg-black/85 backdrop-blur-sm opacity-0 invisible transition-opacity duration-300">
+<div id="lightbox" class="fixed inset-0 z-[80] flex items-center justify-center bg-black/92 backdrop-blur-sm opacity-0 invisible transition-opacity duration-300">
   <button id="lb-close" class="absolute top-4 right-5 text-white/80 hover:text-white text-4xl leading-none">&times;</button>
   <button id="lb-prev" class="lb-nav left-3 md:left-8">&#8249;</button>
   <img id="lb-img" class="w-full h-full max-w-[95vw] max-h-[86vh] object-contain rounded-lg shadow-2xl select-none" alt="" draggable="false">
@@ -430,7 +379,6 @@ model-viewer::part(default-progress-bar) { display: none !important; }
 
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 <script>
-// Manejador multimedia unificado con loader de 3 puntitos para imágenes y archivos
 window.tryFallbackImg = function(img) {
   const orig = img.getAttribute('data-orig') || img.getAttribute('src');
   if (!img.getAttribute('data-orig')) img.setAttribute('data-orig', orig);
@@ -441,83 +389,96 @@ window.tryFallbackImg = function(img) {
   const base = file.replace(/\.[^.]+$/, '');
   const ext = (file.match(/\.[^.]+$/) || [''])[0];
   const noUnderscore = base.replace('_', '');
-
-  const candidates = [
-    `${dir}/${base.toLowerCase()}${ext.toLowerCase()}`,
-    `${dir}/${base.charAt(0).toUpperCase() + base.slice(1)}${ext.toLowerCase()}`,
-    `${dir.toLowerCase()}/${file}`, `${dir.toLowerCase()}/${file.toLowerCase()}`,
-    `${dir}/${base}.JPG`, `${dir}/${base}.jpeg`, `${dir}/${base}.png`,
-    orig.replace('Render_05', 'Render_04'), orig.replace('Render_05', 'Render_01')
-  ].filter((v, i, a) => v && v !== orig && a.indexOf(v) === i);
-
+  const dirs = [dir, dir.toLowerCase(), dir.charAt(0).toUpperCase() + dir.slice(1).toLowerCase()];
+  const bases = [base, base.toLowerCase(), base.charAt(0).toUpperCase() + base.slice(1).toLowerCase(), noUnderscore, noUnderscore.toLowerCase()];
+  const exts = [ext, ext.toLowerCase(), ext.toUpperCase(), '.png', '.PNG', '.jpg', '.JPG', '.jpeg', '.webp'];
+  const candidates = [];
+  dirs.forEach(d => bases.forEach(b => exts.forEach(e => {
+    const path = d ? `${d}/${b}${e}` : `${b}${e}`;
+    if (path !== orig && !candidates.includes(path)) candidates.push(path);
+  })));
   if (step < candidates.length) {
     img.setAttribute('data-step', step + 1);
     img.src = candidates[step];
   } else {
     img.onerror = null;
     img.src = `https://placehold.co/800x600/CFE2F8/141413?text=${encodeURIComponent(orig)}`;
-    const wrap = img.closest('.media-wrapper');
-    if (wrap) wrap.classList.add('media-loaded');
+    img.closest('.media-wrapper')?.classList.add('media-loaded');
   }
 };
 
 function wrapMedia(htmlContent) {
-  return htmlContent.replace(/<img ([^>]+)>/g, (match, attrs) => {
-    if (attrs.includes('class="') && !attrs.includes('media-loaded')) {
-      attrs = attrs.replace('class="', 'class="media-target ');
-    } else if (!attrs.includes('class=')) {
-      attrs += ' class="media-target"';
-    }
+  return htmlContent.replace(/<img ([^>]+)>/g, (m, attrs) => {
     if (!attrs.includes('onerror=')) attrs += ' onerror="tryFallbackImg(this)"';
     if (!attrs.includes('onload=')) attrs += ' onload="this.closest(\'.media-wrapper\')?.classList.add(\'media-loaded\')"';
-    return `<div class="media-wrapper"><div class="media-loader"><span></span><span></span><span></span></div><img ${attrs}></div>`;
-  }).replace(/<video ([^>]+)>/g, (match, attrs) => {
+    return `<div class="media-wrapper rounded-2xl"><div class="media-loader"><span></span><span></span><span></span></div><img ${attrs}></div>`;
+  }).replace(/<video ([^>]+)>/g, (m, attrs) => {
     if (!attrs.includes('onloadeddata=')) attrs += ' onloadeddata="this.closest(\'.media-wrapper\')?.classList.add(\'media-loaded\')"';
-    return `<div class="media-wrapper"><div class="media-loader"><span></span><span></span><span></span></div><video ${attrs}></video></div>`;
+    return `<div class="media-wrapper rounded-2xl"><div class="media-loader"><span></span><span></span><span></span></div><video ${attrs}></video></div>`;
   });
 }
 
 const PROJECTS = [
   {
-    id: 'kingscross', span: true, aspect: 'aspect-[16/9] md:aspect-[21/9]',
+    id: 'kingscross', aspect: 'aspect-[4/3]',
     title: "King's Cross Station: WWII Field Hospital", category: '3D Environment / VIDEOGAMES',
     date: '05 / 2026', dateLabel: 'Completed', cover: 'KingsCross/KingsCross_Render_01.jpeg',
     media: ['KingsCross/KingsCross_Render_01.jpeg','KingsCross/KingsCross_Render_02.jpeg','KingsCross/KingsCross_Video_01.mp4','KingsCross/KingsCross_Video_02.mp4','KingsCross/KingsCross_Video_03_WIP.mp4'],
-    description: "A real-time environment recreating an alternate WWII scenario where King’s Cross Station has been repurposed into a frontline triage base and medical train depot for wounded soldiers.\n\nDeveloped over an academic year as a university project, the entire scene was built from scratch.",
-    specs: [['Type', 'Real-Time 3D Environment'], ['Engine', 'Unreal Engine 5']],
-    software: [['Blender & 3ds Max', '3D Modeling'], ['Marvelous Designer', 'Cloth'], ['Substance Painter', 'Texturing'], ['Unreal Engine 5', 'Lighting & Assembly']],
-    breakdown: ['Blockout & Modular Architecture', 'Cloth Simulation', 'PBR Texturing & Trim Sheets', 'Unreal Engine 5 Set Dressing']
+    description: "A real-time environment recreating an alternate WWII scenario where King’s Cross Station has been repurposed into a frontline triage base and medical train depot for wounded soldiers.\n\nDeveloped over an academic year as a university project, the entire scene was built from scratch. Feel free to reach out if you have any questions or want to know more about the breakdown and workflow!",
+    specs: [['Type', 'Real-Time 3D Environment'], ['Context', 'University Academic Year Project'], ['Engine', 'Unreal Engine 5'], ['Author', 'Candela Gamboa S-B']],
+    software: [['Blender & 3ds Max', '3D Modeling & Modular Kit'], ['Marvelous Designer', 'Cloth Simulation'], ['Substance 3D Painter', 'Texturing & Materials'], ['Substance 3D Designer', 'Procedural Materials & Trim Sheets'], ['Unreal Engine 5', 'Lighting, Blueprints & Set Dressing'], ['PureRef', 'Reference Gathering & Moodboard'], ['Photoshop & Premiere Pro', 'Post-Processing & Video Presentation']],
+    breakdown: [
+      'Blockout & Modular Architecture: Handled the entire pipeline from scratch, starting with spatial blockouts and modeling a fully modular architectural kit in Blender and 3ds Max.',
+      'Cloth Simulation: Simulated realistic medical tents, stretchers, and fabric assets in Marvelous Designer.',
+      'Texturing & Trim Sheets: Created custom procedural materials and trim sheets in Substance 3D Designer alongside detailed PBR texturing in Substance 3D Painter.',
+      'Engine Integration & Set Dressing: Integrated everything into Unreal Engine 5 for set dressing and lighting, using vertex painting, blueprints, and foliage tools to ground the scene while keeping it fully game-ready and optimized.'
+    ]
   },
   {
     id: 'revolver', aspect: 'aspect-[4/3]',
     title: 'Smith & Wesson PERFORMANCE CENTER MODEL 327', category: '3D Props / HARD-SURFACE',
-    date: '2025', dateLabel: 'Completed', cover: 'Revolver/Render_03.jpg',
-    media: ['Revolver/Render_03.jpg','Revolver/Render_02.jpg','Revolver/Render_05.jpg','Revolver/render_01_wireframe.jpg'],
-    description: "Smith & Wesson PERFORMANCE CENTER MODEL 327 Revolver, modeled, textured, and rendered for the 3D Modeling course in the Video Game Design degree.",
-    specs: [['Type', '3D Prop'], ['Focus', 'Hard-Surface']],
-    software: [['3ds Max', 'Modeling'], ['Substance Painter', 'Texturing'], ['Marmoset Toolbag', 'Baking & Renders']],
-    breakdown: ['Reference & Proportions', 'Hard-Surface Modeling', 'UV Unwrapping & Baking', 'PBR Texturing']
+    date: '2025', dateLabel: 'Completed', cover: 'revolver/render_03.jpg',
+    media: ['revolver/render_03.jpg','revolver/render_02.jpg','revolver/render_05.jpg','revolver/render_01_wireframe.jpg'],
+    description: "Smith & Wesson PERFORMANCE CENTER MODEL 327 Revolver, modeled, textured, and rendered for the 3D Modeling course in the Video Game Design degree. First Hard-Surface project.",
+    specs: [['Type', '3D Hard-Surface Prop'], ['Course', '3D Modeling · Video Game Design Degree'], ['Focus', 'High-to-Low Poly & PBR Materials']],
+    software: [['3ds Max', 'Hard-Surface Modeling'], ['Substance 3D Painter', 'PBR Texturing & Wood/Metal Wear'], ['Marmoset Toolbag', 'Map Baking, Lighting & Renders'], ['Photoshop', 'Post-Production & Alphas'], ['PureRef', 'Reference Gathering']],
+    breakdown: [
+      'Reference & Proportions: Gathered manufacturer product photos and mechanical blueprints in PureRef to ensure accurate scale and silhouette.',
+      'Hard-Surface Modeling: Modeled the high-poly and optimized low-poly geometry in 3ds Max with clean topology and edge flow.',
+      'UV Unwrapping & Baking: Packed UV islands and baked clean Normal, AO, and Curvature maps in Marmoset Toolbag.',
+      'PBR Texturing & Presentation: Crafted realistic metallic finishes and carved wooden grip textures in Substance 3D Painter, followed by final studio lighting and wireframe renders in Marmoset Toolbag.'
+    ]
   },
   {
     id: 'bebe', aspect: 'aspect-[4/3]',
     title: '3D Character - Bebe', category: '3D Character / VIDEOGAMES',
     date: '03 / 2026', dateLabel: 'Completed', cover: 'Bebe/Bebe_01.png',
     media: ['Bebe/Bebe_01.png','Bebe/Bebe_02.png','Bebe/Bebe_03.png','Bebe/Bebe_04.png','Bebe/bebe3.png','Bebe/Bebe_Video.mp4'],
-    description: "3D Model of Bebe. Created as an academic project translating 2D concept art into a full 3D character.",
+    description: "3D Model of Bebe.\nThis piece was created as part of an academic project where the goal was to translate a 2D concept art into a full 3D character. A huge thank you to anbudehuang for designing such an inspiring and original character!",
     credit: ['Original concept by 琥珀的黄 (@anbudehuang)', 'https://www.artstation.com/anbudehuang'],
-    specs: [['Type', 'Stylized Character']],
-    software: [['Blender', 'Sculpting & Rig'], ['Substance Painter', 'Texturing']],
-    breakdown: ['Concept Analysis', 'Sculpting', 'Retopology & UVs', 'Texturing']
+    specs: [['Type', 'Stylized 3D Character'], ['Goal', '2D Concept to Full 3D Character'], ['Concept Artist', '琥珀的黄 (@anbudehuang)']],
+    software: [['Blender', 'Sculpting, Retopology, UVs, Rig & Render'], ['Substance 3D Painter', 'Stylized Hand-Painted PBR Texturing']],
+    breakdown: [
+      '2D Concept Analysis & Blocking: Studied @anbudehuang’s original 2D concept to capture the exact proportions, silhouette, and expressive charm in 3D.',
+      'Sculpting & Modeling: Sculpted the character anatomy, stylized clothing, and puppet companion in Blender.',
+      'Retopology & UVs: Created clean topology suitable for deformation and unwrapped UVs.',
+      'Texturing & Turntable: Painted soft gradients and fabric details in Substance 3D Painter, followed by posing, lighting, and turntable rendering in Blender.'
+    ]
   },
   {
-    id: 'chubby', span: true, aspect: 'aspect-[16/9] md:aspect-[21/9]',
+    id: 'chubby', aspect: 'aspect-[4/3]',
     title: 'Chubby Gummies - Blind Box', category: '3D Character / PRODUCT DESIGN',
     date: '06 / 2026', dateLabel: 'Published', cover: 'chubby_gummies/CG_01.png',
     media: ['chubby_gummies/CG_01.png','chubby_gummies/CG_02.png','chubby_gummies/CG_03.png','chubby_gummies/final_render_20.png','chubby_gummies/CG_poster.png'],
-    description: "Meet the Chubby Gummies, a new blind box designer toy collection set in a colorful candy world! Practical application for my university bachelor's thesis (TFG).",
-    specs: [['Type', 'Designer Toy Collection'], ['Format', 'Blind Box']],
-    software: [['Blender', 'Modeling & Shading']],
-    breakdown: ['Concept Design', '3D Modeling', 'Packaging', 'Web 3D Export']
+    description: "Meet the Chubby Gummies, a new blind box designer toy collection set in a colorful candy world! The series features a quirky family of bubblegum characters, each inspired by a different flavor.\n\nThis project originated as the practical application for my university bachelor's thesis (TFG) focused on the blind box toy market and designer toy culture. I've always had a huge passion for collectible figures and vinyl art toys, so designing this original lineup from concept to 3D has been an amazing experience.",
+    specs: [['Type', 'Blind Box Designer Toy Collection'], ['Context', "Bachelor's Thesis (TFG) Practical Project"], ['Interactive', 'Live 3D .GLB Viewer on Home Page']],
+    software: [['Blender', 'Character Modeling, Shading, Packaging, Renders & .GLB Export']],
+    breakdown: [
+      'Concept & Lineup Design: Designed a family of quirky bubblegum characters with distinct silhouettes and personalities, each inspired by a candy flavor.',
+      '3D Modeling & Shading: Modeled the full character lineup in Blender and developed tactile gummy/vinyl shaders.',
+      'Packaging & Graphic Identity: Created the mystery blind box packaging, typography, and promotional poster.',
+      'Studio Rendering & Web 3D: Produced final collection renders and exported optimized .glb models to power the interactive BlindBox experience on the portfolio home page.'
+    ]
   }
 ];
 
@@ -525,23 +486,29 @@ const OTHER = [
   {
     title: 'Character Design', category: '2D Exploration', date: '2023',
     cover: 'personajes_worldbuilding/Gamboa.Candela_CA_3.2_Personajes_Color.jpg',
-    media: ['personajes_worldbuilding/Gamboa.Candela_CA_3.2_Personajes_Color.jpg', 'personajes_worldbuilding/Gamboa.Candela_CA_3.2_Personajes_BN.JPG'],
-    description: '2D character design concepts and color exploration for worldbuilding.',
-    specs: [['Type', '2D Concept Art']], software: [['Procreate & Photoshop', 'Illustration']], breakdown: ['Silhouette', 'Color']
+    media: ['personajes_worldbuilding/Gamboa.Candela_CA_3.2_Personajes_Color.jpg', 'personajes_worldbuilding/Gamboa.Candela_CA_3.2_Personajes_BN.JPG', 'personajes_worldbuilding/Gamboa.Candela_CA_3.2_Personajes_Video_WIP.mov'],
+    description: '2D character design concepts, silhouette studies, and color exploration for worldbuilding projects.',
+    specs: [['Type', '2D Concept Art'], ['Focus', 'Character & Silhouette Design']],
+    software: [['Procreate & Photoshop', 'Sketching, Lineart & Color Studies'], ['PureRef', 'Visual Reference Board']],
+    breakdown: ['Silhouette & Shape Language: Explored distinct character proportions and costume silhouettes in black and white.', 'Color & Personality: Developed final color palettes and rendering to reflect each character’s role in the world.']
   },
   {
     title: 'ESTATE Corkscrew Model', category: '3D Props / HARD-SURFACE', date: '05 / 2025',
-    cover: 'https://placehold.co/600x600/CFE2F8/141413?text=ESTATE+Corkscrew',
-    media: ['https://placehold.co/800x600/CFE2F8/141413?text=ESTATE+Corkscrew+Model'],
-    description: 'Late 19th-Century Estate Corkscrew Model. First approach to Hard-Surface modeling.',
-    specs: [['Type', 'Prop']], software: [['3ds Max', 'Modeling'], ['Substance Painter', 'Texturing']], breakdown: ['Modeling', 'Texturing']
+    cover: 'estate_sacacorchos/estate_01.webp',
+    media: ['estate_sacacorchos/estate_01.webp', 'estate_sacacorchos/estate_02.webp', 'estate_sacacorchos/estate_03_wireframe.webp', 'estate_sacacorchos/estate_video_turnaround.mp4'],
+    description: 'Late 19th-Century Estate Corkscrew Model. My first approach to Hard-Surface modeling, focusing on antique mechanical pieces, engraved brass details, and wooden handle wear. Project completed in May 2025.',
+    specs: [['Type', 'Antique Mechanical Prop'], ['Era', 'Late 19th-Century'], ['Completed', 'May 2025']],
+    software: [['3ds Max', 'Hard-Surface Mechanical Modeling'], ['Substance 3D Painter', 'Aged Brass, Relief & Wood Texturing'], ['Marmoset Toolbag', 'Baking, Lighting & Final Presentation']],
+    breakdown: ['Mechanical Reference Analysis: Studied late 19th-century ESTATE corkscrew mechanisms and ornamental engravings.', 'Hard-Surface Modeling: Modeled the clamp, lever, worm, and body in 3ds Max as my first contact with hard-surface workflows.', 'Texturing & Rendering: Textured aged brass patina, ornamental relief patterns, and worn wood in Substance 3D Painter, rendered in Marmoset Toolbag.']
   },
   {
     title: 'Lighting Tests', category: 'Rendering', date: '2025',
     cover: 'https://placehold.co/600x600/FCE373/141413?text=Lighting+tests',
     media: ['https://placehold.co/800x600/FCE373/141413?text=Lighting+Tests+in+UE5'],
     description: 'Playing with mood, volumetric fog, and cinematic atmosphere in Unreal Engine.',
-    specs: [['Type', 'Lighting']], software: [['Unreal Engine 5', 'Lighting']], breakdown: ['Mood']
+    specs: [['Type', 'Lighting & Mood Studies'], ['Engine', 'Unreal Engine 5']],
+    software: [['Unreal Engine 5', 'Lumen Lighting, Post-Process & Atmosphere']],
+    breakdown: ['Mood & Color Grading: Experimented with directional light angles, volumetric fog density, and post-process LUTs to establish different narrative moods.']
   }
 ];
 
@@ -549,7 +516,6 @@ const isVideo = f => /\.(mp4|webm|mov)$/i.test(f);
 const $ = id => document.getElementById(id);
 
 document.addEventListener('DOMContentLoaded', () => {
-
   const root = document.documentElement, themeBtn = $('theme-toggle'), themeLbl = $('theme-label'), themeDot = $('theme-dot'), metaTheme = $('meta-theme');
   const applyTheme = dark => {
     root.classList.toggle('dark', dark);
@@ -567,11 +533,14 @@ document.addEventListener('DOMContentLoaded', () => {
     navC.classList.toggle('py-2.5', window.scrollY > 20);
   }, { passive: true });
 
-  // BLIND BOX
+  // BLIND BOX FUNCIONAL ORIGINAL
   const CHARACTERS = [
-    { src: 'chubby_gummies_purple.glb', name: 'Purple Edition' }, { src: 'chubby_gummies_pink.glb', name: 'Pink Edition' },
-    { src: 'chubby_gummies_blue.glb', name: 'Blue Edition' }, { src: 'chubby_gummies_green.glb', name: 'Green Edition' },
-    { src: 'chubby_gummies_orange.glb', name: 'Orange Edition' }, { src: 'chubby_gummies_dark.glb', name: 'Dark Edition' },
+    { src: 'chubby_gummies_purple.glb', name: 'Purple Edition' },
+    { src: 'chubby_gummies_pink.glb', name: 'Pink Edition' },
+    { src: 'chubby_gummies_blue.glb', name: 'Blue Edition' },
+    { src: 'chubby_gummies_green.glb', name: 'Green Edition' },
+    { src: 'chubby_gummies_orange.glb', name: 'Orange Edition' },
+    { src: 'chubby_gummies_dark.glb', name: 'Dark Edition' },
     { src: 'chubby_gummies_yellow.glb', name: 'Yellow Edition' }
   ];
   const boxV = $('box-viewer'), charV = $('character-viewer'), nameLabel = $('character-name'), btn = $('open-box-btn');
@@ -579,40 +548,74 @@ document.addEventListener('DOMContentLoaded', () => {
   const setBtn = open => { btn.innerHTML = open ? '<span>Try another</span><span>↻</span>' : '<span>Open the BlindBox</span><span>→</span>'; };
   const show = v => v.classList.replace('viewer-off', 'viewer-on'), hide = v => v.classList.replace('viewer-on', 'viewer-off');
 
+  function pickRandom() {
+    const o = pool.filter(c => c !== last);
+    const l = o.length ? o : pool;
+    return l[Math.floor(Math.random() * l.length)];
+  }
+
   function loadCharacter(c) {
     return new Promise(resolve => {
       if (charV.getAttribute('src') === c.src) return resolve(true);
       let done = false;
-      const finish = ok => { if (done) return; done = true; charV.removeEventListener('load', onLoad); charV.removeEventListener('error', onErr); resolve(ok); };
-      charV.addEventListener('load', () => finish(true));
-      charV.addEventListener('error', () => finish(false));
-      setTimeout(() => finish(false), 10000); charV.src = c.src;
+      const finish = ok => {
+        if (done) return;
+        done = true;
+        charV.removeEventListener('load', onLoad);
+        charV.removeEventListener('error', onErr);
+        resolve(ok);
+      };
+      const onLoad = () => finish(true);
+      const onErr = () => finish(false);
+      charV.addEventListener('load', onLoad);
+      charV.addEventListener('error', onErr);
+      setTimeout(() => finish(false), 10000);
+      charV.src = c.src;
     });
   }
 
-  btn.addEventListener('click', async () => {
-    if (busy) return;
-    if (isOpen) {
-      hide(charV); boxV.setAttribute('camera-orbit', '180deg auto auto');
-      boxV.classList.remove('pop'); void boxV.offsetWidth; boxV.classList.add('pop');
-      show(boxV); nameLabel.textContent = 'Mystery Box'; isOpen = false; setBtn(false);
-      return;
-    }
-    busy = true; btn.disabled = true; btn.innerHTML = '<span>Opening...</span>';
-    boxV.classList.remove('shake'); void boxV.offsetWidth; boxV.classList.add('shake');
-    await new Promise(r => setTimeout(r, 650));
+  async function reveal() {
+    busy = true;
+    btn.disabled = true;
+    const from = isOpen ? charV : boxV;
+    btn.innerHTML = '<span>Opening...</span>';
+    from.classList.remove('shake');
+    void from.offsetWidth;
+    from.classList.add('shake');
+    await new Promise(r => setTimeout(r, 700));
     let chosen = null;
     while (pool.length && !chosen) {
-      const avail = pool.filter(c => !last || c.src !== last.src);
-      const c = (avail.length ? avail : pool)[Math.floor(Math.random() * (avail.length ? avail : pool).length)];
-      if (await loadCharacter(c)) chosen = c; else pool = pool.filter(x => x.src !== c.src);
+      const c = pickRandom();
+      if (await loadCharacter(c)) chosen = c;
+      else pool = pool.filter(x => x !== c);
     }
-    boxV.classList.remove('shake');
-    if (!chosen) { nameLabel.textContent = 'Check .glb files'; pool = [...CHARACTERS]; setBtn(false); busy = false; btn.disabled = false; return; }
-    last = chosen; charV.setAttribute('camera-orbit', '180deg auto auto');
-    charV.classList.remove('pop'); void charV.offsetWidth; charV.classList.add('pop');
-    hide(boxV); show(charV); nameLabel.textContent = chosen.name;
-    isOpen = true; setBtn(true); busy = false; btn.disabled = false;
+    from.classList.remove('shake');
+    if (!chosen) {
+      nameLabel.textContent = 'Check .glb files';
+      pool = [...CHARACTERS];
+      setBtn(isOpen);
+      busy = false;
+      btn.disabled = false;
+      return;
+    }
+    last = chosen;
+    charV.setAttribute('camera-orbit', '180deg auto auto');
+    charV.classList.remove('pop');
+    void charV.offsetWidth;
+    charV.classList.add('pop');
+    hide(boxV);
+    show(charV);
+    nameLabel.textContent = chosen.name;
+    isOpen = true;
+    setBtn(true);
+    busy = false;
+    btn.disabled = false;
+  }
+
+  btn.addEventListener('click', () => { if (!busy) reveal(); });
+  nameLabel.addEventListener('dblclick', () => {
+    if (!isOpen || busy) return;
+    hide(charV); show(boxV); nameLabel.textContent = 'Mystery Box'; isOpen = false; setBtn(false);
   });
 
   const mBtn = $('mobileMenuBtn'), mMenu = $('mobileMenu');
@@ -643,14 +646,16 @@ document.addEventListener('DOMContentLoaded', () => {
   $('lb-next').addEventListener('click', () => showLB(lbI + 1, 1));
   $('lb-close').addEventListener('click', closeLB);
   lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
+  lb.addEventListener('touchstart', e => { lbX = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - lbX; if (Math.abs(dx) > 50 && lbList.length > 1) showLB(lbI + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1); });
 
-  // WORKS
+  // WORKS (2 y 2)
   const grid = $('works-grid');
   const bindCard = (card, fn) => { card.tabIndex = 0; card.setAttribute('role', 'button'); card.addEventListener('click', fn); card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fn(); } }); };
 
   PROJECTS.forEach((p, idx) => {
     const card = document.createElement('div');
-    card.className = (p.span ? 'sm:col-span-2 ' : '') + `group cursor-pointer project-card rounded-[2rem] p-4 sm:p-6 lg:p-7 tone-${idx % 4} border bdr transition-all duration-300 hover:-translate-y-1 hover:shadow-md flex flex-col justify-between`;
+    card.className = `group cursor-pointer project-card rounded-[2rem] p-4 sm:p-6 lg:p-7 tone-${idx % 4} border bdr transition-all duration-300 hover:-translate-y-1 hover:shadow-md flex flex-col justify-between`;
     card.innerHTML = `
       <div class="flex justify-between items-center mb-3 lg:mb-4 gap-2"><span class="font-mono text-[9px] lg:text-[10px] uppercase tracking-widest px-2.5 lg:px-3 py-1 rounded-full surf font-bold truncate">0${idx + 1} &middot; ${p.category}</span><span class="font-mono text-[10px] lg:text-[11px] opacity-75 flex-shrink-0">${p.date}</span></div>
       <div class="relative w-full ${p.aspect} rounded-2xl overflow-hidden surf border bdr">
@@ -658,6 +663,25 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
       <div class="mt-4 lg:mt-6 flex justify-between items-end gap-4"><div><h3 class="font-display text-lg sm:text-xl lg:text-2xl font-extrabold tracking-tight leading-snug">${p.title}</h3><p class="opacity-80 text-xs sm:text-sm mt-1 line-clamp-2 max-w-2xl">${p.description.replace(/\n+/g, ' ')}</p></div><span class="circle-arrow flex-shrink-0" aria-hidden="true">→</span></div>`;
     grid.appendChild(card);
+
+    const hoverImgs = p.media.filter(f => !isVideo(f)), img = card.querySelector('.project-img');
+    let id, i = 0;
+    if (hoverImgs.length > 1) {
+      card.addEventListener('mouseenter', () => {
+        id = setInterval(() => {
+          i = (i + 1) % hoverImgs.length;
+          img.removeAttribute('data-orig'); img.removeAttribute('data-step');
+          img.onerror = function() { tryFallbackImg(this); };
+          img.src = hoverImgs[i];
+        }, 950);
+      });
+      card.addEventListener('mouseleave', () => {
+        clearInterval(id); i = 0;
+        img.removeAttribute('data-orig'); img.removeAttribute('data-step');
+        img.onerror = function() { tryFallbackImg(this); };
+        img.src = p.cover;
+      });
+    }
     bindCard(card, () => openModal(PROJECTS, idx));
   });
 
@@ -668,7 +692,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="relative w-full aspect-square rounded-xl sm:rounded-2xl overflow-hidden surf border bdr">
         <div class="media-wrapper"><div class="media-loader"><span></span><span></span><span></span></div><img src="${p.cover}" onerror="tryFallbackImg(this)" onload="this.closest('.media-wrapper')?.classList.add('media-loaded')" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="${p.title}"></div>
       </div>
-      <div class="mt-3 sm:mt-5 flex justify-between items-end gap-2"><div class="min-w-0"><p class="font-mono text-[8px] sm:text-[10px] opacity-70 tracking-widest uppercase truncate">${p.category} &middot; ${p.date}</p><h3 class="font-display text-xs sm:text-base lg:text-lg font-extrabold mt-0.5 truncate">${p.title}</h3></div><span class="circle-arrow flex-shrink-0">→</span></div>`;
+      <div class="mt-3 sm:mt-5 flex justify-between items-end gap-2"><div class="min-w-0"><p class="font-mono text-[8px] sm:text-[10px] opacity-70 tracking-widest uppercase truncate">${p.category} &middot; ${p.date}</p><h3 class="font-display text-xs sm:text-base lg:text-lg font-extrabold mt-0.5 truncate">${p.title}</h3><p class="hidden sm:block text-xs opacity-80 mt-1 line-clamp-2">${p.description}</p></div><span class="circle-arrow flex-shrink-0">→</span></div>`;
     bindCard(card, () => openModal(OTHER, idx));
     $('other-grid').appendChild(card);
   });
@@ -710,6 +734,9 @@ document.addEventListener('DOMContentLoaded', () => {
     ).join(''));
 
     mMedia.innerHTML = `<div class="flex items-center justify-between pb-2 border-b bdr"><span class="font-mono text-[10px] uppercase tracking-widest txt-muted font-bold">PROJECT GALLERY</span><span class="font-mono text-[10px] uppercase tracking-widest text-[#1956B4] font-bold">Click image to zoom &#8599;</span></div>` + mediaContent;
+    if (vidIO) vidIO.disconnect();
+    vidIO = new IntersectionObserver(en => en.forEach(x => { if (x.isIntersecting) x.target.play().catch(() => {}); else x.target.pause(); }), { threshold: .45 });
+    mMedia.querySelectorAll('video').forEach(v => { v.muted = true; vidIO.observe(v); });
     mMedia.scrollTop = 0;
     mTabs.innerHTML = TABS.map(([k, l]) => `<button type="button" class="tab-btn" data-tab="${k}">${l}</button>`).join('');
     mTabs.querySelectorAll('.tab-btn').forEach(b => b.addEventListener('click', () => renderPanel(b.dataset.tab)));
@@ -725,18 +752,30 @@ document.addEventListener('DOMContentLoaded', () => {
   function closeModal() {
     modal.classList.replace('opacity-100', 'opacity-0');
     mMedia.querySelectorAll('video').forEach(v => v.pause());
+    if (vidIO) vidIO.disconnect();
     setTimeout(() => { modal.classList.add('invisible'); document.body.classList.remove('modal-open'); mMedia.innerHTML = ''; }, 300);
   }
   $('closeModalBtn').addEventListener('click', closeModal);
   modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('invisible')) {
+      if (e.key === 'ArrowLeft' && lbList.length > 1) showLB(lbI - 1, -1);
+      if (e.key === 'ArrowRight' && lbList.length > 1) showLB(lbI + 1, 1);
+      if (e.key === 'Escape') closeLB();
+    } else if (!modal.classList.contains('invisible')) {
+      if (e.key === 'ArrowLeft') openModal(currentList, currentIndex - 1);
+      if (e.key === 'ArrowRight') openModal(currentList, currentIndex + 1);
+      if (e.key === 'Escape') closeModal();
+    }
+  });
 
-  // POLAROIDS con Loader
+  // POLAROIDS
   const SKINS = ['fotos_candela/Foto_Perfil_CandelaGamboa.jpeg', 'fotos_candela/Candela_02.jpeg', 'fotos_candela/Candela_03.jpeg'];
   const SLOTS = [{ x: 0, y: 0, r: 0, s: 1, z: 30 }, { x: -10, y: 7, r: -3.5, s: .96, z: 20 }, { x: 10, y: 12, r: 3.5, s: .92, z: 10 }];
   const stack = $('polaroid-stack'); let order = [0, 1, 2], pBusy = false;
   const pEls = SKINS.map((src, i) => {
     const el = document.createElement('div'); el.className = 'polaroid';
-    el.innerHTML = `<div class="media-wrapper"><div class="media-loader"><span></span><span></span><span></span></div><img src="${src}" onerror="tryFallbackImg(this)" onload="this.closest('.media-wrapper')?.classList.add('media-loaded')" alt="Portrait ${i + 1}"></div>`;
+    el.innerHTML = `<div class="media-wrapper rounded-lg"><div class="media-loader"><span></span><span></span><span></span></div><img src="${src}" onerror="tryFallbackImg(this)" onload="this.closest('.media-wrapper')?.classList.add('media-loaded')" alt="Portrait ${i + 1}"></div>`;
     el.addEventListener('click', e => { e.stopPropagation(); if (i === order[0]) bring(order[1]); });
     stack.appendChild(el); return el;
   });

@@ -7,57 +7,122 @@
 <meta name="description" content="Portfolio of Candela Gamboa, 3D Artist & Graphic Designer based in Madrid. Hard-surface, environments, props and visual design.">
 <meta name="theme-color" content="#F3F1EC" id="meta-theme">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%231956B4%27/%3E%3Ctext x=%2750%27 y=%2766%27 font-family=%27sans-serif%27 font-weight=%27800%27 font-size=%2744%27 fill=%27%23FFFFFF%27 text-anchor=%27middle%27%3ECG.%3C/text%3E%3C/svg%3E">
-<script src="https://cdn.tailwindcss.com"></script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://ajax.googleapis.com">
+<link rel="preload" as="image" href="fotos_candela/Foto_Perfil_CandelaGamboa.jpeg">
+<link rel="preload" as="image" href="KingsCross/KingsCross_Render_01.jpeg">
+<link rel="preload" as="image" href="revolver/render_03.jpg">
+
+<script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
-:root{--bg:#F3F1EC;--bg-alt:#E7E3DA;--surface:#FFF;--surface-glass:rgba(243,241,236,.9);--ink:#141413;--muted:#65625D;--line:rgba(20,20,19,.12);--backdrop-text:#E4DFD3;--c-yellow:#F5C518;--c-blue:#1956B4;--c-red:#E04328;--c-green:#12944B;--tone-0:#F8DFC8;--tone-1:#CFE2F8;--tone-2:#FCE373;--tone-3:#C9ECDA;--tone-ink:#141413}
-html.dark{--bg:#111110;--bg-alt:#1C1C1A;--surface:#1A1A18;--surface-glass:rgba(17,17,16,.9);--ink:#F3F1EC;--muted:#A09C94;--line:rgba(243,241,236,.12);--backdrop-text:#1B1B19;--tone-0:#2C1E17;--tone-1:#152336;--tone-2:#302811;--tone-3:#132A1F;--tone-ink:#F3F1EC}
-html{scroll-behavior:smooth}::selection{background:var(--c-yellow);color:#141413}
-body{background-color:var(--bg);font-family:'Plus Jakarta Sans',sans-serif;color:var(--ink);overflow-x:hidden;transition:background-color .35s,color .35s}
-.font-display{font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:-.035em}.font-editorial{font-family:'Cormorant Garamond',serif}.font-mono{font-family:'Space Mono',monospace}
-.surf{background-color:var(--surface);border-color:var(--line);transition:background-color .35s,border-color .35s}.surf-alt{background-color:var(--bg-alt);border-color:var(--line)}.bdr{border-color:var(--line)}.txt-muted{color:var(--muted)}
-.backdrop-word{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:clamp(3.3rem,15.5vw,15.5rem);line-height:.82;letter-spacing:-.055em;color:var(--backdrop-text);user-select:none;pointer-events:none;transition:color .35s}
-.part-num{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:clamp(2.1rem,5vw,4.5rem);line-height:.9;letter-spacing:-.05em}
-.vertical-text{writing-mode:vertical-rl;text-orientation:mixed;letter-spacing:.22em;text-transform:uppercase}
-::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--muted);border-radius:4px}
-.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s cubic-bezier(.2,.8,.2,1)}.reveal.in{opacity:1;transform:none}
-#main-nav{background-color:var(--surface-glass)}.nav-link{position:relative;padding-bottom:4px}.nav-link::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:2px;background:var(--c-red);transform:scaleX(0);transform-origin:left;transition:transform .25s}.nav-link:hover::after{transform:scaleX(1)}
-.circle-arrow{width:34px;height:34px;border-radius:9999px;display:inline-flex;align-items:center;justify-content:center;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font-size:13px;transition:all .25s}
-@media(min-width:1024px){.circle-arrow{width:42px;height:42px;font-size:16px}}.group:hover .circle-arrow,.circle-arrow:hover{background:var(--c-red);color:#fff;border-color:var(--c-red);transform:translateX(3px)}
-.tone-0{background-color:var(--tone-0);color:var(--tone-ink)}.tone-1{background-color:var(--tone-1);color:var(--tone-ink)}.tone-2{background-color:var(--tone-2);color:var(--tone-ink)}.tone-3{background-color:var(--tone-3);color:var(--tone-ink)}
-.media-wrapper{position:relative;width:100%;height:100%;background:var(--bg-alt);overflow:hidden}
-.media-loader{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:6px;background:var(--bg-alt);z-index:5;transition:opacity .3s,visibility .3s;pointer-events:none}
-.media-loader span{width:8px;height:8px;background:var(--muted);border-radius:50%;animation:bounceDot 1.4s infinite ease-in-out both}
-.media-loader span:nth-child(2){animation-delay:.2s}.media-loader span:nth-child(3){animation-delay:.4s}
-@keyframes bounceDot{0%,80%,100%{transform:scale(0)}40%{transform:scale(1)}}
-.media-loaded .media-loader{opacity:0;visibility:hidden}
-.polaroid-stack{position:relative;width:100%;aspect-ratio:4/5;margin-bottom:1.25rem;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.polaroid{position:absolute;inset:0;background:var(--surface);padding:8px 8px 28px 8px;border-radius:14px;box-shadow:0 10px 24px -8px rgba(0,0,0,.14);border:1px solid var(--line);transform:var(--tf);transition:transform .6s cubic-bezier(.3,1.35,.5,1),box-shadow .3s,background-color .35s;transform-origin:center bottom}
-@media(min-width:1024px){.polaroid-stack{margin-bottom:1.5rem}.polaroid{padding:12px 12px 42px 12px;border-radius:18px}}
-.polaroid.top:hover{transform:var(--tfh);box-shadow:0 20px 40px -10px rgba(0,0,0,.22)}.polaroid.toss{transition:transform .38s cubic-bezier(.5,0,.8,.4)}
-.polaroid img{width:100%;height:100%;object-fit:cover;border-radius:8px}.polaroid.fresh img{animation:develop .7s ease-out}
-@keyframes develop{0%{filter:brightness(1.25) saturate(0)}100%{filter:none}}
-.viewer{position:absolute;inset:0;width:100%;height:100%;background:transparent;cursor:grab;transition:opacity .4s,transform .4s}.viewer-on{opacity:1;pointer-events:auto;z-index:10}.viewer-off{opacity:0;pointer-events:none;z-index:0}
-.studio-pedestal{background:radial-gradient(circle at 50% 52%,rgba(245,197,24,.18) 0%,rgba(25,86,180,.06) 45%,transparent 70%)}
-html.dark .studio-pedestal{background:radial-gradient(circle at 50% 52%,rgba(245,197,24,.15) 0%,rgba(25,86,180,.12) 48%,transparent 72%)}
-@keyframes shake{0%,100%{transform:rotate(0) scale(1)}20%{transform:rotate(-5deg) scale(1.02)}40%{transform:rotate(5deg) scale(1.03)}60%{transform:rotate(-3deg) scale(1.02)}80%{transform:rotate(2deg)}}.shake{animation:shake .6s ease-in-out}
-@keyframes pop{0%{transform:scale(.65) translateY(20px)}65%{transform:scale(1.04)}100%{transform:scale(1)}}.pop{animation:pop .5s cubic-bezier(.2,1.3,.4,1)}
-#open-box-btn:disabled{opacity:.5;cursor:wait}model-viewer::part(default-progress-bar){display:none!important}
-#projectModal{transition:opacity .3s,visibility .3s}.modal-open{overflow:hidden}
-.tab-btn,.skill-tab{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:.5rem .95rem;border-radius:9999px;color:var(--muted);transition:all .2s;white-space:nowrap;font-weight:700;cursor:pointer}
-.tab-btn:hover,.skill-tab:hover{color:var(--ink)}.tab-btn.active,.skill-tab.active{background-color:var(--c-blue);color:#FFF;box-shadow:0 4px 10px rgba(25,86,180,.25)}
-.j-num-btn{font-family:'Space Mono',monospace;font-size:11px;font-weight:700;padding:.5rem 0;border-radius:12px;border:1px solid var(--line);background-color:var(--surface);color:var(--muted);transition:all .2s;text-align:center}
-.j-num-btn.active{background-color:var(--c-blue);color:#FFF;border-color:var(--c-blue);box-shadow:0 4px 12px rgba(25,86,180,.28);transform:translateY(-1px)}
-@keyframes progress8s{from{width:0%}to{width:100%}}.journey-progress{height:3px;background-color:var(--c-red);animation:progress8s 8s linear infinite}
-.modal-ext-nav{position:fixed;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:9999px;background-color:var(--surface);color:var(--ink);border:2px solid var(--line);box-shadow:0 10px 25px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;font-size:26px;z-index:65;cursor:pointer;transition:all .2s}
-.modal-ext-nav:hover{background-color:var(--c-blue);color:#FFF;border-color:var(--c-blue);transform:translateY(-50%) scale(1.08)}
-@media(max-width:767px){.modal-ext-nav{top:auto;bottom:14px;transform:none;width:42px;height:42px;font-size:22px}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}.tab-panel{animation:fadeUp .25s ease}
-.lb-img{cursor:zoom-in;transition:transform .25s,box-shadow .25s}.lb-img:hover{transform:scale(1.01);box-shadow:0 12px 30px rgba(0,0,0,.15)}
-.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;font-size:26px;display:grid;place-items:center;transition:all .2s}.lb-nav:hover{background:rgba(255,255,255,.3);transform:translateY(-50%) scale(1.06)}
-.journey-item{transition:all .22s;border-left:3px solid transparent}.journey-item.active{background-color:var(--surface);border-left-color:var(--c-blue);padding-left:1.25rem;padding-right:1.25rem;box-shadow:0 8px 24px -8px rgba(0,0,0,.08)}
+:root {
+  --bg: #F3F1EC; --bg-alt: #E7E3DA; --surface: #FFF; --surface-glass: rgba(243,241,236,.9);
+  --ink: #141413; --muted: #65625D; --line: rgba(20,20,19,.12); --backdrop-text: #E4DFD3;
+  --c-yellow: #F5C518; --c-blue: #1956B4; --c-red: #E04328; --c-green: #12944B;
+  --tone-0: #F8DFC8; --tone-1: #CFE2F8; --tone-2: #FCE373; --tone-3: #C9ECDA; --tone-ink: #141413;
+}
+html.dark {
+  --bg: #111110; --bg-alt: #1C1C1A; --surface: #1A1A18; --surface-glass: rgba(17,17,16,.9);
+  --ink: #F3F1EC; --muted: #A09C94; --line: rgba(243,241,236,.12); --backdrop-text: #1B1B19;
+  --tone-0: #2C1E17; --tone-1: #152336; --tone-2: #302811; --tone-3: #132A1F; --tone-ink: #F3F1EC;
+}
+html { scroll-behavior: smooth; }
+::selection { background: var(--c-yellow); color: #141413; }
+body { background-color: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; color: var(--ink); overflow-x: hidden; transition: background-color .35s, color .35s; }
+
+.font-display { font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: -.035em; }
+.font-editorial { font-family: 'Cormorant Garamond', serif; }
+.font-mono { font-family: 'Space Mono', monospace; }
+.surf { background-color: var(--surface); border-color: var(--line); transition: background-color .35s, border-color .35s; }
+.surf-alt { background-color: var(--bg-alt); border-color: var(--line); }
+.bdr { border-color: var(--line); }
+.txt-muted { color: var(--muted); }
+.tone-0 { background-color: var(--tone-0); color: var(--tone-ink); }
+.tone-1 { background-color: var(--tone-1); color: var(--tone-ink); }
+.tone-2 { background-color: var(--tone-2); color: var(--tone-ink); }
+.tone-3 { background-color: var(--tone-3); color: var(--tone-ink); }
+
+.backdrop-word { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(3.3rem, 15.5vw, 15.5rem); line-height: .82; letter-spacing: -.055em; color: var(--backdrop-text); user-select: none; pointer-events: none; transition: color .35s; }
+.part-num { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(2.1rem, 5vw, 4.5rem); line-height: .9; letter-spacing: -.05em; }
+.vertical-text { writing-mode: vertical-rl; text-orientation: mixed; letter-spacing: .22em; text-transform: uppercase; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 4px; }
+
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s, transform .6s cubic-bezier(.2,.8,.2,1); }
+.reveal.in { opacity: 1; transform: none; }
+
+#main-nav { background-color: var(--surface-glass); }
+.nav-link { position: relative; padding-bottom: 4px; }
+.nav-link::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: var(--c-red); transform: scaleX(0); transform-origin: left; transition: transform .25s; }
+.nav-link:hover::after { transform: scaleX(1); }
+
+.circle-arrow { width: 34px; height: 34px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); font-size: 13px; transition: all .25s; }
+@media(min-width:1024px) { .circle-arrow { width: 42px; height: 42px; font-size: 16px; } }
+.group:hover .circle-arrow, .circle-arrow:hover { background: var(--c-red); color: #fff; border-color: var(--c-red); transform: translateX(3px); }
+
+.media-wrapper { position: relative; width: 100%; height: 100%; background: var(--bg-alt); overflow: hidden; }
+.media-loader { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 6px; background: var(--bg-alt); z-index: 5; transition: opacity .25s, visibility .25s; pointer-events: none; }
+.media-loader span { width: 7px; height: 7px; background: var(--muted); border-radius: 50%; animation: bounceDot 1.3s infinite ease-in-out both; }
+.media-loader span:nth-child(2) { animation-delay: .18s; }
+.media-loader span:nth-child(3) { animation-delay: .36s; }
+@keyframes bounceDot { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+.media-loaded .media-loader { opacity: 0; visibility: hidden; }
+
+.polaroid-stack { position: relative; width: 100%; aspect-ratio: 4/5; margin-bottom: 1.25rem; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.polaroid { position: absolute; inset: 0; background: var(--surface); padding: 8px 8px 28px 8px; border-radius: 14px; box-shadow: 0 10px 24px -8px rgba(0,0,0,.14); border: 1px solid var(--line); transform: var(--tf); transition: transform .6s cubic-bezier(.3,1.35,.5,1), box-shadow .3s, background-color .35s; transform-origin: center bottom; }
+@media(min-width:1024px) { .polaroid-stack { margin-bottom: 1.5rem; } .polaroid { padding: 12px 12px 42px 12px; border-radius: 18px; } }
+.polaroid.top:hover { transform: var(--tfh); box-shadow: 0 20px 40px -10px rgba(0,0,0,.22); }
+.polaroid.toss { transition: transform .38s cubic-bezier(.5,0,.8,.4); }
+.polaroid img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
+.polaroid.fresh img { animation: develop .7s ease-out; }
+@keyframes develop { 0% { filter: brightness(1.25) saturate(0); } 100% { filter: none; } }
+
+.viewer { position: absolute; inset: 0; width: 100%; height: 100%; background: transparent; cursor: grab; transition: opacity .4s, transform .4s; }
+.viewer-on { opacity: 1; pointer-events: auto; z-index: 10; }
+.viewer-off { opacity: 0; pointer-events: none; z-index: 0; }
+.studio-pedestal { background: radial-gradient(circle at 50% 52%, rgba(245,197,24,.18) 0%, rgba(25,86,180,.06) 45%, transparent 70%); }
+html.dark .studio-pedestal { background: radial-gradient(circle at 50% 52%, rgba(245,197,24,.15) 0%, rgba(25,86,180,.12) 48%, transparent 72%); }
+@keyframes shake { 0%,100% { transform: rotate(0) scale(1); } 20% { transform: rotate(-5deg) scale(1.02); } 40% { transform: rotate(5deg) scale(1.03); } 60% { transform: rotate(-3deg) scale(1.02); } 80% { transform: rotate(2deg); } }
+.shake { animation: shake .6s ease-in-out; }
+@keyframes pop { 0% { transform: scale(.65) translateY(20px); } 65% { transform: scale(1.04); } 100% { transform: scale(1); } }
+.pop { animation: pop .5s cubic-bezier(.2,1.3,.4,1); }
+#open-box-btn:disabled { opacity: .5; cursor: wait; }
+model-viewer::part(default-progress-bar) { display: none !important; }
+
+#projectModal { transition: opacity .3s, visibility .3s; }
+.modal-open { overflow: hidden; }
+.tab-btn, .skill-tab { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; padding: .5rem .5rem; border-radius: 9999px; color: var(--muted); transition: all .2s; white-space: nowrap; font-weight: 700; cursor: pointer; text-align: center; }
+@media(min-width:640px) { .tab-btn, .skill-tab { padding: .5rem .95rem; letter-spacing: .12em; } }
+.tab-btn:hover, .skill-tab:hover { color: var(--ink); }
+.tab-btn.active, .skill-tab.active { background-color: var(--c-blue); color: #FFF; box-shadow: 0 4px 10px rgba(25,86,180,.25); }
+
+.j-num-btn { font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; padding: .5rem 0; border-radius: 12px; border: 1px solid var(--line); background-color: var(--surface); color: var(--muted); transition: all .2s; text-align: center; }
+.j-num-btn.active { background-color: var(--c-blue); color: #FFF; border-color: var(--c-blue); box-shadow: 0 4px 12px rgba(25,86,180,.28); transform: translateY(-1px); }
+@keyframes progress8s { from { width: 0%; } to { width: 100%; } }
+.journey-progress { height: 3px; background-color: var(--c-red); animation: progress8s 8s linear infinite; }
+
+.modal-ext-nav { position: fixed; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border-radius: 9999px; background-color: var(--surface); color: var(--ink); border: 2px solid var(--line); box-shadow: 0 10px 25px rgba(0,0,0,.25); display: flex; align-items: center; justify-content: center; font-size: 26px; z-index: 65; cursor: pointer; transition: all .2s; }
+.modal-ext-nav:hover { background-color: var(--c-blue); color: #FFF; border-color: var(--c-blue); transform: translateY(-50%) scale(1.08); }
+@media(max-width:767px) { .modal-ext-nav { top: auto; bottom: 12px; transform: none; width: 40px; height: 40px; font-size: 20px; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.tab-panel { animation: fadeUp .25s ease; }
+
+.lb-img { cursor: zoom-in; transition: transform .25s, box-shadow .25s; }
+.lb-img:hover { transform: scale(1.01); box-shadow: 0 12px 30px rgba(0,0,0,.15); }
+.lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 46px; height: 46px; border-radius: 50%; background: rgba(255,255,255,.15); color: #fff; font-size: 26px; display: grid; place-items: center; transition: all .2s; }
+.lb-nav:hover { background: rgba(255,255,255,.3); transform: translateY(-50%) scale(1.06); }
+
+.journey-item { transition: all .22s; border-left: 3px solid transparent; }
+.journey-item.active { background-color: var(--surface); border-left-color: var(--c-blue); padding-left: 1.25rem; padding-right: 1.25rem; box-shadow: 0 8px 24px -8px rgba(0,0,0,.08); }
+
+.soft-chip { display: inline-flex; align-items: center; gap: 7px; padding: 5px 11px; border-radius: 10px; background-color: var(--surface); border: 1px solid var(--line); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 700; }
+.soft-chip img { width: 20px; height: 20px; object-fit: contain; flex-shrink: 0; }
 </style>
 </head>
 <body class="antialiased">
@@ -67,6 +132,7 @@ html.dark .studio-pedestal{background:radial-gradient(circle at 50% 52%,rgba(245
   <button type="button" onclick="document.getElementById('device-banner').style.display='none'" class="px-1.5 font-bold hover:opacity-70">&times;</button>
 </div>
 
+<!-- Barra de navegación (Actualizado orden: Works -> About me -> Journey -> Archive -> Process -> Contact) -->
 <nav id="main-nav" class="sticky top-0 w-full z-50 backdrop-blur-md border-b border-transparent transition-all duration-300">
   <div id="nav-container" class="max-w-[1380px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 py-3.5 md:py-5 transition-all duration-300">
     <div class="flex justify-between items-center gap-4">
@@ -78,8 +144,8 @@ html.dark .studio-pedestal{background:radial-gradient(circle at 50% 52%,rgba(245
         <a href="#works" class="nav-link">works<sup class="font-mono text-[10px] text-[#E04328] font-bold">04</sup></a>
         <a href="#profile" class="nav-link">about me</a>
         <a href="#journey" class="nav-link">journey</a>
-        <a href="#process" class="nav-link">process</a>
         <a href="#other-works" class="nav-link">archive</a>
+        <a href="#process" class="nav-link">workflow</a>
         <a href="#contact" class="nav-link">contact</a>
       </div>
       <div class="hidden sm:flex items-center gap-3">
@@ -94,12 +160,13 @@ html.dark .studio-pedestal{background:radial-gradient(circle at 50% 52%,rgba(245
     <a href="#works" class="py-2 flex justify-between border-b bdr"><span>01 / Works</span><span class="text-[#E04328] font-bold">04</span></a>
     <a href="#profile" class="py-2 block border-b bdr">02 / About me</a>
     <a href="#journey" class="py-2 block border-b bdr">03 / Journey</a>
-    <a href="#process" class="py-2 block border-b bdr">04 / Pipeline</a>
-    <a href="#other-works" class="py-2 block border-b bdr">05 / Archive</a>
+    <a href="#other-works" class="py-2 block border-b bdr">04 / Other works</a>
+    <a href="#process" class="py-2 block border-b bdr">05 / Workflow</a>
     <a href="#contact" class="py-2 block text-[#12944B] font-bold">06 / Contact</a>
   </div>
 </nav>
 
+<!-- Cabecera Principal (Hero) -->
 <header class="w-full max-w-[1380px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 pt-4 pb-10 md:py-14 lg:py-20 relative">
   <div class="backdrop-word absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap z-0">portfolio</div>
   <div class="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-10 items-center relative z-10">
@@ -117,7 +184,7 @@ html.dark .studio-pedestal{background:radial-gradient(circle at 50% 52%,rgba(245
       </p>
       <div class="flex flex-wrap items-center gap-3 lg:gap-3.5 pt-1 lg:pt-2">
         <a href="#works" class="px-5 py-2.5 lg:px-7 lg:py-3.5 rounded-full bg-[#E04328] text-white font-display font-bold text-[11px] lg:text-xs uppercase tracking-wider hover:bg-[#1956B4] transition-colors shadow-sm">Explore Works ↓</a>
-        <a href="#process" class="px-4 py-2.5 lg:px-6 lg:py-3.5 rounded-full surf border bdr font-mono text-[10px] lg:text-xs uppercase tracking-wider hover:border-[#F5C518] transition-colors">Production Pipeline</a>
+        <a href="#process" class="px-4 py-2.5 lg:px-6 lg:py-3.5 rounded-full surf border bdr font-mono text-[10px] lg:text-xs uppercase tracking-wider hover:border-[#F5C518] transition-colors">Workflow &amp; Pipeline</a>
       </div>
     </div>
     <div class="md:col-span-6 flex flex-col items-center relative">
@@ -151,7 +218,7 @@ html.dark .studio-pedestal{background:radial-gradient(circle at 50% 52%,rgba(245
 
 <main class="w-full max-w-[1380px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 relative z-10">
 
-  <!-- 01 / SELECTED WORKS (Cuadrícula 2 y 2) -->
+  <!-- 01 / SELECTED WORKS -->
   <section id="works" class="py-10 md:py-16 lg:py-24 border-t bdr scroll-mt-20">
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 lg:mb-14 gap-4 lg:gap-6">
       <div>
@@ -240,53 +307,11 @@ html.dark .studio-pedestal{background:radial-gradient(circle at 50% 52%,rgba(245
     </div>
   </section>
 
-  <!-- 04 / PRODUCTION PIPELINE -->
-  <section id="process" class="py-10 md:py-16 lg:py-24 border-t bdr scroll-mt-20">
-    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-7 lg:mb-12 gap-4">
+  <!-- 04 / OTHER WORKS & ARCHIVE (Colocado primero, antes de Workflow & Pipeline) -->
+  <section id="other-works" class="py-10 md:py-16 lg:py-20 border-t bdr scroll-mt-20">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 lg:mb-12 gap-4 lg:gap-6">
       <div>
-        <div class="flex items-baseline gap-2"><span class="px-2 py-0.5 bg-[#12944B] text-white font-mono text-[10px] lg:text-xs font-bold uppercase">Part.</span><span class="part-num">04</span></div>
-        <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl mt-1.5 lg:mt-2">Production Pipeline</h2>
-      </div>
-      <div class="inline-flex p-1.5 rounded-full surf-alt border bdr self-start sm:self-auto" role="tablist">
-        <button class="proc-tab active px-4 py-2 lg:px-6 lg:py-2.5 rounded-full font-display font-bold text-[11px] lg:text-xs uppercase tracking-wider transition-all bg-[#1956B4] text-white shadow-sm" data-target="3d">3D Pipeline</button>
-        <button class="proc-tab px-4 py-2 lg:px-6 lg:py-2.5 rounded-full font-display font-bold text-[11px] lg:text-xs uppercase tracking-wider transition-all txt-muted" data-target="design">Design Workflow</button>
-      </div>
-    </div>
-    <div class="surf rounded-[2rem] border bdr p-4 sm:p-7 lg:p-10 shadow-sm">
-      <div id="proc-panel-3d" class="tab-panel">
-        <div class="grid grid-cols-2 md:grid-cols-3 xl:flex xl:flex-row xl:items-stretch xl:justify-between gap-2.5 sm:gap-3.5 xl:gap-3">
-          <div class="xl:flex-1 p-3.5 sm:p-5 rounded-2xl tone-0 border bdr"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#E04328]"><span>01 / REFERENCES</span><span class="xl:hidden">→</span></div><h4 class="font-display font-extrabold text-sm sm:text-lg mt-1">PureRef</h4><p class="text-[11px] lg:text-xs opacity-80 mt-1">Moodboards, proportions &amp; callouts.</p></div>
-          <div class="hidden xl:flex items-center justify-center txt-muted font-mono text-lg">→</div>
-          <div class="xl:flex-1 p-3.5 sm:p-5 rounded-2xl tone-1 border bdr"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#1956B4]"><span>02 / MODELING</span><span class="xl:hidden">→</span></div><h4 class="font-display font-extrabold text-sm sm:text-lg mt-1">Blender</h4><p class="text-[11px] lg:text-xs opacity-80 mt-1">Hard-surface, low-poly &amp; clean UVs.</p></div>
-          <div class="hidden xl:flex items-center justify-center txt-muted font-mono text-lg">→</div>
-          <div class="xl:flex-1 p-3.5 sm:p-5 rounded-2xl tone-2 border bdr"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#B47D00] dark:text-[#F5C518]"><span>03 / TEXTURING</span><span class="xl:hidden">→</span></div><h4 class="font-display font-extrabold text-sm sm:text-lg mt-1">Painter &amp; Designer</h4><p class="text-[11px] lg:text-xs opacity-80 mt-1">PBR textures &amp; procedural shaders.</p></div>
-          <div class="hidden xl:flex items-center justify-center txt-muted font-mono text-lg">→</div>
-          <div class="xl:flex-1 p-3.5 sm:p-5 rounded-2xl tone-3 border bdr"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#12944B]"><span>04 / RENDER</span><span class="xl:hidden">→</span></div><h4 class="font-display font-extrabold text-sm sm:text-lg mt-1">Marmoset Toolbag</h4><p class="text-[11px] lg:text-xs opacity-80 mt-1">Map baking, lighting &amp; turntables.</p></div>
-          <div class="hidden xl:flex items-center justify-center txt-muted font-mono text-lg">→</div>
-          <div class="xl:flex-1 p-3.5 sm:p-5 rounded-2xl surf-alt border bdr"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#1956B4]"><span>05 / ENGINE</span><span class="xl:hidden">→</span></div><h4 class="font-display font-extrabold text-sm sm:text-lg mt-1">Unity &amp; UE5</h4><p class="text-[11px] lg:text-xs opacity-80 mt-1">Engine integration &amp; collisions.</p></div>
-          <div class="hidden xl:flex items-center justify-center txt-muted font-mono text-lg">→</div>
-          <div class="xl:flex-1 p-3.5 sm:p-5 rounded-2xl bg-[#1956B4] text-white"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#F5C518]"><span>06 / SCENE</span><span class="xl:hidden">✓</span></div><h4 class="font-display font-extrabold text-sm sm:text-lg mt-1">Set Dressing</h4><p class="text-[11px] lg:text-xs text-white/85 mt-1">Assembly, lighting &amp; storytelling.</p></div>
-        </div>
-      </div>
-      <div id="proc-panel-design" class="tab-panel hidden">
-        <div class="grid grid-cols-2 lg:flex lg:flex-row lg:items-stretch lg:justify-between gap-2.5 sm:gap-4">
-          <div class="lg:flex-1 p-4 sm:p-6 rounded-2xl tone-0 border bdr"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#E04328]"><span>01 / REFERENCES</span><span class="lg:hidden">→</span></div><h4 class="font-display font-extrabold text-base lg:text-xl mt-1">PureRef</h4><p class="text-[11px] lg:text-xs opacity-80 mt-1">Editorial grids, typography &amp; color direction.</p></div>
-          <div class="hidden lg:flex items-center justify-center txt-muted font-mono text-xl">→</div>
-          <div class="lg:flex-1 p-4 sm:p-6 rounded-2xl tone-1 border bdr"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#1956B4]"><span>02 / SKETCHING</span><span class="lg:hidden">→</span></div><h4 class="font-display font-extrabold text-base lg:text-xl mt-1">Procreate</h4><p class="text-[11px] lg:text-xs opacity-80 mt-1">Concept thumbnails, illustrations &amp; wireframes.</p></div>
-          <div class="hidden lg:flex items-center justify-center txt-muted font-mono text-xl">→</div>
-          <div class="lg:flex-1 p-4 sm:p-6 rounded-2xl tone-2 border bdr"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#B47D00] dark:text-[#F5C518]"><span>03 / UI DESIGN</span><span class="lg:hidden">→</span></div><h4 class="font-display font-extrabold text-base lg:text-xl mt-1">Figma</h4><p class="text-[11px] lg:text-xs opacity-80 mt-1">Layout systems, components &amp; prototypes.</p></div>
-          <div class="hidden lg:flex items-center justify-center txt-muted font-mono text-xl">→</div>
-          <div class="lg:flex-1 p-4 sm:p-6 rounded-2xl bg-[#E04328] text-white"><div class="flex items-center justify-between font-mono text-[9px] lg:text-[10px] font-bold text-[#F5C518]"><span>04 / CODE</span><span class="lg:hidden">✓</span></div><h4 class="font-display font-extrabold text-base lg:text-xl mt-1">VS Code</h4><p class="text-[11px] lg:text-xs text-white/90 mt-1">Clean HTML/CSS/JS build &amp; 3D web integration.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 05 / OTHER WORKS & ARCHIVE -->
-  <section id="other-works" class="py-10 md:py-16 lg:py-24 border-t bdr scroll-mt-20">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 lg:mb-14 gap-4 lg:gap-6">
-      <div>
-        <div class="flex items-baseline gap-2"><span class="px-2 py-0.5 bg-[#1956B4] text-white font-mono text-[10px] lg:text-xs font-bold uppercase">Part.</span><span class="part-num">05</span></div>
+        <div class="flex items-baseline gap-2"><span class="px-2 py-0.5 bg-[#1956B4] text-white font-mono text-[10px] lg:text-xs font-bold uppercase">Part.</span><span class="part-num">04</span></div>
         <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl mt-1.5 lg:mt-2">Other Works &amp; Archive</h2>
       </div>
       <p class="txt-muted max-w-sm text-xs sm:text-sm lg:text-base">Experiments, 2D character explorations, hard-surface studies, and lighting tests.</p>
@@ -294,8 +319,92 @@ html.dark .studio-pedestal{background:radial-gradient(circle at 50% 52%,rgba(245
     <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8" id="other-grid"></div>
   </section>
 
-  <!-- 06 / CONTACT -->
-  <section id="contact" class="pt-10 lg:pt-16 pb-4 border-t bdr scroll-mt-20">
+  <!-- 05 / WORKFLOW & PIPELINE (Colocado después de Other Works y mucho más compacto) -->
+  <section id="process" class="py-8 md:py-12 border-t bdr scroll-mt-20">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-5 gap-3">
+      <div class="flex items-baseline gap-3">
+        <span class="px-2 py-0.5 bg-[#12944B] text-white font-mono text-[10px] font-bold uppercase">Part. 05</span>
+        <h2 class="font-display font-extrabold text-xl sm:text-2xl lg:text-3xl">Workflow &amp; Pipeline</h2>
+      </div>
+      <div class="inline-flex p-1 rounded-full surf-alt border bdr self-start sm:self-auto" role="tablist">
+        <button class="proc-tab active px-3.5 py-1.5 sm:px-5 rounded-full font-display font-bold text-[10px] sm:text-[11px] uppercase tracking-wider transition-all bg-[#1956B4] text-white shadow-sm" data-target="3d">3D Pipeline</button>
+        <button class="proc-tab px-3.5 py-1.5 sm:px-5 rounded-full font-display font-bold text-[10px] sm:text-[11px] uppercase tracking-wider transition-all txt-muted" data-target="design">Design Workflow</button>
+      </div>
+    </div>
+
+    <div class="surf rounded-3xl border bdr p-3.5 sm:p-5 shadow-sm">
+      <div id="proc-panel-3d" class="tab-panel">
+        <div class="grid grid-cols-2 md:grid-cols-3 xl:flex xl:flex-row xl:items-center xl:justify-between gap-2 sm:gap-2.5">
+          <div class="xl:flex-1 px-3.5 py-2.5 sm:py-3 rounded-xl tone-0 border bdr">
+            <div class="flex items-center justify-between font-mono text-[9px] font-bold text-[#E04328]"><span>01 · REF</span><span class="xl:hidden">→</span></div>
+            <h4 class="font-display font-extrabold text-xs sm:text-sm mt-0.5">PureRef</h4>
+            <p class="text-[10px] sm:text-[11px] opacity-80 leading-tight mt-0.5">Moodboards &amp; scale.</p>
+          </div>
+          <div class="hidden xl:flex items-center justify-center txt-muted font-mono text-sm">→</div>
+          <div class="xl:flex-1 px-3.5 py-2.5 sm:py-3 rounded-xl tone-1 border bdr">
+            <div class="flex items-center justify-between font-mono text-[9px] font-bold text-[#1956B4]"><span>02 · MODEL</span><span class="xl:hidden">→</span></div>
+            <h4 class="font-display font-extrabold text-xs sm:text-sm mt-0.5">Blender</h4>
+            <p class="text-[10px] sm:text-[11px] opacity-80 leading-tight mt-0.5">Hard-surface &amp; UVs.</p>
+          </div>
+          <div class="hidden xl:flex items-center justify-center txt-muted font-mono text-sm">→</div>
+          <div class="xl:flex-1 px-3.5 py-2.5 sm:py-3 rounded-xl tone-2 border bdr">
+            <div class="flex items-center justify-between font-mono text-[9px] font-bold text-[#B47D00] dark:text-[#F5C518]"><span>03 · TEXTURE</span><span class="xl:hidden">→</span></div>
+            <h4 class="font-display font-extrabold text-xs sm:text-sm mt-0.5">Painter &amp; Designer</h4>
+            <p class="text-[10px] sm:text-[11px] opacity-80 leading-tight mt-0.5">PBR &amp; procedural.</p>
+          </div>
+          <div class="hidden xl:flex items-center justify-center txt-muted font-mono text-sm">→</div>
+          <div class="xl:flex-1 px-3.5 py-2.5 sm:py-3 rounded-xl tone-3 border bdr">
+            <div class="flex items-center justify-between font-mono text-[9px] font-bold text-[#12944B]"><span>04 · RENDER</span><span class="xl:hidden">→</span></div>
+            <h4 class="font-display font-extrabold text-xs sm:text-sm mt-0.5">Marmoset Toolbag</h4>
+            <p class="text-[10px] sm:text-[11px] opacity-80 leading-tight mt-0.5">Bakes &amp; turntables.</p>
+          </div>
+          <div class="hidden xl:flex items-center justify-center txt-muted font-mono text-sm">→</div>
+          <div class="xl:flex-1 px-3.5 py-2.5 sm:py-3 rounded-xl surf-alt border bdr">
+            <div class="flex items-center justify-between font-mono text-[9px] font-bold text-[#1956B4]"><span>05 · ENGINE</span><span class="xl:hidden">→</span></div>
+            <h4 class="font-display font-extrabold text-xs sm:text-sm mt-0.5">Unity &amp; UE5</h4>
+            <p class="text-[10px] sm:text-[11px] opacity-80 leading-tight mt-0.5">Real-time setup.</p>
+          </div>
+          <div class="hidden xl:flex items-center justify-center txt-muted font-mono text-sm">→</div>
+          <div class="xl:flex-1 px-3.5 py-2.5 sm:py-3 rounded-xl bg-[#1956B4] text-white">
+            <div class="flex items-center justify-between font-mono text-[9px] font-bold text-[#F5C518]"><span>06 · SCENE</span><span class="xl:hidden">✓</span></div>
+            <h4 class="font-display font-extrabold text-xs sm:text-sm mt-0.5">Set Dressing</h4>
+            <p class="text-[10px] sm:text-[11px] text-white/85 leading-tight mt-0.5">Lighting &amp; world.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="proc-panel-design" class="tab-panel hidden">
+        <div class="grid grid-cols-2 lg:flex lg:flex-row lg:items-center lg:justify-between gap-2 sm:gap-3">
+          <div class="lg:flex-1 px-4 py-3 rounded-xl tone-0 border bdr">
+            <div class="flex items-center justify-between font-mono text-[9px] font-bold text-[#E04328]"><span>01 · REFERENCES</span><span class="lg:hidden">→</span></div>
+            <h4 class="font-display font-extrabold text-xs sm:text-sm mt-0.5">PureRef</h4>
+            <p class="text-[10px] sm:text-[11px] opacity-80 leading-tight mt-0.5">Grids, type &amp; color.</p>
+          </div>
+          <div class="hidden lg:flex items-center justify-center txt-muted font-mono text-sm">→</div>
+          <div class="lg:flex-1 px-4 py-3 rounded-xl tone-1 border bdr">
+            <div class="flex items-center justify-between font-mono text-[9px] font-bold text-[#1956B4]"><span>02 · SKETCHING</span><span class="lg:hidden">→</span></div>
+            <h4 class="font-display font-extrabold text-xs sm:text-sm mt-0.5">Procreate</h4>
+            <p class="text-[10px] sm:text-[11px] opacity-80 leading-tight mt-0.5">Thumbnails &amp; drafts.</p>
+          </div>
+          <div class="hidden lg:flex items-center justify-center txt-muted font-mono text-sm">→</div>
+          <div class="lg:flex-1 px-4 py-3 rounded-xl tone-2 border bdr">
+            <div class="flex items-center justify-between font-mono text-[9px] font-bold text-[#B47D00] dark:text-[#F5C518]"><span>03 · UI DESIGN</span><span class="lg:hidden">→</span></div>
+            <h4 class="font-display font-extrabold text-xs sm:text-sm mt-0.5">Figma</h4>
+            <p class="text-[10px] sm:text-[11px] opacity-80 leading-tight mt-0.5">Systems &amp; prototypes.</p>
+          </div>
+          <div class="hidden lg:flex items-center justify-center txt-muted font-mono text-sm">→</div>
+          <div class="lg:flex-1 px-4 py-3 rounded-xl bg-[#E04328] text-white">
+            <div class="flex items-center justify-between font-mono text-[9px] font-bold text-[#F5C518]"><span>04 · CODE</span><span class="lg:hidden">✓</span></div>
+            <h4 class="font-display font-extrabold text-xs sm:text-sm mt-0.5">VS Code</h4>
+            <p class="text-[10px] sm:text-[11px] text-white/90 leading-tight mt-0.5">Clean HTML/CSS/JS build.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 / CONTACT (Sin las píldoras rodeadas en la captura) -->
+  <section id="contact" class="pt-10 lg:pt-14 pb-4 border-t bdr scroll-mt-20">
     <div class="surf rounded-[2rem] lg:rounded-[2.5rem] p-6 sm:p-10 lg:p-14 border-2 bdr shadow-md mb-6 lg:mb-8 relative overflow-hidden">
       <div class="absolute top-0 left-0 right-0 h-2 bg-[#1956B4]"></div>
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center pt-2">
@@ -308,13 +417,6 @@ html.dark .studio-pedestal{background:radial-gradient(circle at 50% 52%,rgba(245
           <p class="txt-muted mt-4 lg:mt-5 max-w-xl text-xs sm:text-sm lg:text-base leading-relaxed">
             <strong class="text-[#12944B]">Open to work</strong> for roles in <strong>3D Art, Environment Art, Props, 3D Generalist, and Graphic Design</strong>. Let's build something memorable together.
           </p>
-          <div class="flex flex-wrap gap-1.5 lg:gap-2 mt-4 lg:mt-5">
-            <span class="px-2.5 lg:px-3 py-1 rounded-full tone-3 border bdr font-mono text-[9px] lg:text-[10px] uppercase tracking-wider font-bold">3D Art &amp; Hard-Surface</span>
-            <span class="px-2.5 lg:px-3 py-1 rounded-full tone-1 border bdr font-mono text-[9px] lg:text-[10px] uppercase tracking-wider font-bold">Environment Art</span>
-            <span class="px-2.5 lg:px-3 py-1 rounded-full tone-2 border bdr font-mono text-[9px] lg:text-[10px] uppercase tracking-wider font-bold">Props</span>
-            <span class="px-2.5 lg:px-3 py-1 rounded-full tone-0 border bdr font-mono text-[9px] lg:text-[10px] uppercase tracking-wider font-bold">3D Generalist</span>
-            <span class="px-2.5 lg:px-3 py-1 rounded-full surf-alt border bdr font-mono text-[9px] lg:text-[10px] uppercase tracking-wider font-bold">Graphic Design</span>
-          </div>
         </div>
         <div class="lg:col-span-5 flex flex-col items-start lg:items-end justify-center gap-3">
           <a href="mailto:candelagamboasanchez@gmail.com" class="group inline-flex items-center gap-4 bg-[#F5C518] hover:bg-[#12944B] text-[#141413] hover:text-white px-7 py-3.5 lg:px-8 lg:py-4 rounded-full font-display font-extrabold text-sm lg:text-base transition-all shadow-sm">
@@ -345,25 +447,27 @@ html.dark .studio-pedestal{background:radial-gradient(circle at 50% 52%,rgba(245
   </section>
 </main>
 
-<!-- MODAL -->
+<!-- MODAL DE PROYECTO -->
 <div id="projectModal" class="fixed inset-0 z-[60] flex items-center justify-center bg-black/75 backdrop-blur-sm opacity-0 invisible">
-  <button id="closeModalBtn" class="fixed top-3 right-3 md:top-5 md:right-8 flex items-center gap-2 surf px-4 py-2 rounded-full shadow-md border bdr hover:bg-[#E04328] hover:text-white transition-colors cursor-pointer z-[70]">
-    <span class="font-mono text-xs tracking-widest uppercase font-bold">Close</span><span class="text-lg leading-none">&times;</span>
+  <button id="closeModalBtn" class="fixed top-2.5 right-3 md:top-5 md:right-8 flex items-center gap-2 surf px-3.5 py-1.5 md:px-4 md:py-2 rounded-full shadow-md border bdr hover:bg-[#E04328] hover:text-white transition-colors cursor-pointer z-[70]">
+    <span class="font-mono text-[10px] md:text-xs tracking-widest uppercase font-bold">Close</span><span class="text-base md:text-lg leading-none">&times;</span>
   </button>
-  <div id="modalCounter" class="fixed top-3 left-3 md:top-5 md:left-8 surf px-3.5 py-1.5 rounded-full shadow-md border bdr font-mono text-[11px] font-bold uppercase tracking-widest z-[70]">01 / 04</div>
-  <button id="prevProjBtn" type="button" class="modal-ext-nav left-3 md:left-5 xl:left-8" aria-label="Previous">&#8249;</button>
-  <button id="nextProjBtn" type="button" class="modal-ext-nav right-3 md:right-5 xl:right-8" aria-label="Next">&#8250;</button>
-  <div class="w-[calc(100%-1.5rem)] md:w-[calc(100%-9rem)] max-w-5xl xl:max-w-6xl h-[82vh] md:h-[85vh] surf rounded-[2rem] shadow-2xl border-2 bdr flex flex-col md:flex-row overflow-y-auto md:overflow-hidden relative">
+  <div id="modalCounter" class="fixed top-2.5 left-3 md:top-5 md:left-8 surf px-3 py-1 md:px-3.5 md:py-1.5 rounded-full shadow-md border bdr font-mono text-[10px] md:text-[11px] font-bold uppercase tracking-widest z-[70]">01 / 04</div>
+  
+  <button id="prevProjBtn" type="button" class="modal-ext-nav left-3 md:left-5 xl:left-8" aria-label="Previous project">&#8249;</button>
+  <button id="nextProjBtn" type="button" class="modal-ext-nav right-3 md:right-5 xl:right-8" aria-label="Next project">&#8250;</button>
+  
+  <div class="w-[calc(100%-1.25rem)] md:w-[calc(100%-9rem)] max-w-5xl xl:max-w-6xl h-[83vh] md:h-[85vh] mt-2 md:mt-0 surf rounded-[1.75rem] md:rounded-[2rem] shadow-2xl border-2 bdr flex flex-col md:flex-row overflow-y-auto overflow-x-hidden md:overflow-hidden relative">
     <div class="absolute top-0 left-0 right-0 h-2 bg-[#1956B4] z-30"></div>
-    <div id="modalMedia" class="md:w-7/12 md:overflow-y-auto p-4 sm:p-6 md:p-8 pt-6 space-y-5 surf-alt md:flex-shrink-0 relative border-b md:border-b-0 md:border-r bdr"></div>
-    <div class="md:w-5/12 md:overflow-y-auto p-5 sm:p-7 md:p-10 flex flex-col relative surf">
-      <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
-        <span id="modalCategory" class="px-3 py-1 rounded-full bg-[#E04328] text-white font-mono text-[10px] uppercase tracking-widest font-bold"></span>
-        <span id="modalDate" class="font-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full surf-alt border bdr font-bold"></span>
+    <div id="modalMedia" class="md:w-7/12 md:overflow-y-auto overflow-x-hidden p-3.5 sm:p-5 md:p-8 pt-5 surf-alt flex-shrink-0 relative border-b md:border-b-0 md:border-r bdr"></div>
+    <div class="md:w-5/12 md:overflow-y-auto overflow-x-hidden p-4 sm:p-6 md:p-9 flex flex-col relative surf">
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+        <span id="modalCategory" class="px-2.5 py-1 rounded-full bg-[#E04328] text-white font-mono text-[9px] md:text-[10px] uppercase tracking-widest font-bold"></span>
+        <span id="modalDate" class="font-mono text-[9px] md:text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full surf-alt border bdr font-bold"></span>
       </div>
-      <h2 id="modalTitle" class="font-display font-extrabold text-xl sm:text-2xl lg:text-3xl mb-4 lg:mb-5 leading-tight"></h2>
-      <div id="modalTabs" class="inline-flex p-1 rounded-full surf-alt border bdr mb-5 lg:mb-6 self-start overflow-x-auto max-w-full"></div>
-      <div id="modalPanel" class="text-xs sm:text-sm lg:text-base leading-relaxed pb-10"></div>
+      <h2 id="modalTitle" class="font-display font-extrabold text-lg sm:text-2xl lg:text-3xl mb-4 leading-tight break-words"></h2>
+      <div id="modalTabs" class="grid grid-cols-3 p-1 rounded-full surf-alt border bdr mb-5 w-full"></div>
+      <div id="modalPanel" class="text-xs sm:text-sm lg:text-base leading-relaxed pb-8 overflow-x-hidden"></div>
     </div>
   </div>
 </div>
@@ -379,6 +483,36 @@ html.dark .studio-pedestal{background:radial-gradient(circle at 50% 52%,rgba(245
 
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 <script>
+const SW_LOGOS = {
+  'Blender': ['logos/logo_blender.png', 'logos/logo_blender_dark.png'],
+  '3ds Max': ['logos/logo_3dsmax.png', 'logos/logo_3dsmax_dark.png'],
+  'ZBrush': ['logos/logo_zbrush.png', 'logos/logo_zbrush_dark.png'],
+  'Substance Painter': ['logos/logo_substance_painter.png', 'logos/logo_substance_painter.png'],
+  'Substance 3D Painter': ['logos/logo_substance_painter.png', 'logos/logo_substance_painter.png'],
+  'Substance Designer': ['logos/logo_designer.png', 'logos/logo_designer.png'],
+  'Substance 3D Designer': ['logos/logo_designer.png', 'logos/logo_designer.png'],
+  'Unreal Engine 5': ['logos/logo_unreal_engine.png', 'logos/logo_unreal_engine_dark.png'],
+  'Marmoset Toolbag': ['logos/logo_marmoset_toolbag.png', 'logos/logo_marmoset_toolbag_dark.png'],
+  'Nomad Sculpt': ['logos/logo_nomad.png', 'logos/logo_nomad.png'],
+  'Illustrator': ['logos/logo_ilustrator.webp', 'logos/logo_ilustrator.webp'],
+  'Photoshop': ['logos/logo_photoshop.png', 'logos/logo_photoshop.png'],
+  'Adobe Suite': ['logos/logo_adobe_creative_cloud.png', 'logos/logo_adobe_creative_cloud.png'],
+  'Premiere Pro': ['logos/logo_adobe_creative_cloud.png', 'logos/logo_adobe_creative_cloud.png'],
+  'Canva': ['logos/logo_canva.png', 'logos/logo_canva.png'],
+  'Figma': ['logos/logo_figma.png', 'logos/logo_figma_dark.png'],
+  'VS Code': ['logos/logo_visual_studio_code.png', 'logos/logo_visual_studio_code_dark.png'],
+  'Procreate': ['logos/logo_procreate.png', 'logos/logo_procreate_dark.png'],
+  'Unity': ['logos/logo_unity.png', 'logos/logo_unity_dark.png'],
+  'Marvelous Designer': ['https://placehold.co/60x60/F5C518/141413?text=MD', 'https://placehold.co/60x60/F5C518/141413?text=MD'],
+  'PureRef': ['https://placehold.co/60x60/141413/FFFFFF?text=PR', 'https://placehold.co/60x60/F3F1EC/141413?text=PR']
+};
+
+const getLogo = name => {
+  const isDark = document.documentElement.classList.contains('dark');
+  const pair = SW_LOGOS[name];
+  return pair ? (isDark ? pair[1] : pair[0]) : 'https://placehold.co/60x60/1956B4/FFFFFF?text=3D';
+};
+
 window.tryFallbackImg = function(img) {
   const orig = img.getAttribute('data-orig') || img.getAttribute('src');
   if (!img.getAttribute('data-orig')) img.setAttribute('data-orig', orig);
@@ -409,6 +543,7 @@ window.tryFallbackImg = function(img) {
 
 function wrapMedia(htmlContent) {
   return htmlContent.replace(/<img ([^>]+)>/g, (m, attrs) => {
+    if (!attrs.includes('decoding=')) attrs += ' decoding="async"';
     if (!attrs.includes('onerror=')) attrs += ' onerror="tryFallbackImg(this)"';
     if (!attrs.includes('onload=')) attrs += ' onload="this.closest(\'.media-wrapper\')?.classList.add(\'media-loaded\')"';
     return `<div class="media-wrapper rounded-2xl"><div class="media-loader"><span></span><span></span><span></span></div><img ${attrs}></div>`;
@@ -426,7 +561,17 @@ const PROJECTS = [
     media: ['KingsCross/KingsCross_Render_01.jpeg','KingsCross/KingsCross_Render_02.jpeg','KingsCross/KingsCross_Video_01.mp4','KingsCross/KingsCross_Video_02.mp4','KingsCross/KingsCross_Video_03_WIP.mp4'],
     description: "A real-time environment recreating an alternate WWII scenario where King’s Cross Station has been repurposed into a frontline triage base and medical train depot for wounded soldiers.\n\nDeveloped over an academic year as a university project, the entire scene was built from scratch. Feel free to reach out if you have any questions or want to know more about the breakdown and workflow!",
     specs: [['Type', 'Real-Time 3D Environment'], ['Context', 'University Academic Year Project'], ['Engine', 'Unreal Engine 5'], ['Author', 'Candela Gamboa S-B']],
-    software: [['Blender & 3ds Max', '3D Modeling & Modular Kit'], ['Marvelous Designer', 'Cloth Simulation'], ['Substance 3D Painter', 'Texturing & Materials'], ['Substance 3D Designer', 'Procedural Materials & Trim Sheets'], ['Unreal Engine 5', 'Lighting, Blueprints & Set Dressing'], ['PureRef', 'Reference Gathering & Moodboard'], ['Photoshop & Premiere Pro', 'Post-Processing & Video Presentation']],
+    software: [
+      ['Blender', '3D Modeling & Modular Kit'],
+      ['3ds Max', '3D Modeling'],
+      ['Marvelous Designer', 'Cloth Simulation'],
+      ['Substance 3D Painter', 'Texturing & Materials'],
+      ['Substance 3D Designer', 'Procedural Materials & Trim Sheets'],
+      ['Unreal Engine 5', 'Lighting, Blueprints & Set Dressing'],
+      ['PureRef', 'Reference Gathering'],
+      ['Photoshop', 'Post-Processing'],
+      ['Premiere Pro', 'Video Presentation']
+    ],
     breakdown: [
       'Blockout & Modular Architecture: Handled the entire pipeline from scratch, starting with spatial blockouts and modeling a fully modular architectural kit in Blender and 3ds Max.',
       'Cloth Simulation: Simulated realistic medical tents, stretchers, and fabric assets in Marvelous Designer.',
@@ -441,7 +586,13 @@ const PROJECTS = [
     media: ['revolver/render_03.jpg','revolver/render_02.jpg','revolver/render_05.jpg','revolver/render_01_wireframe.jpg'],
     description: "Smith & Wesson PERFORMANCE CENTER MODEL 327 Revolver, modeled, textured, and rendered for the 3D Modeling course in the Video Game Design degree. First Hard-Surface project.",
     specs: [['Type', '3D Hard-Surface Prop'], ['Course', '3D Modeling · Video Game Design Degree'], ['Focus', 'High-to-Low Poly & PBR Materials']],
-    software: [['3ds Max', 'Hard-Surface Modeling'], ['Substance 3D Painter', 'PBR Texturing & Wood/Metal Wear'], ['Marmoset Toolbag', 'Map Baking, Lighting & Renders'], ['Photoshop', 'Post-Production & Alphas'], ['PureRef', 'Reference Gathering']],
+    software: [
+      ['3ds Max', 'Hard-Surface Modeling'],
+      ['Substance 3D Painter', 'PBR Texturing & Wood/Metal Wear'],
+      ['Marmoset Toolbag', 'Map Baking, Lighting & Renders'],
+      ['Photoshop', 'Post-Production & Alphas'],
+      ['PureRef', 'Reference Gathering']
+    ],
     breakdown: [
       'Reference & Proportions: Gathered manufacturer product photos and mechanical blueprints in PureRef to ensure accurate scale and silhouette.',
       'Hard-Surface Modeling: Modeled the high-poly and optimized low-poly geometry in 3ds Max with clean topology and edge flow.',
@@ -457,7 +608,10 @@ const PROJECTS = [
     description: "3D Model of Bebe.\nThis piece was created as part of an academic project where the goal was to translate a 2D concept art into a full 3D character. A huge thank you to anbudehuang for designing such an inspiring and original character!",
     credit: ['Original concept by 琥珀的黄 (@anbudehuang)', 'https://www.artstation.com/anbudehuang'],
     specs: [['Type', 'Stylized 3D Character'], ['Goal', '2D Concept to Full 3D Character'], ['Concept Artist', '琥珀的黄 (@anbudehuang)']],
-    software: [['Blender', 'Sculpting, Retopology, UVs, Rig & Render'], ['Substance 3D Painter', 'Stylized Hand-Painted PBR Texturing']],
+    software: [
+      ['Blender', 'Sculpting, Retopology, UVs, Rig & Render'],
+      ['Substance 3D Painter', 'Stylized Hand-Painted PBR Texturing']
+    ],
     breakdown: [
       '2D Concept Analysis & Blocking: Studied @anbudehuang’s original 2D concept to capture the exact proportions, silhouette, and expressive charm in 3D.',
       'Sculpting & Modeling: Sculpted the character anatomy, stylized clothing, and puppet companion in Blender.',
@@ -472,7 +626,9 @@ const PROJECTS = [
     media: ['chubby_gummies/CG_01.png','chubby_gummies/CG_02.png','chubby_gummies/CG_03.png','chubby_gummies/final_render_20.png','chubby_gummies/CG_poster.png'],
     description: "Meet the Chubby Gummies, a new blind box designer toy collection set in a colorful candy world! The series features a quirky family of bubblegum characters, each inspired by a different flavor.\n\nThis project originated as the practical application for my university bachelor's thesis (TFG) focused on the blind box toy market and designer toy culture. I've always had a huge passion for collectible figures and vinyl art toys, so designing this original lineup from concept to 3D has been an amazing experience.",
     specs: [['Type', 'Blind Box Designer Toy Collection'], ['Context', "Bachelor's Thesis (TFG) Practical Project"], ['Interactive', 'Live 3D .GLB Viewer on Home Page']],
-    software: [['Blender', 'Character Modeling, Shading, Packaging, Renders & .GLB Export']],
+    software: [
+      ['Blender', 'Character Modeling, Shading, Packaging, Renders & .GLB Export']
+    ],
     breakdown: [
       'Concept & Lineup Design: Designed a family of quirky bubblegum characters with distinct silhouettes and personalities, each inspired by a candy flavor.',
       '3D Modeling & Shading: Modeled the full character lineup in Blender and developed tactile gummy/vinyl shaders.',
@@ -489,7 +645,7 @@ const OTHER = [
     media: ['personajes_worldbuilding/Gamboa.Candela_CA_3.2_Personajes_Color.jpg', 'personajes_worldbuilding/Gamboa.Candela_CA_3.2_Personajes_BN.JPG', 'personajes_worldbuilding/Gamboa.Candela_CA_3.2_Personajes_Video_WIP.mov'],
     description: '2D character design concepts, silhouette studies, and color exploration for worldbuilding projects.',
     specs: [['Type', '2D Concept Art'], ['Focus', 'Character & Silhouette Design']],
-    software: [['Procreate & Photoshop', 'Sketching, Lineart & Color Studies'], ['PureRef', 'Visual Reference Board']],
+    software: [['Procreate', 'Sketching & Lineart'], ['Photoshop', 'Color Studies'], ['PureRef', 'Visual Reference Board']],
     breakdown: ['Silhouette & Shape Language: Explored distinct character proportions and costume silhouettes in black and white.', 'Color & Personality: Developed final color palettes and rendering to reflect each character’s role in the world.']
   },
   {
@@ -517,23 +673,51 @@ const $ = id => document.getElementById(id);
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.documentElement, themeBtn = $('theme-toggle'), themeLbl = $('theme-label'), themeDot = $('theme-dot'), metaTheme = $('meta-theme');
+  let activeSkillFilter = 'all', currentTabKey = 'description';
+
+  const SKILLS = [
+    ['Blender', 'Proficient', '#12944B', '3D Modeling & Anim', '3d'],
+    ['Substance Painter', 'Proficient', '#12944B', '3D Texturing', '3d'],
+    ['Marmoset Toolbag', 'Proficient', '#12944B', 'Rendering & Baking', '3d'],
+    ['Nomad Sculpt', 'Proficient', '#12944B', 'Mobile Sculpting', '3d'],
+    ['Canva', 'Proficient', '#12944B', 'Quick Layouts', 'design'],
+    ['Unreal Engine 5', 'Intermediate', '#F5C518', 'Game Engine & Render', '3d'],
+    ['3ds Max', 'Intermediate', '#F5C518', '3D Modeling', '3d'],
+    ['ZBrush', 'Intermediate', '#F5C518', 'Digital Sculpting', '3d'],
+    ['Photoshop', 'Intermediate', '#F5C518', 'Image Editing', 'design'],
+    ['Illustrator', 'Intermediate', '#F5C518', 'Vector Graphics', 'design'],
+    ['Adobe Suite', 'Intermediate', '#F5C518', 'Graphic Design', 'design'],
+    ['Figma', 'Intermediate', '#F5C518', 'UI/UX Design', 'design'],
+    ['VS Code', 'Intermediate', '#F5C518', 'Scripting', 'design'],
+    ['Substance Designer', 'Basic', '#73706A', 'Procedural Mats', '3d'],
+    ['Procreate', 'Basic', '#73706A', 'Digital Painting', 'design'],
+    ['Unity', 'Basic', '#73706A', 'Game Engine', 'design']
+  ];
+
+  const skillsContainer = $('skills');
+  const renderSkills = (filter = activeSkillFilter) => {
+    activeSkillFilter = filter;
+    skillsContainer.innerHTML = SKILLS.filter(item => filter === 'all' || item[4] === filter).map(([n, l, c, use]) => `
+      <div class="flex justify-between items-center py-2 lg:py-3 border-b bdr gap-2">
+        <div class="flex items-center gap-2.5 sm:gap-3 min-w-0">
+          <img src="${getLogo(n)}" decoding="async" onerror="tryFallbackImg(this)" alt="${n}" class="w-5 h-5 lg:w-7 lg:h-7 object-contain flex-shrink-0">
+          <div class="flex flex-col min-w-0"><span class="font-display text-xs lg:text-sm font-bold truncate">${n}</span><span class="hidden sm:block font-mono text-[9px] txt-muted uppercase tracking-wider truncate">${use}</span></div>
+        </div>
+        <div class="flex items-center gap-1.5 flex-shrink-0"><span class="w-2.5 h-2.5 rounded-full" style="background-color:${c}"></span><span class="hidden sm:inline font-mono text-[10px] uppercase tracking-widest font-bold" style="color:${c}">${l}</span></div>
+      </div>`).join('');
+  };
+
   const applyTheme = dark => {
     root.classList.toggle('dark', dark);
     themeLbl.textContent = dark ? 'Light' : 'Dark';
     themeDot.style.backgroundColor = dark ? '#1956B4' : '#F5C518';
     metaTheme.setAttribute('content', dark ? '#111110' : '#F3F1EC');
     localStorage.setItem('cgsb_theme', dark ? 'dark' : 'light');
+    renderSkills(activeSkillFilter);
+    if (current && !$('projectModal').classList.contains('invisible')) renderPanel(currentTabKey);
   };
-  applyTheme(localStorage.getItem('cgsb_theme') === 'dark');
-  themeBtn.addEventListener('click', () => applyTheme(!root.classList.contains('dark')));
 
-  const nav = $('main-nav'), navC = $('nav-container');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('bdr', window.scrollY > 20);
-    navC.classList.toggle('py-2.5', window.scrollY > 20);
-  }, { passive: true });
-
-  // BLIND BOX FUNCIONAL ORIGINAL
+  // BLIND BOX 3D
   const CHARACTERS = [
     { src: 'chubby_gummies_purple.glb', name: 'Purple Edition' },
     { src: 'chubby_gummies_pink.glb', name: 'Pink Edition' },
@@ -575,13 +759,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function reveal() {
-    busy = true;
-    btn.disabled = true;
+    busy = true; btn.disabled = true;
     const from = isOpen ? charV : boxV;
     btn.innerHTML = '<span>Opening...</span>';
-    from.classList.remove('shake');
-    void from.offsetWidth;
-    from.classList.add('shake');
+    from.classList.remove('shake'); void from.offsetWidth; from.classList.add('shake');
     await new Promise(r => setTimeout(r, 700));
     let chosen = null;
     while (pool.length && !chosen) {
@@ -592,24 +773,14 @@ document.addEventListener('DOMContentLoaded', () => {
     from.classList.remove('shake');
     if (!chosen) {
       nameLabel.textContent = 'Check .glb files';
-      pool = [...CHARACTERS];
-      setBtn(isOpen);
-      busy = false;
-      btn.disabled = false;
-      return;
+      pool = [...CHARACTERS]; setBtn(isOpen); busy = false; btn.disabled = false; return;
     }
     last = chosen;
     charV.setAttribute('camera-orbit', '180deg auto auto');
-    charV.classList.remove('pop');
-    void charV.offsetWidth;
-    charV.classList.add('pop');
-    hide(boxV);
-    show(charV);
+    charV.classList.remove('pop'); void charV.offsetWidth; charV.classList.add('pop');
+    hide(boxV); show(charV);
     nameLabel.textContent = chosen.name;
-    isOpen = true;
-    setBtn(true);
-    busy = false;
-    btn.disabled = false;
+    isOpen = true; setBtn(true); busy = false; btn.disabled = false;
   }
 
   btn.addEventListener('click', () => { if (!busy) reveal(); });
@@ -617,6 +788,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isOpen || busy) return;
     hide(charV); show(boxV); nameLabel.textContent = 'Mystery Box'; isOpen = false; setBtn(false);
   });
+
+  const nav = $('main-nav'), navC = $('nav-container');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('bdr', window.scrollY > 20);
+    navC.classList.toggle('py-2.5', window.scrollY > 20);
+  }, { passive: true });
 
   const mBtn = $('mobileMenuBtn'), mMenu = $('mobileMenu');
   mBtn.addEventListener('click', () => mMenu.classList.toggle('hidden'));
@@ -649,7 +826,7 @@ document.addEventListener('DOMContentLoaded', () => {
   lb.addEventListener('touchstart', e => { lbX = e.touches[0].clientX; }, { passive: true });
   lb.addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - lbX; if (Math.abs(dx) > 50 && lbList.length > 1) showLB(lbI + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1); });
 
-  // WORKS (2 y 2)
+  // WORKS
   const grid = $('works-grid');
   const bindCard = (card, fn) => { card.tabIndex = 0; card.setAttribute('role', 'button'); card.addEventListener('click', fn); card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fn(); } }); };
 
@@ -659,7 +836,7 @@ document.addEventListener('DOMContentLoaded', () => {
     card.innerHTML = `
       <div class="flex justify-between items-center mb-3 lg:mb-4 gap-2"><span class="font-mono text-[9px] lg:text-[10px] uppercase tracking-widest px-2.5 lg:px-3 py-1 rounded-full surf font-bold truncate">0${idx + 1} &middot; ${p.category}</span><span class="font-mono text-[10px] lg:text-[11px] opacity-75 flex-shrink-0">${p.date}</span></div>
       <div class="relative w-full ${p.aspect} rounded-2xl overflow-hidden surf border bdr">
-        <div class="media-wrapper"><div class="media-loader"><span></span><span></span><span></span></div><img src="${p.cover}" onerror="tryFallbackImg(this)" onload="this.closest('.media-wrapper')?.classList.add('media-loaded')" class="w-full h-full object-cover project-img transition-transform duration-500 group-hover:scale-[1.02]" alt="${p.title}"></div>
+        <div class="media-wrapper"><div class="media-loader"><span></span><span></span><span></span></div><img src="${p.cover}" decoding="async" ${idx < 2 ? 'fetchpriority="high"' : 'loading="lazy"'} onerror="tryFallbackImg(this)" onload="this.closest('.media-wrapper')?.classList.add('media-loaded')" class="w-full h-full object-cover project-img transition-transform duration-500 group-hover:scale-[1.02]" alt="${p.title}"></div>
       </div>
       <div class="mt-4 lg:mt-6 flex justify-between items-end gap-4"><div><h3 class="font-display text-lg sm:text-xl lg:text-2xl font-extrabold tracking-tight leading-snug">${p.title}</h3><p class="opacity-80 text-xs sm:text-sm mt-1 line-clamp-2 max-w-2xl">${p.description.replace(/\n+/g, ' ')}</p></div><span class="circle-arrow flex-shrink-0" aria-hidden="true">→</span></div>`;
     grid.appendChild(card);
@@ -690,28 +867,43 @@ document.addEventListener('DOMContentLoaded', () => {
     card.className = `group cursor-pointer project-card rounded-[2rem] p-3.5 sm:p-5 tone-${(idx + 1) % 4} border bdr transition-all duration-300 hover:-translate-y-1 hover:shadow-md flex flex-col justify-between`;
     card.innerHTML = `
       <div class="relative w-full aspect-square rounded-xl sm:rounded-2xl overflow-hidden surf border bdr">
-        <div class="media-wrapper"><div class="media-loader"><span></span><span></span><span></span></div><img src="${p.cover}" onerror="tryFallbackImg(this)" onload="this.closest('.media-wrapper')?.classList.add('media-loaded')" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="${p.title}"></div>
+        <div class="media-wrapper"><div class="media-loader"><span></span><span></span><span></span></div><img src="${p.cover}" decoding="async" loading="lazy" onerror="tryFallbackImg(this)" onload="this.closest('.media-wrapper')?.classList.add('media-loaded')" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="${p.title}"></div>
       </div>
       <div class="mt-3 sm:mt-5 flex justify-between items-end gap-2"><div class="min-w-0"><p class="font-mono text-[8px] sm:text-[10px] opacity-70 tracking-widest uppercase truncate">${p.category} &middot; ${p.date}</p><h3 class="font-display text-xs sm:text-base lg:text-lg font-extrabold mt-0.5 truncate">${p.title}</h3><p class="hidden sm:block text-xs opacity-80 mt-1 line-clamp-2">${p.description}</p></div><span class="circle-arrow flex-shrink-0">→</span></div>`;
     bindCard(card, () => openModal(OTHER, idx));
     $('other-grid').appendChild(card);
   });
 
-  // MODAL
+  // MODAL DE PROYECTO
   const modal = $('projectModal'), mMedia = $('modalMedia'), mTabs = $('modalTabs'), mPanel = $('modalPanel'), mCounter = $('modalCounter');
-  const TABS = [['description','01 · Description'],['software','02 · Software'],['breakdown','03 · Breakdown']];
-  let currentList = PROJECTS, currentIndex = 0, current = null, vidIO = null;
+  const TABS = [['description','Description'],['software','Software'],['breakdown','Breakdown']];
+  let currentList = PROJECTS, currentIndex = 0, current = null, vidIO = null, mobSlide = 0;
 
   function renderPanel(key) {
+    currentTabKey = key;
     const p = current; let h = '';
     if (key === 'description') {
       const paragraphs = (p.description || '').split('\n\n').map(para => `<p class="mb-3.5 last:mb-0 leading-relaxed">${para}</p>`).join('');
       const creditBox = p.credit ? `<div class="mt-3.5 p-4 rounded-2xl tone-1 border bdr flex items-center justify-between gap-3"><span class="font-mono text-xs font-bold">${p.credit[0]}</span><a href="${p.credit[1]}" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-full bg-[#1956B4] text-white font-mono text-[10px] uppercase tracking-wider font-bold hover:bg-[#E04328] transition-colors flex-shrink-0">ArtStation &#8599;</a></div>` : '';
-      const specsList = p.specs?.length ? `<div class="mt-5 rounded-2xl surf-alt p-4 sm:p-5 border bdr"><span class="font-mono text-[10px] uppercase tracking-widest text-[#1956B4] font-bold block mb-2.5">PROJECT SPECS</span><dl class="divide-y bdr">${p.specs.map(([k, v]) => `<div class="flex justify-between py-2 gap-4"><dt class="font-mono text-[10px] lg:text-[11px] uppercase tracking-wider txt-muted">${k}</dt><dd class="font-display font-bold text-xs sm:text-sm text-right">${v}</dd></div>`).join('')}</dl></div>` : '';
-      h = `<div class="p-4 sm:p-6 rounded-2xl tone-0 border bdr text-xs sm:text-sm lg:text-base">${paragraphs}</div>${creditBox}${specsList}`;
+      
+      const swBadges = p.software?.length
+        ? `<div class="mt-4 rounded-2xl surf-alt p-4 sm:p-5 border bdr">
+             <span class="font-mono text-[10px] uppercase tracking-widest text-[#1956B4] font-bold block mb-3">SOFTWARE USED</span>
+             <div class="flex flex-wrap gap-2">
+               ${p.software.map(([name]) => `
+                 <span class="soft-chip">
+                   <img src="${getLogo(name)}" decoding="async" onerror="tryFallbackImg(this)" alt="${name}">
+                   <span>${name}</span>
+                 </span>`).join('')}
+             </div>
+           </div>`
+        : '';
+
+      const specsList = p.specs?.length ? `<div class="mt-4 rounded-2xl surf-alt p-4 sm:p-5 border bdr"><span class="font-mono text-[10px] uppercase tracking-widest text-[#1956B4] font-bold block mb-2.5">PROJECT SPECS</span><dl class="divide-y bdr">${p.specs.map(([k, v]) => `<div class="flex justify-between py-2 gap-4"><dt class="font-mono text-[10px] lg:text-[11px] uppercase tracking-wider txt-muted">${k}</dt><dd class="font-display font-bold text-xs sm:text-sm text-right">${v}</dd></div>`).join('')}</dl></div>` : '';
+      h = `<div class="p-4 sm:p-6 rounded-2xl tone-0 border bdr text-xs sm:text-sm lg:text-base">${paragraphs}</div>${creditBox}${swBadges}${specsList}`;
     } else if (key === 'software') {
       const colors = ['border-[#E04328]', 'border-[#1956B4]', 'border-[#F5C518]', 'border-[#12944B]'];
-      h = (p.software || []).length ? `<div class="space-y-3"><p class="font-mono text-[10px] uppercase tracking-widest txt-muted mb-1">TOOLS &amp; PIPELINE USED</p>${p.software.map(([name, role], i) => `<div class="p-3.5 sm:p-4 rounded-2xl surf-alt border bdr border-l-4 ${colors[i % 4]} flex flex-col sm:flex-row sm:items-center justify-between gap-2"><div class="flex items-center gap-3"><span class="font-mono text-xs font-bold text-[#E04328]">0${i + 1}</span><span class="font-display font-extrabold text-sm lg:text-base">${name}</span></div><span class="font-mono text-[9px] lg:text-[10px] surf px-3 py-1 rounded-full border bdr uppercase tracking-wider font-bold self-start sm:self-auto">${role}</span></div>`).join('')}</div>` : '<p class="txt-muted">Coming soon.</p>';
+      h = (p.software || []).length ? `<div class="space-y-3"><p class="font-mono text-[10px] uppercase tracking-widest txt-muted mb-1">TOOLS &amp; PIPELINE USED</p>${p.software.map(([name, role], i) => `<div class="p-3.5 sm:p-4 rounded-2xl surf-alt border bdr border-l-4 ${colors[i % 4]} flex flex-col sm:flex-row sm:items-center justify-between gap-2"><div class="flex items-center gap-3"><img src="${getLogo(name)}" decoding="async" onerror="tryFallbackImg(this)" alt="${name}" class="w-6 h-6 object-contain flex-shrink-0"><span class="font-display font-extrabold text-sm lg:text-base">${name}</span></div><span class="font-mono text-[9px] lg:text-[10px] surf px-3 py-1 rounded-full border bdr uppercase tracking-wider font-bold self-start sm:self-auto">${role}</span></div>`).join('')}</div>` : '<p class="txt-muted">Coming soon.</p>';
     } else if (key === 'breakdown') {
       const tones = ['tone-0', 'tone-1', 'tone-2', 'tone-3'];
       h = (p.breakdown || []).length ? `<div class="space-y-3"><p class="font-mono text-[10px] uppercase tracking-widest txt-muted mb-1">STEP-BY-STEP PRODUCTION</p>${p.breakdown.map((step, i) => `<div class="p-4 sm:p-5 rounded-2xl ${tones[i % 4]} border bdr flex gap-3.5 items-start"><span class="px-2.5 py-1 rounded-full surf font-mono text-xs font-bold flex-shrink-0">0${i + 1}</span><p class="text-xs sm:text-sm leading-relaxed font-medium">${step}</p></div>`).join('')}</div>` : '<p class="txt-muted">Coming soon.</p>';
@@ -720,27 +912,80 @@ document.addEventListener('DOMContentLoaded', () => {
     mTabs.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === key));
   }
 
+  function renderMobileSlide(mediaArr) {
+    const slot = $('mob-media-slot'), count = $('mob-media-count');
+    if (!slot) return;
+    const f = mediaArr[mobSlide];
+    const imgIdx = lbList.indexOf(f);
+    slot.innerHTML = wrapMedia(isVideo(f)
+      ? `<video src="${f}#t=0.1" class="w-full aspect-[4/3] object-contain rounded-2xl border bdr bg-black shadow-sm" controls muted loop autoplay playsinline></video>`
+      : `<img src="${f}" class="lb-img w-full aspect-[4/3] object-cover rounded-2xl border bdr shadow-sm" data-i="${imgIdx >= 0 ? imgIdx : 0}" alt="${current.title}">`
+    );
+    if (count) count.textContent = `${mobSlide + 1} / ${mediaArr.length}`;
+  }
+
   function openModal(list, idx) {
     currentList = list; currentIndex = (idx + list.length) % list.length;
     const p = currentList[currentIndex]; current = p;
+    mobSlide = 0;
+
     mCounter.textContent = `0${currentIndex + 1} / 0${currentList.length}`;
     $('modalTitle').textContent = p.title; $('modalCategory').textContent = p.category;
     $('modalDate').textContent = p.date ? `${p.dateLabel || 'Completed'} · ${p.date}` : 'Completed';
-    lbList = p.media?.length ? p.media.filter(f => !isVideo(f)) : [p.cover];
+    const mediaArr = p.media?.length ? p.media : [p.cover];
+    lbList = mediaArr.filter(f => !isVideo(f));
+
     let ii = 0;
-    const mediaContent = wrapMedia((p.media?.length ? p.media : [p.cover]).map(f => isVideo(f)
+    const desktopGallery = wrapMedia(mediaArr.map(f => isVideo(f)
       ? `<video src="${f}#t=0.1" class="w-full rounded-2xl border bdr bg-black shadow-sm" controls muted loop playsinline preload="metadata"></video>`
       : `<img src="${f}" class="lb-img w-full rounded-2xl border bdr shadow-sm" loading="lazy" data-i="${ii++}" alt="${p.title}">`
     ).join(''));
 
-    mMedia.innerHTML = `<div class="flex items-center justify-between pb-2 border-b bdr"><span class="font-mono text-[10px] uppercase tracking-widest txt-muted font-bold">PROJECT GALLERY</span><span class="font-mono text-[10px] uppercase tracking-widest text-[#1956B4] font-bold">Click image to zoom &#8599;</span></div>` + mediaContent;
+    mMedia.innerHTML = `
+      <div class="md:hidden">
+        <div class="flex items-center justify-between pb-2 mb-2 border-b bdr">
+          <span class="font-mono text-[9px] uppercase tracking-widest txt-muted font-bold">USE ARROWS TO BROWSE</span>
+          <span id="mob-media-count" class="font-mono text-[10px] font-bold text-[#1956B4]">1 / ${mediaArr.length}</span>
+        </div>
+        <div class="relative">
+          <div id="mob-media-slot" class="w-full"></div>
+          ${mediaArr.length > 1 ? `
+            <button type="button" id="mob-prev" class="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full surf border bdr shadow-md flex items-center justify-center text-lg font-bold z-20 active:scale-95" aria-label="Previous image">&#8249;</button>
+            <button type="button" id="mob-next" class="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full surf border bdr shadow-md flex items-center justify-center text-lg font-bold z-20 active:scale-95" aria-label="Next image">&#8250;</button>
+          ` : ''}
+        </div>
+      </div>
+
+      <div class="hidden md:block space-y-5">
+        <div class="flex items-center justify-between pb-2 border-b bdr">
+          <span class="font-mono text-[10px] uppercase tracking-widest txt-muted font-bold">PROJECT GALLERY</span>
+          <span class="font-mono text-[10px] uppercase tracking-widest text-[#1956B4] font-bold">Click image to zoom &#8599;</span>
+        </div>
+        ${desktopGallery}
+      </div>`;
+
+    renderMobileSlide(mediaArr);
+
+    $('mob-prev')?.addEventListener('click', e => {
+      e.stopPropagation();
+      mobSlide = (mobSlide - 1 + mediaArr.length) % mediaArr.length;
+      renderMobileSlide(mediaArr);
+    });
+    $('mob-next')?.addEventListener('click', e => {
+      e.stopPropagation();
+      mobSlide = (mobSlide + 1) % mediaArr.length;
+      renderMobileSlide(mediaArr);
+    });
+
     if (vidIO) vidIO.disconnect();
     vidIO = new IntersectionObserver(en => en.forEach(x => { if (x.isIntersecting) x.target.play().catch(() => {}); else x.target.pause(); }), { threshold: .45 });
-    mMedia.querySelectorAll('video').forEach(v => { v.muted = true; vidIO.observe(v); });
+    mMedia.querySelectorAll('.hidden.md\\:block video').forEach(v => { v.muted = true; vidIO.observe(v); });
     mMedia.scrollTop = 0;
+
     mTabs.innerHTML = TABS.map(([k, l]) => `<button type="button" class="tab-btn" data-tab="${k}">${l}</button>`).join('');
     mTabs.querySelectorAll('.tab-btn').forEach(b => b.addEventListener('click', () => renderPanel(b.dataset.tab)));
     renderPanel('description');
+
     modal.classList.remove('invisible', 'opacity-0'); modal.classList.add('opacity-100');
     document.body.classList.add('modal-open');
   }
@@ -775,7 +1020,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const stack = $('polaroid-stack'); let order = [0, 1, 2], pBusy = false;
   const pEls = SKINS.map((src, i) => {
     const el = document.createElement('div'); el.className = 'polaroid';
-    el.innerHTML = `<div class="media-wrapper rounded-lg"><div class="media-loader"><span></span><span></span><span></span></div><img src="${src}" onerror="tryFallbackImg(this)" onload="this.closest('.media-wrapper')?.classList.add('media-loaded')" alt="Portrait ${i + 1}"></div>`;
+    el.innerHTML = `<div class="media-wrapper rounded-lg"><div class="media-loader"><span></span><span></span><span></span></div><img src="${src}" decoding="async" onerror="tryFallbackImg(this)" onload="this.closest('.media-wrapper')?.classList.add('media-loaded')" alt="Portrait ${i + 1}"></div>`;
     el.addEventListener('click', e => { e.stopPropagation(); if (i === order[0]) bring(order[1]); });
     stack.appendChild(el); return el;
   });
@@ -797,38 +1042,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   order.forEach((idx, slot) => place(idx, slot));
 
-  // HARD SKILLS
-  const SKILLS = [
-    ['Blender', 'Proficient', '#12944B', 'logos/logo_blender.webp', '3D Modeling & Anim', '3d'],
-    ['Substance Painter', 'Proficient', '#12944B', 'logos/logo_painter.png', '3D Texturing', '3d'],
-    ['Marmoset Toolbag', 'Proficient', '#12944B', 'logos/logo_marmoset.png', 'Rendering & Baking', '3d'],
-    ['Nomad Sculpt', 'Proficient', '#12944B', 'logos/logo_nomad.png', 'Mobile Sculpting', '3d'],
-    ['Canva', 'Proficient', '#12944B', 'https://placehold.co/60x60/C9ECDA/141413?text=CA', 'Quick Layouts', 'design'],
-    ['Unreal Engine 5', 'Intermediate', '#F5C518', 'logos/logo_unreal.png', 'Game Engine & Render', '3d'],
-    ['3ds Max', 'Intermediate', '#F5C518', 'logos/logo_max.png', '3D Modeling', '3d'],
-    ['ZBrush', 'Intermediate', '#F5C518', 'logos/logo_zbrush.png', 'Digital Sculpting', '3d'],
-    ['Photoshop', 'Intermediate', '#F5C518', 'https://placehold.co/60x60/CFE2F8/141413?text=PS', 'Image Editing', 'design'],
-    ['Illustrator', 'Intermediate', '#F5C518', 'logos/logo_ilustrator.webp', 'Vector Graphics', 'design'],
-    ['Adobe Suite', 'Intermediate', '#F5C518', 'https://placehold.co/60x60/F8DFC8/141413?text=AD', 'Graphic Design', 'design'],
-    ['Figma', 'Intermediate', '#F5C518', 'https://placehold.co/60x60/FCE373/141413?text=FI', 'UI/UX Design', 'design'],
-    ['VS Code', 'Intermediate', '#F5C518', 'https://placehold.co/60x60/CFE2F8/141413?text=VS', 'Scripting', 'design'],
-    ['Substance Designer', 'Basic', '#73706A', 'logos/logo_designer.png', 'Procedural Mats', '3d'],
-    ['Procreate', 'Basic', '#73706A', 'https://placehold.co/60x60/FCE373/141413?text=PR', 'Digital Painting', 'design'],
-    ['Unity', 'Basic', '#73706A', 'https://placehold.co/60x60/E7E3DA/141413?text=UN', 'Game Engine', 'design']
-  ];
-
-  const skillsContainer = $('skills');
-  const renderSkills = (filter = 'all') => {
-    skillsContainer.innerHTML = SKILLS.filter(item => filter === 'all' || item[5] === filter).map(([n, l, c, icon, use]) => `
-      <div class="flex justify-between items-center py-2 lg:py-3 border-b bdr gap-2">
-        <div class="flex items-center gap-2 sm:gap-3 min-w-0">
-          <img src="${icon}" onerror="tryFallbackImg(this)" alt="${n}" class="w-5 h-5 lg:w-7 lg:h-7 rounded-md lg:rounded-lg object-cover border bdr flex-shrink-0">
-          <div class="flex flex-col min-w-0"><span class="font-display text-xs lg:text-sm font-bold truncate">${n}</span><span class="hidden sm:block font-mono text-[9px] txt-muted uppercase tracking-wider truncate">${use}</span></div>
-        </div>
-        <div class="flex items-center gap-1.5 flex-shrink-0"><span class="w-2.5 h-2.5 rounded-full" style="background-color:${c}"></span><span class="hidden sm:inline font-mono text-[10px] uppercase tracking-widest font-bold" style="color:${c}">${l}</span></div>
-      </div>`).join('');
-  };
-  renderSkills('all');
+  // Inicializar Tema y Hard Skills
+  applyTheme(localStorage.getItem('cgsb_theme') === 'dark');
+  themeBtn.addEventListener('click', () => applyTheme(!root.classList.contains('dark')));
   document.querySelectorAll('.skill-tab').forEach(btn => btn.addEventListener('click', () => { document.querySelectorAll('.skill-tab').forEach(b => b.classList.toggle('active', b === btn)); renderSkills(btn.dataset.filter); }));
 
   const procBtns = document.querySelectorAll('.proc-tab');
@@ -858,14 +1074,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const desktopOrder = [...QUESTS.keys()].reverse();
     jList.innerHTML = desktopOrder.map(i => {
       const q = QUESTS[i], isAct = i === curJ;
-      return `<button type="button" data-idx="${i}" class="journey-item ${isAct ? 'active' : ''} w-full text-left py-4 flex items-center justify-between gap-4 group cursor-pointer"><div class="flex items-center gap-4"><div class="w-12 h-12 rounded-xl overflow-hidden border bdr flex-shrink-0"><div class="media-wrapper"><div class="media-loader"><span></span><span></span><span></span></div><img src="${q.img}" onerror="tryFallbackImg(this)" onload="this.closest('.media-wrapper')?.classList.add('media-loaded')" alt="${q.title}" class="w-full h-full object-cover"></div></div><div><div class="flex items-center gap-2"><span class="font-mono text-[10px] font-bold ${isAct ? 'text-[#E04328]' : 'txt-muted'}">Part. ${q.num}</span><span class="font-mono text-[10px] uppercase tracking-widest txt-muted">&middot; ${q.label}</span></div><h4 class="font-display font-extrabold text-base lg:text-lg group-hover:text-[#1956B4] transition-colors">${q.title}</h4></div></div><span class="circle-arrow flex-shrink-0">→</span></button>`;
+      return `<button type="button" data-idx="${i}" class="journey-item ${isAct ? 'active' : ''} w-full text-left py-4 flex items-center justify-between gap-4 group cursor-pointer"><div class="flex items-center gap-4"><div class="w-12 h-12 rounded-xl overflow-hidden border bdr flex-shrink-0"><div class="media-wrapper"><div class="media-loader"><span></span><span></span><span></span></div><img src="${q.img}" decoding="async" onerror="tryFallbackImg(this)" onload="this.closest('.media-wrapper')?.classList.add('media-loaded')" alt="${q.title}" class="w-full h-full object-cover"></div></div><div><div class="flex items-center gap-2"><span class="font-mono text-[10px] font-bold ${isAct ? 'text-[#E04328]' : 'txt-muted'}">Part. ${q.num}</span><span class="font-mono text-[10px] uppercase tracking-widest txt-muted">&middot; ${q.label}</span></div><h4 class="font-display font-extrabold text-base lg:text-lg group-hover:text-[#1956B4] transition-colors">${q.title}</h4></div></div><span class="circle-arrow flex-shrink-0">→</span></button>`;
     }).join('');
 
     jNums.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { stopJourneyAuto(); curJ = +b.dataset.idx; renderJourney(); }));
     jList.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { stopJourneyAuto(); curJ = +b.dataset.idx; renderJourney(); }));
 
     const q = QUESTS[curJ];
-    jDetail.innerHTML = `${jAutoActive ? '<div class="journey-progress absolute top-0 left-0 z-20"></div>' : ''}<div class="tab-panel grid grid-cols-1 sm:grid-cols-12"><div class="sm:col-span-5 md:col-span-6 surf-alt h-48 sm:h-auto md:min-h-[380px] relative"><div class="media-wrapper"><div class="media-loader"><span></span><span></span><span></span></div><img src="${q.img}" onerror="tryFallbackImg(this)" onload="this.closest('.media-wrapper')?.classList.add('media-loaded')" alt="${q.title}" class="w-full h-full object-cover"></div><span class="absolute top-3 left-3 lg:top-4 lg:left-4 px-3 py-1 surf rounded-full font-mono text-[9px] lg:text-[10px] uppercase tracking-widest font-bold shadow-sm z-10">${q.label}</span></div><div class="sm:col-span-7 md:col-span-6 p-5 sm:p-7 lg:p-9 flex flex-col justify-between surf"><div><div class="flex items-baseline justify-between border-b bdr pb-3 lg:pb-4 mb-4 lg:mb-5"><div><span class="font-display font-bold text-xs lg:text-sm text-[#E04328]">Part.</span><span class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl ml-1">${q.num}</span></div><span class="font-mono text-[9px] lg:text-[10px] uppercase tracking-widest px-2.5 py-1 rounded bg-[#F5C518] text-[#141413] font-bold">${q.status}</span></div><p class="font-editorial italic text-lg lg:text-xl txt-muted">${q.subtitle}</p><h3 class="font-display font-extrabold text-xl sm:text-2xl lg:text-3xl mt-0.5 leading-snug">${q.title}</h3><p class="txt-muted text-xs sm:text-sm lg:text-base leading-relaxed mt-3 lg:mt-4">${q.desc}</p></div><div class="flex flex-wrap gap-1.5 lg:gap-2 pt-5 mt-5 border-t bdr">${q.chips.map(c => Array.isArray(c) ? `<a href="${c[1]}" ${c[1].startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''} class="px-3.5 py-1.5 lg:px-4 lg:py-2 rounded-full bg-[#E04328] text-white font-mono text-[10px] lg:text-[11px] uppercase tracking-wider font-bold hover:bg-[#1956B4] transition-colors">${c[0]} &#8599;</a>` : `<span class="px-2.5 py-1 lg:px-3 rounded-full surf-alt border bdr font-mono text-[9px] lg:text-[10px] uppercase tracking-wider font-bold">${c}</span>`).join('')}</div></div></div>`;
+    jDetail.innerHTML = `${jAutoActive ? '<div class="journey-progress absolute top-0 left-0 z-20"></div>' : ''}<div class="tab-panel grid grid-cols-1 sm:grid-cols-12"><div class="sm:col-span-5 md:col-span-6 surf-alt h-48 sm:h-auto md:min-h-[380px] relative"><div class="media-wrapper"><div class="media-loader"><span></span><span></span><span></span></div><img src="${q.img}" decoding="async" onerror="tryFallbackImg(this)" onload="this.closest('.media-wrapper')?.classList.add('media-loaded')" alt="${q.title}" class="w-full h-full object-cover"></div><span class="absolute top-3 left-3 lg:top-4 lg:left-4 px-3 py-1 surf rounded-full font-mono text-[9px] lg:text-[10px] uppercase tracking-widest font-bold shadow-sm z-10">${q.label}</span></div><div class="sm:col-span-7 md:col-span-6 p-5 sm:p-7 lg:p-9 flex flex-col justify-between surf"><div><div class="flex items-baseline justify-between border-b bdr pb-3 lg:pb-4 mb-4 lg:mb-5"><div><span class="font-display font-bold text-xs lg:text-sm text-[#E04328]">Part.</span><span class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl ml-1">${q.num}</span></div><span class="font-mono text-[9px] lg:text-[10px] uppercase tracking-widest px-2.5 py-1 rounded bg-[#F5C518] text-[#141413] font-bold">${q.status}</span></div><p class="font-editorial italic text-lg lg:text-xl txt-muted">${q.subtitle}</p><h3 class="font-display font-extrabold text-xl sm:text-2xl lg:text-3xl mt-0.5 leading-snug">${q.title}</h3><p class="txt-muted text-xs sm:text-sm lg:text-base leading-relaxed mt-3 lg:mt-4">${q.desc}</p></div><div class="flex flex-wrap gap-1.5 lg:gap-2 pt-5 mt-5 border-t bdr">${q.chips.map(c => Array.isArray(c) ? `<a href="${c[1]}" ${c[1].startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''} class="px-3.5 py-1.5 lg:px-4 lg:py-2 rounded-full bg-[#E04328] text-white font-mono text-[10px] lg:text-[11px] uppercase tracking-wider font-bold hover:bg-[#1956B4] transition-colors">${c[0]} &#8599;</a>` : `<span class="px-2.5 py-1 lg:px-3 rounded-full surf-alt border bdr font-mono text-[9px] lg:text-[10px] uppercase tracking-wider font-bold">${c}</span>`).join('')}</div></div></div>`;
   }
 
   renderJourney();
@@ -873,6 +1089,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const rv = new IntersectionObserver(en => en.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); rv.unobserve(x.target); } }), { threshold: .08 });
   document.querySelectorAll('section > div, #works-grid > *, #other-grid > *').forEach(el => { el.classList.add('reveal'); rv.observe(el); });
+
+  const preloadAssets = () => {
+    const urls = [
+      ...QUESTS.map(q => q.img),
+      ...Object.values(SW_LOGOS).flat(),
+      ...PROJECTS.flatMap(p => p.media.filter(m => !isVideo(m)))
+    ];
+    urls.forEach(u => { const i = new Image(); i.decoding = 'async'; i.src = u; });
+  };
+  if ('requestIdleCallback' in window) requestIdleCallback(preloadAssets);
+  else setTimeout(preloadAssets, 1500);
 });
 </script>
 </body>

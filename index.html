@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Candela Gamboa | 3D Hard-Surface & Graphic Design</title>
+<title>Candela Gamboa | 3D Hard-Surface & Environment Artist</title>
 <meta name="description" content="Portfolio of Candela Gamboa, 3D Artist & Graphic Designer based in Madrid. Hard-surface, environments, props and visual design.">
 <meta name="theme-color" content="#F3F1EC" id="meta-theme">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%231956B4%27/%3E%3Ctext x=%2750%27 y=%2766%27 font-family=%27sans-serif%27 font-weight=%27800%27 font-size=%2744%27 fill=%27%23FFFFFF%27 text-anchor=%27middle%27%3ECG.%3C/text%3E%3C/svg%3E">
@@ -12,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://ajax.googleapis.com">
 <link rel="preload" as="image" href="fotos_candela/Foto_Perfil_CandelaGamboa.jpeg">
+<link rel="preload" as="image" href="fotos_candela/gaya_imagen.png">
 <link rel="preload" as="image" href="KingsCross/KingsCross_Render_01.jpeg">
 <link rel="preload" as="image" href="revolver/render_03.jpg">
 
@@ -20,14 +21,14 @@
 
 <style>
 :root {
-  --bg: #F3F1EC; --bg-alt: #E7E3DA; --surface: #FFF; --surface-glass: rgba(243,241,236,.9);
-  --ink: #141413; --muted: #65625D; --line: rgba(20,20,19,.12); --backdrop-text: #E4DFD3;
+  --bg: #F3F1EC; --bg-alt: #E7E3DA; --surface: #FFFFFF; --surface-glass: rgba(243,241,236,.92);
+  --ink: #141413; --muted: #625F5A; --line: rgba(20,20,19,.11); --backdrop-text: rgba(20,20,19,.045);
   --c-yellow: #F5C518; --c-blue: #1956B4; --c-red: #E04328; --c-green: #12944B;
   --tone-0: #F8DFC8; --tone-1: #CFE2F8; --tone-2: #FCE373; --tone-3: #C9ECDA; --tone-ink: #141413;
 }
 html.dark {
-  --bg: #111110; --bg-alt: #1C1C1A; --surface: #1A1A18; --surface-glass: rgba(17,17,16,.9);
-  --ink: #F3F1EC; --muted: #A09C94; --line: rgba(243,241,236,.12); --backdrop-text: #1B1B19;
+  --bg: #111110; --bg-alt: #1A1A18; --surface: #161615; --surface-glass: rgba(17,17,16,.92);
+  --ink: #F3F1EC; --muted: #9E9A92; --line: rgba(243,241,236,.12); --backdrop-text: rgba(255,255,255,.035);
   --tone-0: #2C1E17; --tone-1: #152336; --tone-2: #302811; --tone-3: #132A1F; --tone-ink: #F3F1EC;
 }
 html { scroll-behavior: smooth; }
@@ -37,7 +38,7 @@ body { background-color: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif
 .font-display { font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: -.035em; }
 .font-editorial { font-family: 'Cormorant Garamond', serif; }
 .font-mono { font-family: 'Space Mono', monospace; }
-.surf { background-color: var(--surface); border-color: var(--line); transition: background-color .35s, border-color .35s; }
+.surf { background-color: var(--surface); border-color: var(--line); transition: background-color .35s, border-color .35s, box-shadow .3s, transform .3s; }
 .surf-alt { background-color: var(--bg-alt); border-color: var(--line); }
 .bdr { border-color: var(--line); }
 .txt-muted { color: var(--muted); }
@@ -46,15 +47,44 @@ body { background-color: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif
 .tone-2 { background-color: var(--tone-2); color: var(--tone-ink); }
 .tone-3 { background-color: var(--tone-3); color: var(--tone-ink); }
 
-.backdrop-word { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(3.3rem, 15.5vw, 15.5rem); line-height: .82; letter-spacing: -.055em; color: var(--backdrop-text); user-select: none; pointer-events: none; transition: color .35s; }
-.part-num { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(2.1rem, 5vw, 4.5rem); line-height: .9; letter-spacing: -.05em; }
+.work-card {
+  background-color: var(--surface);
+  border: 1.5px solid var(--line);
+  transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, border-color .3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.work-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -14px rgba(20,20,19,.16);
+}
+html.dark .work-card:hover {
+  box-shadow: 0 20px 40px -14px rgba(0,0,0,.6);
+}
+.accent-bar-0 { background-color: var(--c-red); }
+.accent-bar-1 { background-color: var(--c-blue); }
+.accent-bar-2 { background-color: var(--c-yellow); }
+.accent-bar-3 { background-color: var(--c-green); }
+
+.badge-accent-0 { background-color: var(--tone-0); color: var(--tone-ink); }
+.badge-accent-1 { background-color: var(--tone-1); color: var(--tone-ink); }
+.badge-accent-2 { background-color: var(--tone-2); color: var(--tone-ink); }
+.badge-accent-3 { background-color: var(--tone-3); color: var(--tone-ink); }
+
+.work-card:hover .circle-arrow-0 { background-color: var(--c-red); color: #FFF; border-color: var(--c-red); transform: translateX(2px); }
+.work-card:hover .circle-arrow-1 { background-color: var(--c-blue); color: #FFF; border-color: var(--c-blue); transform: translateX(2px); }
+.work-card:hover .circle-arrow-2 { background-color: var(--c-yellow); color: #141413; border-color: var(--c-yellow); transform: translateX(2px); }
+.work-card:hover .circle-arrow-3 { background-color: var(--c-green); color: #FFF; border-color: var(--c-green); transform: translateX(2px); }
+
+.backdrop-word { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(3rem, 15vw, 15.5rem); line-height: .82; letter-spacing: -.055em; color: var(--backdrop-text); user-select: none; pointer-events: none; transition: color .35s; }
+.part-num { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(1.65rem, 4.5vw, 4rem); line-height: .9; letter-spacing: -.05em; }
 .vertical-text { writing-mode: vertical-rl; text-orientation: mixed; letter-spacing: .22em; text-transform: uppercase; }
 
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 4px; }
 
-.reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s, transform .6s cubic-bezier(.2,.8,.2,1); }
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s, transform .55s cubic-bezier(.2,.8,.2,1); }
 .reveal.in { opacity: 1; transform: none; }
 
 #main-nav { background-color: var(--surface-glass); }
@@ -62,20 +92,22 @@ body { background-color: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif
 .nav-link::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: var(--c-red); transform: scaleX(0); transform-origin: left; transition: transform .25s; }
 .nav-link:hover::after { transform: scaleX(1); }
 
-.circle-arrow { width: 34px; height: 34px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); font-size: 13px; transition: all .25s; }
+/* Flechas circulares tamaño mini-app en móvil y tamaño completo en Desktop */
+.circle-arrow { width: 24px; height: 24px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--line); background: var(--bg-alt); color: var(--ink); font-size: 11px; transition: all .25s; }
+@media(min-width:640px) { .circle-arrow { width: 34px; height: 34px; font-size: 13px; border-width: 1.5px; } }
 @media(min-width:1024px) { .circle-arrow { width: 42px; height: 42px; font-size: 16px; } }
 .group:hover .circle-arrow, .circle-arrow:hover { background: var(--c-red); color: #fff; border-color: var(--c-red); transform: translateX(3px); }
 
 .media-wrapper { position: relative; width: 100%; height: 100%; background: var(--bg-alt); overflow: hidden; }
-.media-loader { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 6px; background: var(--bg-alt); z-index: 5; transition: opacity .25s, visibility .25s; pointer-events: none; }
-.media-loader span { width: 7px; height: 7px; background: var(--muted); border-radius: 50%; animation: bounceDot 1.3s infinite ease-in-out both; }
+.media-loader { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 5px; background: var(--bg-alt); z-index: 5; transition: opacity .25s, visibility .25s; pointer-events: none; }
+.media-loader span { width: 6px; height: 6px; background: var(--muted); border-radius: 50%; animation: bounceDot 1.3s infinite ease-in-out both; }
 .media-loader span:nth-child(2) { animation-delay: .18s; }
 .media-loader span:nth-child(3) { animation-delay: .36s; }
 @keyframes bounceDot { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
 .media-loaded .media-loader { opacity: 0; visibility: hidden; }
 
-.polaroid-stack { position: relative; width: 100%; aspect-ratio: 4/5; margin-bottom: 1.25rem; cursor: pointer; -webkit-tap-highlight-color: transparent; }
-.polaroid { position: absolute; inset: 0; background: var(--surface); padding: 8px 8px 28px 8px; border-radius: 14px; box-shadow: 0 10px 24px -8px rgba(0,0,0,.14); border: 1px solid var(--line); transform: var(--tf); transition: transform .6s cubic-bezier(.3,1.35,.5,1), box-shadow .3s, background-color .35s; transform-origin: center bottom; }
+.polaroid-stack { position: relative; width: 100%; aspect-ratio: 4/5; margin-bottom: 1rem; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.polaroid { position: absolute; inset: 0; background: var(--surface); padding: 6px 6px 22px 6px; border-radius: 12px; box-shadow: 0 8px 20px -6px rgba(0,0,0,.14); border: 1px solid var(--line); transform: var(--tf); transition: transform .6s cubic-bezier(.3,1.35,.5,1), box-shadow .3s, background-color .35s; transform-origin: center bottom; }
 @media(min-width:1024px) { .polaroid-stack { margin-bottom: 1.5rem; } .polaroid { padding: 12px 12px 42px 12px; border-radius: 18px; } }
 .polaroid.top:hover { transform: var(--tfh); box-shadow: 0 20px 40px -10px rgba(0,0,0,.22); }
 .polaroid.toss { transition: transform .38s cubic-bezier(.5,0,.8,.4); }
@@ -95,21 +127,31 @@ html.dark .studio-pedestal { background: radial-gradient(circle at 50% 52%, rgba
 #open-box-btn:disabled { opacity: .5; cursor: wait; }
 model-viewer::part(default-progress-bar) { display: none !important; }
 
+@keyframes boxInvite {
+  0%, 78%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+  82% { transform: translateY(-4px) rotate(-2deg) scale(1.05); }
+  86% { transform: translateY(0) rotate(2deg) scale(1.05); }
+  90% { transform: translateY(-3px) rotate(-1.5deg) scale(1.03); }
+  94% { transform: translateY(0) rotate(0deg) scale(1); }
+}
+.invite-wiggle { animation: boxInvite 4s ease-in-out infinite; }
+.invite-wiggle:hover { animation-play-state: paused; }
+
 #projectModal { transition: opacity .3s, visibility .3s; }
 .modal-open { overflow: hidden; }
-.tab-btn, .skill-tab { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; padding: .5rem .5rem; border-radius: 9999px; color: var(--muted); transition: all .2s; white-space: nowrap; font-weight: 700; cursor: pointer; text-align: center; }
-@media(min-width:640px) { .tab-btn, .skill-tab { padding: .5rem .95rem; letter-spacing: .12em; } }
+.tab-btn, .skill-tab { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: .06em; text-transform: uppercase; padding: .4rem .55rem; border-radius: 9999px; color: var(--muted); transition: all .2s; white-space: nowrap; font-weight: 700; cursor: pointer; text-align: center; }
+@media(min-width:640px) { .tab-btn, .skill-tab { font-size: 10px; padding: .5rem .95rem; letter-spacing: .12em; } }
 .tab-btn:hover, .skill-tab:hover { color: var(--ink); }
 .tab-btn.active, .skill-tab.active { background-color: var(--c-blue); color: #FFF; box-shadow: 0 4px 10px rgba(25,86,180,.25); }
 
-.j-num-btn { font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; padding: .5rem 0; border-radius: 12px; border: 1px solid var(--line); background-color: var(--surface); color: var(--muted); transition: all .2s; text-align: center; }
-.j-num-btn.active { background-color: var(--c-blue); color: #FFF; border-color: var(--c-blue); box-shadow: 0 4px 12px rgba(25,86,180,.28); transform: translateY(-1px); }
+.j-num-btn { font-family: 'Space Mono', monospace; font-size: 10px; font-weight: 700; padding: .4rem 0; border-radius: 10px; border: 1px solid var(--line); background-color: var(--surface); color: var(--muted); transition: all .2s; text-align: center; }
+.j-num-btn.active { background-color: var(--c-blue); color: #FFF; border-color: var(--c-blue); box-shadow: 0 3px 10px rgba(25,86,180,.25); transform: translateY(-1px); }
 @keyframes progress8s { from { width: 0%; } to { width: 100%; } }
 .journey-progress { height: 3px; background-color: var(--c-red); animation: progress8s 8s linear infinite; }
 
 .modal-ext-nav { position: fixed; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border-radius: 9999px; background-color: var(--surface); color: var(--ink); border: 2px solid var(--line); box-shadow: 0 10px 25px rgba(0,0,0,.25); display: flex; align-items: center; justify-content: center; font-size: 26px; z-index: 65; cursor: pointer; transition: all .2s; }
 .modal-ext-nav:hover { background-color: var(--c-blue); color: #FFF; border-color: var(--c-blue); transform: translateY(-50%) scale(1.08); }
-@media(max-width:767px) { .modal-ext-nav { top: auto; bottom: 12px; transform: none; width: 40px; height: 40px; font-size: 20px; } }
+@media(max-width:767px) { .modal-ext-nav { top: auto; bottom: 12px; transform: none; width: 38px; height: 38px; font-size: 18px; } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 .tab-panel { animation: fadeUp .25s ease; }
 
@@ -121,24 +163,51 @@ model-viewer::part(default-progress-bar) { display: none !important; }
 .journey-item { transition: all .22s; border-left: 3px solid transparent; }
 .journey-item.active { background-color: var(--surface); border-left-color: var(--c-blue); padding-left: 1.25rem; padding-right: 1.25rem; box-shadow: 0 8px 24px -8px rgba(0,0,0,.08); }
 
-.soft-chip { display: inline-flex; align-items: center; gap: 7px; padding: 5px 11px; border-radius: 10px; background-color: var(--surface); border: 1px solid var(--line); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 700; }
-.soft-chip img { width: 20px; height: 20px; object-fit: contain; flex-shrink: 0; }
+.soft-chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 8px; background-color: var(--surface); border: 1px solid var(--line); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 11px; font-weight: 700; }
+.soft-chip img { width: 18px; height: 18px; object-fit: contain; flex-shrink: 0; }
+
+.footer-blue {
+  background-color: #1956B4;
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+}
+html.dark .footer-blue {
+  background-color: #123E85;
+}
+.footer-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  color: #FFFFFF;
+  transition: all .25s cubic-bezier(.2,.8,.2,1);
+}
+.footer-card:hover {
+  background-color: #FFFFFF;
+  color: #141413;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+}
+.footer-card .f-sub { color: rgba(255, 255, 255, 0.65); transition: color .25s; }
+.footer-card:hover .f-sub { color: #1956B4; }
+.footer-card .f-icon { background-color: rgba(255, 255, 255, 0.16); color: #FFFFFF; transition: all .25s; }
+.footer-card:hover .f-icon { background-color: #1956B4; color: #FFFFFF; }
 </style>
 </head>
 <body class="antialiased">
 
-<div id="device-banner" class="lg:hidden w-full surf-alt border-b bdr px-3 py-1.5 flex items-center justify-between gap-2 text-[10px] font-mono txt-muted">
-  <div class="flex items-center gap-2 truncate"><span class="w-1.5 h-1.5 rounded-full bg-[#1956B4] flex-shrink-0"></span><span class="truncate">Desktop view is recommended for the full interactive 3D experience.</span></div>
-  <button type="button" onclick="document.getElementById('device-banner').style.display='none'" class="px-1.5 font-bold hover:opacity-70">&times;</button>
+<div id="device-banner" class="lg:hidden w-full surf-alt border-b bdr px-3 py-1 flex items-center justify-between gap-2 text-[9px] font-mono txt-muted">
+  <div class="flex items-center gap-1.5 truncate"><span class="w-1.5 h-1.5 rounded-full bg-[#1956B4] flex-shrink-0"></span><span class="truncate">Desktop view recommended for full 3D experience.</span></div>
+  <button type="button" onclick="document.getElementById('device-banner').style.display='none'" class="px-1 font-bold hover:opacity-70">&times;</button>
 </div>
 
-<!-- Barra de navegación (Actualizado orden: Works -> About me -> Journey -> Archive -> Process -> Contact) -->
+<!-- Barra de navegación estilo App en móvil -->
 <nav id="main-nav" class="sticky top-0 w-full z-50 backdrop-blur-md border-b border-transparent transition-all duration-300">
-  <div id="nav-container" class="max-w-[1380px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 py-3.5 md:py-5 transition-all duration-300">
-    <div class="flex justify-between items-center gap-4">
-      <div class="flex items-center gap-2.5 sm:gap-4">
-        <a href="#" class="flex items-center gap-2.5 group"><span class="w-3 h-3 rounded-sm bg-[#1956B4] group-hover:bg-[#E04328] transition-colors"></span><span class="font-display font-extrabold text-xs sm:text-base tracking-tight uppercase">Candela Gamboa</span></a>
-        <button id="theme-toggle" type="button" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full surf border bdr text-[9px] sm:text-[10px] font-mono uppercase tracking-widest hover:border-[#1956B4] transition-all cursor-pointer"><span id="theme-dot" class="w-2 h-2 rounded-full bg-[#F5C518] transition-colors"></span><span id="theme-label">Dark</span></button>
+  <div id="nav-container" class="max-w-[1540px] mx-auto px-3 sm:px-6 md:px-8 lg:px-10 py-2.5 md:py-4 transition-all duration-300">
+    <div class="flex justify-between items-center gap-3">
+      <div class="flex items-center gap-2 sm:gap-4">
+        <a href="#" class="flex items-center gap-2 group"><span class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-sm bg-[#1956B4] group-hover:bg-[#E04328] transition-colors"></span><span class="font-display font-extrabold text-xs sm:text-base tracking-tight uppercase">Candela Gamboa</span></a>
+        <button id="theme-toggle" type="button" class="flex items-center gap-1.5 px-2.5 py-1 rounded-full surf border bdr text-[9px] sm:text-[10px] font-mono uppercase tracking-widest hover:border-[#1956B4] transition-all cursor-pointer"><span id="theme-dot" class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#F5C518] transition-colors"></span><span id="theme-label">Dark</span></button>
       </div>
       <div class="hidden lg:flex items-center space-x-8 text-xs font-medium txt-muted">
         <a href="#works" class="nav-link">works<sup class="font-mono text-[10px] text-[#E04328] font-bold">04</sup></a>
@@ -148,143 +217,146 @@ model-viewer::part(default-progress-bar) { display: none !important; }
         <a href="#process" class="nav-link">workflow</a>
         <a href="#contact" class="nav-link">contact</a>
       </div>
-      <div class="hidden sm:flex items-center gap-3">
+      <div class="hidden sm:flex items-center gap-2.5">
+        <a href="Candela_Gamboa_CV_English.pdf" download class="px-3.5 py-2 rounded-full surf-alt border bdr font-mono text-[10px] uppercase tracking-widest font-bold hover:bg-[#1956B4] hover:text-white transition-colors">CV ↓</a>
         <a href="#contact" class="px-4 py-2 rounded-full surf border bdr font-mono text-[10px] uppercase tracking-widest flex items-center gap-2 hover:bg-[#12944B] hover:text-white transition-colors"><span class="w-2 h-2 rounded-full bg-[#12944B] animate-pulse"></span><span>Open to Work</span></a>
       </div>
-      <button id="mobileMenuBtn" class="lg:hidden p-1.5 focus:outline-none" aria-label="Menu">
+      <button id="mobileMenuBtn" class="lg:hidden p-1 focus:outline-none" aria-label="Menu">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16"></path></svg>
       </button>
     </div>
   </div>
-  <div id="mobileMenu" class="hidden lg:hidden absolute top-full left-0 w-full surf px-5 pb-5 border-b bdr flex-col space-y-2 font-mono text-[11px] uppercase tracking-widest shadow-lg">
-    <a href="#works" class="py-2 flex justify-between border-b bdr"><span>01 / Works</span><span class="text-[#E04328] font-bold">04</span></a>
-    <a href="#profile" class="py-2 block border-b bdr">02 / About me</a>
-    <a href="#journey" class="py-2 block border-b bdr">03 / Journey</a>
-    <a href="#other-works" class="py-2 block border-b bdr">04 / Other works</a>
-    <a href="#process" class="py-2 block border-b bdr">05 / Workflow</a>
-    <a href="#contact" class="py-2 block text-[#12944B] font-bold">06 / Contact</a>
+  <div id="mobileMenu" class="hidden lg:hidden absolute top-full left-0 w-full surf px-4 pb-4 border-b bdr flex-col space-y-1.5 font-mono text-[10px] uppercase tracking-widest shadow-lg">
+    <a href="#works" class="py-1.5 flex justify-between border-b bdr"><span>01 / Works</span><span class="text-[#E04328] font-bold">04</span></a>
+    <a href="#profile" class="py-1.5 block border-b bdr">02 / About me</a>
+    <a href="#journey" class="py-1.5 block border-b bdr">03 / Journey</a>
+    <a href="#other-works" class="py-1.5 block border-b bdr">04 / Other works</a>
+    <a href="#process" class="py-1.5 block border-b bdr">05 / Workflow</a>
+    <a href="#contact" class="py-1.5 block text-[#12944B] font-bold">06 / Contact</a>
   </div>
 </nav>
 
-<!-- Cabecera Principal (Hero) -->
-<header class="w-full max-w-[1380px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 pt-4 pb-10 md:py-14 lg:py-20 relative">
-  <div class="backdrop-word absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap z-0">portfolio</div>
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-10 items-center relative z-10">
-    <div class="md:col-span-6 flex flex-col items-start space-y-4 lg:space-y-6">
-      <div class="flex items-center gap-2.5">
-        <span class="px-2.5 py-1 bg-[#1956B4] text-white font-mono text-[9px] lg:text-[10px] font-bold uppercase tracking-widest">MADRID &middot; 2026</span>
-        <span class="px-2.5 py-1 bg-[#F5C518] text-[#141413] font-mono text-[9px] lg:text-[10px] font-bold uppercase tracking-widest">3D &amp; DESIGN</span>
+<!-- Cabecera Principal (Hero) compactada en móvil tipo App -->
+<header class="w-full max-w-[1540px] mx-auto px-3 sm:px-6 md:px-8 lg:px-10 pt-2 pb-5 md:py-10 lg:py-12 relative">
+  <div class="backdrop-word absolute top-[58%] left-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap z-0">portfolio</div>
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 lg:gap-8 items-center relative z-10">
+    <div class="md:col-span-6 flex flex-col items-start space-y-2.5 sm:space-y-4 lg:space-y-5">
+      <div class="flex items-center gap-2">
+        <span class="px-2 py-0.5 bg-[#1956B4] text-white font-mono text-[8px] lg:text-[10px] font-bold uppercase tracking-widest">MADRID &middot; 2026</span>
+        <span class="px-2 py-0.5 bg-[#F5C518] text-[#141413] font-mono text-[8px] lg:text-[10px] font-bold uppercase tracking-widest">3D &amp; DESIGN</span>
       </div>
       <div>
-        <p class="font-editorial italic text-xl sm:text-2xl lg:text-3xl txt-muted mb-1">3D Hard-Surface &amp; Graphic Design</p>
-        <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl xl:text-7xl tracking-tight leading-[0.93]">Candela<br>Gamboa.</h1>
+        <p class="font-editorial italic text-base sm:text-2xl lg:text-3xl txt-muted mb-0.5">3D Hard-Surface &amp; Graphic Design</p>
+        <h1 class="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl xl:text-7xl tracking-tight leading-[0.94]">Candela<br>Gamboa.</h1>
       </div>
-      <p class="txt-muted max-w-lg text-xs sm:text-sm lg:text-lg leading-relaxed">
+      <p class="txt-muted max-w-lg text-[11px] sm:text-sm lg:text-lg leading-relaxed">
         3D artist crafting tactile environments, hard-surface props, and visual systems from the first sketch to real-time engines. Welcome to my corner of the internet.
       </p>
-      <div class="flex flex-wrap items-center gap-3 lg:gap-3.5 pt-1 lg:pt-2">
-        <a href="#works" class="px-5 py-2.5 lg:px-7 lg:py-3.5 rounded-full bg-[#E04328] text-white font-display font-bold text-[11px] lg:text-xs uppercase tracking-wider hover:bg-[#1956B4] transition-colors shadow-sm">Explore Works ↓</a>
-        <a href="#process" class="px-4 py-2.5 lg:px-6 lg:py-3.5 rounded-full surf border bdr font-mono text-[10px] lg:text-xs uppercase tracking-wider hover:border-[#F5C518] transition-colors">Workflow &amp; Pipeline</a>
+      <div class="flex flex-wrap items-center gap-2 lg:gap-3 pt-0.5">
+        <a href="#works" class="px-4 py-2 lg:px-7 lg:py-3.5 rounded-full bg-[#E04328] text-white font-display font-bold text-[10px] lg:text-xs uppercase tracking-wider hover:bg-[#1956B4] transition-colors shadow-sm">Explore Works ↓</a>
+        <a href="Candela_Gamboa_CV_English.pdf" download class="px-3.5 py-2 lg:px-6 lg:py-3.5 rounded-full surf border bdr font-mono text-[9px] lg:text-xs uppercase tracking-wider font-bold hover:border-[#1956B4] transition-colors">CV ↓</a>
+        <a href="https://cande_gamboa_sb.artstation.com" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 lg:px-5 lg:py-3.5 rounded-full surf-alt border bdr font-mono text-[9px] lg:text-xs uppercase tracking-wider hover:border-[#F5C518] transition-colors">ArtStation &#8599;</a>
       </div>
     </div>
     <div class="md:col-span-6 flex flex-col items-center relative">
-      <div class="hidden xl:flex flex-col items-center gap-3 absolute -right-2 top-1/2 -translate-y-1/2">
+      <div class="hidden xl:flex flex-col items-center gap-3 absolute -right-1 top-1/2 -translate-y-1/2">
         <span class="vertical-text font-mono text-[10px] txt-muted font-bold">INTERACTIVE 3D MODEL</span>
         <span class="w-3.5 h-8 bg-[#1956B4] inline-block"></span>
       </div>
-      <div class="w-full max-w-[230px] sm:max-w-[290px] lg:max-w-[430px] xl:max-w-[460px] aspect-square relative studio-pedestal rounded-full flex items-center justify-center">
+      <div class="w-full max-w-[185px] sm:max-w-[280px] lg:max-w-[420px] xl:max-w-[450px] aspect-square relative studio-pedestal rounded-full flex items-center justify-center">
         <model-viewer id="box-viewer" class="viewer viewer-on" src="box_chubbiegummies.glb" alt="Chubby Gummies Box" camera-controls disable-zoom camera-orbit="180deg auto auto" interaction-prompt="auto"></model-viewer>
         <model-viewer id="character-viewer" class="viewer viewer-off" alt="Chubby Gummy" camera-controls disable-zoom camera-orbit="180deg auto auto" auto-rotate auto-rotate-delay="2500" animation-name="box_chubbiegummies" interaction-prompt="none"></model-viewer>
       </div>
-      <div class="mt-2 inline-flex items-center gap-3 lg:gap-4 surf px-4 lg:px-5 py-2 lg:py-2.5 rounded-full border bdr shadow-sm z-20">
-        <div class="flex items-center gap-2 pr-3 border-r bdr">
-          <span class="w-2.5 h-2.5 rounded-full bg-[#F5C518]"></span>
-          <span id="character-name" class="font-mono text-[10px] lg:text-[11px] uppercase tracking-wider font-bold">Mystery Box</span>
+      <div class="mt-1 inline-flex items-center gap-2 sm:gap-3 lg:gap-4 surf px-3 sm:px-4 lg:px-5 py-1.5 lg:py-2.5 rounded-full border bdr shadow-sm z-20">
+        <div class="flex items-center gap-1.5 pr-2.5 border-r bdr">
+          <span class="w-2 h-2 rounded-full bg-[#F5C518]"></span>
+          <span id="character-name" class="font-mono text-[9px] lg:text-[11px] uppercase tracking-wider font-bold">Mystery Box</span>
         </div>
-        <button id="open-box-btn" type="button" class="font-mono text-[10px] lg:text-[11px] uppercase tracking-widest font-bold text-[#E04328] hover:text-[#1956B4] transition-colors flex items-center gap-1.5 cursor-pointer">
-          <span>Open the BlindBox</span><span>→</span>
+        <button id="open-box-btn" type="button" class="invite-wiggle px-3 py-1 lg:px-3.5 lg:py-1.5 rounded-full bg-[#E04328] text-white font-mono text-[9px] lg:text-[11px] uppercase tracking-widest font-bold hover:bg-[#1956B4] transition-colors flex items-center gap-1 cursor-pointer shadow-sm">
+          <span>Open BlindBox</span><span>→</span>
         </button>
       </div>
     </div>
   </div>
-  <div class="mt-10 lg:mt-16 pt-6 lg:pt-7 border-t bdr grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6">
-    <div class="border-l-2 border-[#E04328] pl-3 lg:pl-3.5"><p class="font-mono text-[9px] lg:text-[10px] uppercase tracking-widest txt-muted">SPECIALTY</p><p class="font-display font-bold text-xs sm:text-sm lg:text-base mt-0.5">3D Hard-Surface &amp; Graphic Design</p></div>
-    <div class="border-l-2 border-[#1956B4] pl-3 lg:pl-3.5"><p class="font-mono text-[9px] lg:text-[10px] uppercase tracking-widest txt-muted">MAIN ENGINES</p><p class="font-display font-bold text-xs sm:text-sm lg:text-base mt-0.5">Unreal Engine</p></div>
-    <div class="border-l-2 border-[#F5C518] pl-3 lg:pl-3.5"><p class="font-mono text-[9px] lg:text-[10px] uppercase tracking-widest txt-muted">CORE PIPELINE</p><p class="font-display font-bold text-xs sm:text-sm lg:text-base mt-0.5">Blender &middot; Substance 3D</p></div>
-    <div class="border-l-2 border-[#12944B] pl-3 lg:pl-3.5"><p class="font-mono text-[9px] lg:text-[10px] uppercase tracking-widest txt-muted">EDUCATION</p><p class="font-display font-bold text-xs sm:text-sm lg:text-base mt-0.5">UDIT Video Game Design</p></div>
-    <div class="col-span-2 sm:col-span-1 border-l-2 border-current pl-3 lg:pl-3.5"><p class="font-mono text-[9px] lg:text-[10px] uppercase tracking-widest txt-muted">LOCATION</p><p class="font-display font-bold text-xs sm:text-sm lg:text-base mt-0.5">Madrid, Spain (Remote OK)</p></div>
+  <div class="mt-5 lg:mt-12 pt-3.5 lg:pt-6 border-t bdr grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-4 lg:gap-6">
+    <div class="border-l-2 border-[#E04328] pl-2.5 lg:pl-3.5"><p class="font-mono text-[8px] lg:text-[10px] uppercase tracking-widest txt-muted">SPECIALTY</p><p class="font-display font-bold text-[11px] sm:text-sm lg:text-base mt-0.5">3D Hard-Surface &amp; Design</p></div>
+    <div class="border-l-2 border-[#1956B4] pl-2.5 lg:pl-3.5"><p class="font-mono text-[8px] lg:text-[10px] uppercase tracking-widest txt-muted">MAIN ENGINES</p><p class="font-display font-bold text-[11px] sm:text-sm lg:text-base mt-0.5">Unreal Engine</p></div>
+    <div class="border-l-2 border-[#F5C518] pl-2.5 lg:pl-3.5"><p class="font-mono text-[8px] lg:text-[10px] uppercase tracking-widest txt-muted">CORE PIPELINE</p><p class="font-display font-bold text-[11px] sm:text-sm lg:text-base mt-0.5">Blender &middot; Substance 3D</p></div>
+    <div class="border-l-2 border-[#12944B] pl-2.5 lg:pl-3.5"><p class="font-mono text-[8px] lg:text-[10px] uppercase tracking-widest txt-muted">EDUCATION</p><p class="font-display font-bold text-[11px] sm:text-sm lg:text-base mt-0.5">UDIT Video Game Design</p></div>
+    <div class="col-span-2 sm:col-span-1 border-l-2 border-current pl-2.5 lg:pl-3.5"><p class="font-mono text-[8px] lg:text-[10px] uppercase tracking-widest txt-muted">LOCATION</p><p class="font-display font-bold text-[11px] sm:text-sm lg:text-base mt-0.5">Madrid, Spain (Remote OK)</p></div>
   </div>
 </header>
 
-<main class="w-full max-w-[1380px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 relative z-10">
+<main class="w-full max-w-[1540px] mx-auto px-3 sm:px-6 md:px-8 lg:px-10 relative z-10">
 
-  <!-- 01 / SELECTED WORKS -->
-  <section id="works" class="py-10 md:py-16 lg:py-24 border-t bdr scroll-mt-20">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 lg:mb-14 gap-4 lg:gap-6">
+  <!-- 01 / SELECTED WORKS (En móvil va de 2 en 2 con grid-cols-2 y título resumido tipo App) -->
+  <section id="works" class="py-6 md:py-12 lg:py-16 border-t bdr scroll-mt-14">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-4 lg:mb-10 gap-2 lg:gap-6">
       <div>
-        <div class="flex items-baseline gap-2"><span class="px-2 py-0.5 bg-[#E04328] text-white font-mono text-[10px] lg:text-xs font-bold uppercase">Part.</span><span class="part-num">01</span></div>
-        <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl mt-1.5 lg:mt-2">Selected Works</h2>
+        <div class="flex items-baseline gap-2"><span class="px-1.5 py-0.5 bg-[#E04328] text-white font-mono text-[9px] lg:text-xs font-bold uppercase">Part.</span><span class="part-num">01</span></div>
+        <h2 class="font-display font-extrabold text-xl sm:text-3xl lg:text-4xl mt-0.5">Selected Works</h2>
       </div>
-      <p class="txt-muted max-w-md text-xs sm:text-sm lg:text-base leading-relaxed">3D explorations in modular environments, hard-surface props, and product design. Click any work to inspect its description, software stack, and breakdown.</p>
+      <p class="txt-muted max-w-md text-[11px] sm:text-sm lg:text-base leading-relaxed">Tap any project to inspect its full description, software stack, and breakdown.</p>
     </div>
-    <div id="works-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-10"></div>
+    <div id="works-grid" class="grid grid-cols-2 gap-2.5 sm:gap-5 lg:gap-7"></div>
   </section>
 
   <!-- 02 / ABOUT ME -->
-  <section id="profile" class="py-10 md:py-16 lg:py-24 border-t bdr scroll-mt-20">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 lg:mb-14 gap-4 lg:gap-6">
+  <section id="profile" class="py-6 md:py-12 lg:py-16 border-t bdr scroll-mt-14">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-4 lg:mb-10 gap-2 lg:gap-6">
       <div>
-        <div class="flex items-baseline gap-2"><span class="px-2 py-0.5 bg-[#1956B4] text-white font-mono text-[10px] lg:text-xs font-bold uppercase">Part.</span><span class="part-num">02</span></div>
-        <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl mt-1.5 lg:mt-2">About Me &amp; Toolset</h2>
+        <div class="flex items-baseline gap-2"><span class="px-1.5 py-0.5 bg-[#1956B4] text-white font-mono text-[9px] lg:text-xs font-bold uppercase">Part.</span><span class="part-num">02</span></div>
+        <h2 class="font-display font-extrabold text-xl sm:text-3xl lg:text-4xl mt-0.5">About Me &amp; Toolset</h2>
       </div>
       <div class="hidden sm:flex items-center gap-2.5"><span class="w-3.5 h-3.5 bg-[#12944B] inline-block"></span><span class="font-mono text-xs uppercase tracking-widest txt-muted">PROFILE &middot; TECHNICAL STACK</span></div>
     </div>
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-10 items-start">
       <div class="lg:col-span-4 flex flex-col w-full">
-        <div class="flex flex-col sm:flex-row lg:flex-col items-center sm:items-start lg:items-stretch gap-5 lg:gap-0">
-          <div class="w-[190px] sm:w-[210px] lg:w-full lg:max-w-[360px] mx-auto sm:mx-0 flex-shrink-0"><div class="polaroid-stack w-full" id="polaroid-stack"></div></div>
-          <div class="flex-1 w-full">
-            <div class="flex items-center justify-between border-b bdr pb-3 mb-4">
-              <div><h3 class="font-display text-xl lg:text-2xl font-extrabold">Candela Gamboa</h3><p class="font-mono text-[10px] lg:text-[11px] txt-muted tracking-widest uppercase mt-0.5">3D Artist &amp; Designer</p></div>
-              <span class="font-mono text-[9px] lg:text-[10px] px-2.5 py-1 rounded-full surf border bdr txt-muted">Click photo ↻</span>
+        <!-- En móvil foto e info van juntas lado a lado como un perfil de App -->
+        <div class="flex flex-row lg:flex-col items-center sm:items-start lg:items-stretch gap-3.5 sm:gap-5 lg:gap-0">
+          <div class="w-[115px] sm:w-[190px] lg:w-full lg:max-w-[340px] flex-shrink-0"><div class="polaroid-stack w-full" id="polaroid-stack"></div></div>
+          <div class="flex-1 w-full min-w-0">
+            <div class="flex items-center justify-between border-b bdr pb-2 mb-2.5">
+              <div class="min-w-0"><h3 class="font-display text-sm sm:text-xl lg:text-2xl font-extrabold truncate">Candela Gamboa</h3><p class="font-mono text-[8px] sm:text-[10px] lg:text-[11px] txt-muted tracking-widest uppercase">3D Artist &amp; Designer</p></div>
+              <span class="hidden sm:inline font-mono text-[9px] lg:text-[10px] px-2.5 py-1 rounded-full surf border bdr txt-muted">Click photo ↻</span>
             </div>
-            <p class="txt-muted leading-relaxed text-xs sm:text-sm lg:text-base">I'm Candela, a 3D artist and designer with a deep passion for the digital world, video games, and design. I love learning fast and taking on new challenges. I'm highly organized and always eager to seize new opportunities.</p>
-            <div class="mt-5 lg:mt-7 pt-5 lg:pt-6 border-t bdr">
-              <div class="flex items-center gap-2 mb-3"><span class="w-2.5 h-2.5 bg-[#1956B4]"></span><p class="font-mono text-[10px] uppercase tracking-widest font-bold">LANGUAGES</p></div>
-              <div class="flex flex-wrap gap-2">
-                <span class="surf px-3 lg:px-3.5 py-1 lg:py-1.5 rounded-full text-[11px] lg:text-xs font-semibold border bdr">Spanish (Native)</span>
-                <span class="surf px-3 lg:px-3.5 py-1 lg:py-1.5 rounded-full text-[11px] lg:text-xs font-semibold border bdr">English (Professional working proficiency)</span>
-              </div>
-            </div>
+            <p class="txt-muted leading-snug sm:leading-relaxed text-[11px] sm:text-sm lg:text-base">I'm Candela, a 3D artist and designer with a deep passion for the digital world, video games, and design. I love learning fast and taking on new challenges.</p>
+          </div>
+        </div>
+        <div class="mt-3 lg:mt-6 pt-3 lg:pt-5 border-t bdr">
+          <div class="flex items-center gap-2 mb-2"><span class="w-2 h-2 bg-[#1956B4]"></span><p class="font-mono text-[9px] lg:text-[10px] uppercase tracking-widest font-bold">LANGUAGES</p></div>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="surf px-2.5 lg:px-3.5 py-1 rounded-full text-[10px] lg:text-xs font-semibold border bdr">Spanish (Native)</span>
+            <span class="surf px-2.5 lg:px-3.5 py-1 rounded-full text-[10px] lg:text-xs font-semibold border bdr">English (Professional proficiency)</span>
           </div>
         </div>
       </div>
-      <div class="lg:col-span-8 w-full space-y-6 lg:space-y-8">
-        <div class="surf rounded-[2rem] p-5 sm:p-7 lg:p-10 border bdr shadow-sm">
-          <div class="flex flex-wrap items-center justify-between border-b bdr pb-4 lg:pb-5 mb-5 lg:mb-6 gap-3">
-            <div><span class="font-mono text-[10px] uppercase tracking-widest text-[#1956B4] font-bold">SOFTWARE PROFICIENCY</span><h3 class="font-display text-xl lg:text-2xl font-extrabold mt-0.5">Hard Skills</h3></div>
-            <div class="inline-flex p-1 rounded-full surf-alt border bdr" role="tablist">
+      <div class="lg:col-span-8 w-full space-y-4 lg:space-y-6">
+        <div class="surf rounded-2xl lg:rounded-[2rem] p-3.5 sm:p-6 lg:p-8 border bdr shadow-sm">
+          <div class="flex flex-wrap items-center justify-between border-b bdr pb-3 mb-3 lg:mb-5 gap-2">
+            <div><span class="font-mono text-[8px] lg:text-[10px] uppercase tracking-widest text-[#1956B4] font-bold">SOFTWARE PROFICIENCY</span><h3 class="font-display text-base sm:text-xl lg:text-2xl font-extrabold">Hard Skills</h3></div>
+            <div class="inline-flex p-0.5 sm:p-1 rounded-full surf-alt border bdr" role="tablist">
               <button type="button" class="skill-tab active" data-filter="all">All</button>
               <button type="button" class="skill-tab" data-filter="3d">3D</button>
               <button type="button" class="skill-tab" data-filter="design">Design</button>
             </div>
           </div>
-          <div class="flex flex-wrap gap-4 font-mono text-[9px] lg:text-[10px] uppercase tracking-wider txt-muted mb-3 lg:mb-4">
-            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#12944B]"></span>Proficient</span>
-            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#F5C518]"></span>Intermediate</span>
-            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-neutral-400"></span>Basic</span>
+          <div class="flex flex-wrap gap-3 font-mono text-[8px] lg:text-[10px] uppercase tracking-wider txt-muted mb-2">
+            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#12944B]"></span>Proficient</span>
+            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#F5C518]"></span>Intermediate</span>
+            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-neutral-400"></span>Basic</span>
           </div>
-          <div id="skills" class="grid grid-cols-2 gap-x-3 sm:gap-x-8 lg:gap-x-10 gap-y-1"></div>
+          <div id="skills" class="grid grid-cols-2 gap-x-3 sm:gap-x-8 lg:gap-x-10 gap-y-0.5"></div>
         </div>
-        <div class="surf rounded-[2rem] p-5 sm:p-7 lg:p-8 border bdr shadow-sm">
-          <div class="flex items-center gap-2 mb-3.5"><span class="w-2.5 h-2.5 bg-[#F5C518]"></span><p class="font-mono text-[10px] uppercase tracking-widest font-bold">SOFT SKILLS</p></div>
-          <div class="flex flex-wrap gap-2">
-            <span class="surf-alt px-3.5 py-1.5 lg:px-4 lg:py-2 rounded-full text-xs font-semibold border bdr">Adaptability</span>
-            <span class="surf-alt px-3.5 py-1.5 lg:px-4 lg:py-2 rounded-full text-xs font-semibold border bdr">Creativity</span>
-            <span class="surf-alt px-3.5 py-1.5 lg:px-4 lg:py-2 rounded-full text-xs font-semibold border bdr">Teamwork</span>
-            <span class="surf-alt px-3.5 py-1.5 lg:px-4 lg:py-2 rounded-full text-xs font-semibold border bdr">Fast learning</span>
-            <span class="surf-alt px-3.5 py-1.5 lg:px-4 lg:py-2 rounded-full text-xs font-semibold border bdr">Organization</span>
-            <span class="surf-alt px-3.5 py-1.5 lg:px-4 lg:py-2 rounded-full text-xs font-semibold border bdr">Leadership</span>
+        <div class="surf rounded-2xl lg:rounded-[2rem] p-3.5 sm:p-6 lg:p-7 border bdr shadow-sm">
+          <div class="flex items-center gap-2 mb-2.5"><span class="w-2 h-2 bg-[#F5C518]"></span><p class="font-mono text-[9px] lg:text-[10px] uppercase tracking-widest font-bold">SOFT SKILLS</p></div>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="surf-alt px-2.5 py-1 lg:px-4 lg:py-2 rounded-full text-[10px] lg:text-xs font-semibold border bdr">Adaptability</span>
+            <span class="surf-alt px-2.5 py-1 lg:px-4 lg:py-2 rounded-full text-[10px] lg:text-xs font-semibold border bdr">Creativity</span>
+            <span class="surf-alt px-2.5 py-1 lg:px-4 lg:py-2 rounded-full text-[10px] lg:text-xs font-semibold border bdr">Teamwork</span>
+            <span class="surf-alt px-2.5 py-1 lg:px-4 lg:py-2 rounded-full text-[10px] lg:text-xs font-semibold border bdr">Fast learning</span>
+            <span class="surf-alt px-2.5 py-1 lg:px-4 lg:py-2 rounded-full text-[10px] lg:text-xs font-semibold border bdr">Organization</span>
+            <span class="surf-alt px-2.5 py-1 lg:px-4 lg:py-2 rounded-full text-[10px] lg:text-xs font-semibold border bdr">Leadership</span>
           </div>
         </div>
       </div>
@@ -292,160 +364,205 @@ model-viewer::part(default-progress-bar) { display: none !important; }
   </section>
 
   <!-- 03 / MY JOURNEY -->
-  <section id="journey" class="py-10 md:py-16 lg:py-24 border-t bdr scroll-mt-20">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-6 lg:mb-14 gap-3 lg:gap-6">
+  <section id="journey" class="py-6 md:py-12 lg:py-16 border-t bdr scroll-mt-14">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-4 lg:mb-10 gap-2 lg:gap-6">
       <div>
-        <div class="flex items-baseline gap-2"><span class="px-2 py-0.5 bg-[#F5C518] text-[#141413] font-mono text-[10px] lg:text-xs font-bold uppercase">Part.</span><span class="part-num">03</span></div>
-        <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl mt-1.5 lg:mt-2">My Journey</h2>
+        <div class="flex items-baseline gap-2"><span class="px-1.5 py-0.5 bg-[#F5C518] text-[#141413] font-mono text-[9px] lg:text-xs font-bold uppercase">Part.</span><span class="part-num">03</span></div>
+        <h2 class="font-display font-extrabold text-xl sm:text-3xl lg:text-4xl mt-0.5">My Journey</h2>
       </div>
-      <p class="txt-muted max-w-md text-xs sm:text-sm lg:text-base">Click on each milestone to explore the chapters, academic projects, and studio experiences that shaped my path.</p>
+      <p class="txt-muted max-w-md text-[11px] sm:text-sm lg:text-base">Tap each milestone to explore the chapters and studio experiences that shaped my path.</p>
     </div>
-    <div id="journey-nums" class="grid grid-cols-5 gap-2 lg:hidden mb-4"></div>
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+    <div id="journey-nums" class="grid grid-cols-5 gap-1.5 lg:hidden mb-3"></div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-9 items-start">
       <div id="journey-list" class="hidden lg:block lg:col-span-5 divide-y bdr border-y"></div>
-      <div class="lg:col-span-7 lg:sticky lg:top-24"><div id="journey-detail" class="rounded-[2rem] surf border bdr overflow-hidden shadow-sm relative"></div></div>
+      <div class="lg:col-span-7 lg:sticky lg:top-24"><div id="journey-detail" class="rounded-2xl lg:rounded-[2rem] surf border bdr overflow-hidden shadow-sm relative"></div></div>
     </div>
   </section>
 
-  <!-- 04 / OTHER WORKS & ARCHIVE (Colocado primero, antes de Workflow & Pipeline) -->
-  <section id="other-works" class="py-10 md:py-16 lg:py-20 border-t bdr scroll-mt-20">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 lg:mb-12 gap-4 lg:gap-6">
+  <!-- 04 / OTHER WORKS & ARCHIVE (En móvil va en cuadrícula compacta) -->
+  <section id="other-works" class="py-6 md:py-12 lg:py-16 border-t bdr scroll-mt-14">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-4 lg:mb-10 gap-2 lg:gap-6">
       <div>
-        <div class="flex items-baseline gap-2"><span class="px-2 py-0.5 bg-[#1956B4] text-white font-mono text-[10px] lg:text-xs font-bold uppercase">Part.</span><span class="part-num">04</span></div>
-        <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl mt-1.5 lg:mt-2">Other Works &amp; Archive</h2>
+        <div class="flex items-baseline gap-2"><span class="px-1.5 py-0.5 bg-[#1956B4] text-white font-mono text-[9px] lg:text-xs font-bold uppercase">Part.</span><span class="part-num">04</span></div>
+        <h2 class="font-display font-extrabold text-xl sm:text-3xl lg:text-4xl mt-0.5">Other Works &amp; Archive</h2>
       </div>
-      <p class="txt-muted max-w-sm text-xs sm:text-sm lg:text-base">Experiments, 2D character explorations, hard-surface studies, and lighting tests.</p>
+      <p class="txt-muted max-w-sm text-[11px] sm:text-sm lg:text-base">Experiments, 2D character explorations, hard-surface studies, and lighting tests.</p>
     </div>
-    <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8" id="other-grid"></div>
+    <div id="other-grid" class="grid grid-cols-3 gap-2 sm:gap-6 lg:gap-7"></div>
   </section>
 
-  <!-- 05 / WORKFLOW & PIPELINE (Colocado después de Other Works y mucho más compacto) -->
-  <section id="process" class="py-8 md:py-12 border-t bdr scroll-mt-20">
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-5 gap-3">
-      <div class="flex items-baseline gap-3">
-        <span class="px-2 py-0.5 bg-[#12944B] text-white font-mono text-[10px] font-bold uppercase">Part. 05</span>
-        <h2 class="font-display font-extrabold text-xl sm:text-2xl lg:text-3xl">Workflow &amp; Pipeline</h2>
+  <!-- 05 / WORKFLOW & PIPELINE -->
+  <section id="process" class="py-6 md:py-12 pb-8 lg:pb-16 border-t bdr scroll-mt-14">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-4 gap-2.5">
+      <div>
+        <div class="flex items-baseline gap-2"><span class="px-1.5 py-0.5 bg-[#12944B] text-white font-mono text-[9px] lg:text-xs font-bold uppercase">Part.</span><span class="part-num">05</span></div>
+        <h2 class="font-display font-extrabold text-xl sm:text-3xl lg:text-4xl mt-0.5">Workflow &amp; Pipeline</h2>
       </div>
-      <div class="inline-flex p-1 rounded-full surf-alt border bdr self-start sm:self-auto" role="tablist">
-        <button class="proc-tab active px-3.5 py-1.5 sm:px-5 rounded-full font-display font-bold text-[10px] sm:text-[11px] uppercase tracking-wider transition-all bg-[#1956B4] text-white shadow-sm" data-target="3d">3D Pipeline</button>
-        <button class="proc-tab px-3.5 py-1.5 sm:px-5 rounded-full font-display font-bold text-[10px] sm:text-[11px] uppercase tracking-wider transition-all txt-muted" data-target="design">Design Workflow</button>
+      <div class="inline-flex p-0.5 sm:p-1 rounded-full surf-alt border bdr self-start sm:self-auto" role="tablist">
+        <button class="proc-tab active px-3.5 py-1 sm:px-5 sm:py-1.5 rounded-full font-display font-bold text-[9px] sm:text-[11px] uppercase tracking-wider transition-all bg-[#1956B4] text-white shadow-sm" data-target="3d">3D Pipeline</button>
+        <button class="proc-tab px-3.5 py-1 sm:px-5 sm:py-1.5 rounded-full font-display font-bold text-[9px] sm:text-[11px] uppercase tracking-wider transition-all txt-muted" data-target="design">Design Workflow</button>
       </div>
     </div>
 
-    <div class="surf rounded-3xl border bdr p-3.5 sm:p-5 shadow-sm">
+    <div class="surf rounded-2xl lg:rounded-3xl border bdr p-2.5 sm:p-5 shadow-sm">
       <div id="proc-panel-3d" class="tab-panel">
-        <div class="grid grid-cols-2 md:grid-cols-3 xl:flex xl:flex-row xl:items-center xl:justify-between gap-2 sm:gap-2.5">
-          <div class="xl:flex-1 px-3.5 py-2.5 sm:py-3 rounded-xl tone-0 border bdr">
-            <div class="flex items-center justify-between font-mono text-[9px] font-bold text-[#E04328]"><span>01 · REF</span><span class="xl:hidden">→</span></div>
-            <h4 class="font-display font-extrabold text-xs sm:text-sm mt-0.5">PureRef</h4>
-            <p class="text-[10px] sm:text-[11px] opacity-80 leading-tight mt-0.5">Moodboards &amp; scale.</p>
+        <div class="grid grid-cols-3 xl:flex xl:flex-row xl:items-center xl:justify-between gap-1.5 sm:gap-2.5">
+          <div class="xl:flex-1 p-2 sm:px-3.5 sm:py-3 rounded-xl tone-0 border bdr">
+            <div class="flex items-center justify-between font-mono text-[8px] sm:text-[9px] font-bold text-[#E04328]"><span>01 · REF</span><span class="xl:hidden">→</span></div>
+            <h4 class="font-display font-extrabold text-[11px] sm:text-sm mt-0.5 truncate">PureRef</h4>
+            <p class="text-[9px] sm:text-[11px] opacity-80 leading-tight mt-0.5 truncate">Moodboards.</p>
           </div>
           <div class="hidden xl:flex items-center justify-center txt-muted font-mono text-sm">→</div>
-          <div class="xl:flex-1 px-3.5 py-2.5 sm:py-3 rounded-xl tone-1 border bdr">
-            <div class="flex items-center justify-between font-mono text-[9px] font-bold text-[#1956B4]"><span>02 · MODEL</span><span class="xl:hidden">→</span></div>
-            <h4 class="font-display font-extrabold text-xs sm:text-sm mt-0.5">Blender</h4>
-            <p class="text-[10px] sm:text-[11px] opacity-80 leading-tight mt-0.5">Hard-surface &amp; UVs.</p>
+          <div class="xl:flex-1 p-2 sm:px-3.5 sm:py-3 rounded-xl tone-1 border bdr">
+            <div class="flex items-center justify-between font-mono text-[8px] sm:text-[9px] font-bold text-[#1956B4]"><span>02 · MODEL</span><span class="xl:hidden">→</span></div>
+            <h4 class="font-display font-extrabold text-[11px] sm:text-sm mt-0.5 truncate">Blender</h4>
+            <p class="text-[9px] sm:text-[11px] opacity-80 leading-tight mt-0.5 truncate">Hard-surface.</p>
           </div>
           <div class="hidden xl:flex items-center justify-center txt-muted font-mono text-sm">→</div>
-          <div class="xl:flex-1 px-3.5 py-2.5 sm:py-3 rounded-xl tone-2 border bdr">
-            <div class="flex items-center justify-between font-mono text-[9px] font-bold text-[#B47D00] dark:text-[#F5C518]"><span>03 · TEXTURE</span><span class="xl:hidden">→</span></div>
-            <h4 class="font-display font-extrabold text-xs sm:text-sm mt-0.5">Painter &amp; Designer</h4>
-            <p class="text-[10px] sm:text-[11px] opacity-80 leading-tight mt-0.5">PBR &amp; procedural.</p>
+          <div class="xl:flex-1 p-2 sm:px-3.5 sm:py-3 rounded-xl tone-2 border bdr">
+            <div class="flex items-center justify-between font-mono text-[8px] sm:text-[9px] font-bold text-[#B47D00] dark:text-[#F5C518]"><span>03 · TEXTURE</span><span class="xl:hidden">→</span></div>
+            <h4 class="font-display font-extrabold text-[11px] sm:text-sm mt-0.5 truncate">Substance</h4>
+            <p class="text-[9px] sm:text-[11px] opacity-80 leading-tight mt-0.5 truncate">PBR shaders.</p>
           </div>
           <div class="hidden xl:flex items-center justify-center txt-muted font-mono text-sm">→</div>
-          <div class="xl:flex-1 px-3.5 py-2.5 sm:py-3 rounded-xl tone-3 border bdr">
-            <div class="flex items-center justify-between font-mono text-[9px] font-bold text-[#12944B]"><span>04 · RENDER</span><span class="xl:hidden">→</span></div>
-            <h4 class="font-display font-extrabold text-xs sm:text-sm mt-0.5">Marmoset Toolbag</h4>
-            <p class="text-[10px] sm:text-[11px] opacity-80 leading-tight mt-0.5">Bakes &amp; turntables.</p>
+          <div class="xl:flex-1 p-2 sm:px-3.5 sm:py-3 rounded-xl tone-3 border bdr">
+            <div class="flex items-center justify-between font-mono text-[8px] sm:text-[9px] font-bold text-[#12944B]"><span>04 · RENDER</span><span class="xl:hidden">→</span></div>
+            <h4 class="font-display font-extrabold text-[11px] sm:text-sm mt-0.5 truncate">Marmoset</h4>
+            <p class="text-[9px] sm:text-[11px] opacity-80 leading-tight mt-0.5 truncate">Map baking.</p>
           </div>
           <div class="hidden xl:flex items-center justify-center txt-muted font-mono text-sm">→</div>
-          <div class="xl:flex-1 px-3.5 py-2.5 sm:py-3 rounded-xl surf-alt border bdr">
-            <div class="flex items-center justify-between font-mono text-[9px] font-bold text-[#1956B4]"><span>05 · ENGINE</span><span class="xl:hidden">→</span></div>
-            <h4 class="font-display font-extrabold text-xs sm:text-sm mt-0.5">Unity &amp; UE5</h4>
-            <p class="text-[10px] sm:text-[11px] opacity-80 leading-tight mt-0.5">Real-time setup.</p>
+          <div class="xl:flex-1 p-2 sm:px-3.5 sm:py-3 rounded-xl surf-alt border bdr">
+            <div class="flex items-center justify-between font-mono text-[8px] sm:text-[9px] font-bold text-[#1956B4]"><span>05 · ENGINE</span><span class="xl:hidden">→</span></div>
+            <h4 class="font-display font-extrabold text-[11px] sm:text-sm mt-0.5 truncate">UE5 &amp; Unity</h4>
+            <p class="text-[9px] sm:text-[11px] opacity-80 leading-tight mt-0.5 truncate">Integration.</p>
           </div>
           <div class="hidden xl:flex items-center justify-center txt-muted font-mono text-sm">→</div>
-          <div class="xl:flex-1 px-3.5 py-2.5 sm:py-3 rounded-xl bg-[#1956B4] text-white">
-            <div class="flex items-center justify-between font-mono text-[9px] font-bold text-[#F5C518]"><span>06 · SCENE</span><span class="xl:hidden">✓</span></div>
-            <h4 class="font-display font-extrabold text-xs sm:text-sm mt-0.5">Set Dressing</h4>
-            <p class="text-[10px] sm:text-[11px] text-white/85 leading-tight mt-0.5">Lighting &amp; world.</p>
+          <div class="xl:flex-1 p-2 sm:px-3.5 sm:py-3 rounded-xl bg-[#1956B4] text-white">
+            <div class="flex items-center justify-between font-mono text-[8px] sm:text-[9px] font-bold text-[#F5C518]"><span>06 · SCENE</span><span class="xl:hidden">✓</span></div>
+            <h4 class="font-display font-extrabold text-[11px] sm:text-sm mt-0.5 truncate">Set Dressing</h4>
+            <p class="text-[9px] sm:text-[11px] text-white/85 leading-tight mt-0.5 truncate">Lighting.</p>
           </div>
         </div>
       </div>
 
       <div id="proc-panel-design" class="tab-panel hidden">
-        <div class="grid grid-cols-2 lg:flex lg:flex-row lg:items-center lg:justify-between gap-2 sm:gap-3">
-          <div class="lg:flex-1 px-4 py-3 rounded-xl tone-0 border bdr">
-            <div class="flex items-center justify-between font-mono text-[9px] font-bold text-[#E04328]"><span>01 · REFERENCES</span><span class="lg:hidden">→</span></div>
+        <div class="grid grid-cols-2 lg:flex lg:flex-row lg:items-center lg:justify-between gap-1.5 sm:gap-3">
+          <div class="lg:flex-1 p-2.5 sm:px-4 sm:py-3 rounded-xl tone-0 border bdr">
+            <div class="flex items-center justify-between font-mono text-[8px] sm:text-[9px] font-bold text-[#E04328]"><span>01 · MOOD</span><span class="lg:hidden">→</span></div>
             <h4 class="font-display font-extrabold text-xs sm:text-sm mt-0.5">PureRef</h4>
-            <p class="text-[10px] sm:text-[11px] opacity-80 leading-tight mt-0.5">Grids, type &amp; color.</p>
+            <p class="text-[9px] sm:text-[11px] opacity-80 leading-tight mt-0.5">Grids &amp; color.</p>
           </div>
           <div class="hidden lg:flex items-center justify-center txt-muted font-mono text-sm">→</div>
-          <div class="lg:flex-1 px-4 py-3 rounded-xl tone-1 border bdr">
-            <div class="flex items-center justify-between font-mono text-[9px] font-bold text-[#1956B4]"><span>02 · SKETCHING</span><span class="lg:hidden">→</span></div>
+          <div class="lg:flex-1 p-2.5 sm:px-4 sm:py-3 rounded-xl tone-1 border bdr">
+            <div class="flex items-center justify-between font-mono text-[8px] sm:text-[9px] font-bold text-[#1956B4]"><span>02 · SKETCH</span><span class="lg:hidden">→</span></div>
             <h4 class="font-display font-extrabold text-xs sm:text-sm mt-0.5">Procreate</h4>
-            <p class="text-[10px] sm:text-[11px] opacity-80 leading-tight mt-0.5">Thumbnails &amp; drafts.</p>
+            <p class="text-[9px] sm:text-[11px] opacity-80 leading-tight mt-0.5">Drafts &amp; icons.</p>
           </div>
           <div class="hidden lg:flex items-center justify-center txt-muted font-mono text-sm">→</div>
-          <div class="lg:flex-1 px-4 py-3 rounded-xl tone-2 border bdr">
-            <div class="flex items-center justify-between font-mono text-[9px] font-bold text-[#B47D00] dark:text-[#F5C518]"><span>03 · UI DESIGN</span><span class="lg:hidden">→</span></div>
+          <div class="lg:flex-1 p-2.5 sm:px-4 sm:py-3 rounded-xl tone-2 border bdr">
+            <div class="flex items-center justify-between font-mono text-[8px] sm:text-[9px] font-bold text-[#B47D00] dark:text-[#F5C518]"><span>03 · UI/UX</span><span class="lg:hidden">→</span></div>
             <h4 class="font-display font-extrabold text-xs sm:text-sm mt-0.5">Figma</h4>
-            <p class="text-[10px] sm:text-[11px] opacity-80 leading-tight mt-0.5">Systems &amp; prototypes.</p>
+            <p class="text-[9px] sm:text-[11px] opacity-80 leading-tight mt-0.5">Prototypes.</p>
           </div>
           <div class="hidden lg:flex items-center justify-center txt-muted font-mono text-sm">→</div>
-          <div class="lg:flex-1 px-4 py-3 rounded-xl bg-[#E04328] text-white">
-            <div class="flex items-center justify-between font-mono text-[9px] font-bold text-[#F5C518]"><span>04 · CODE</span><span class="lg:hidden">✓</span></div>
+          <div class="lg:flex-1 p-2.5 sm:px-4 sm:py-3 rounded-xl bg-[#E04328] text-white">
+            <div class="flex items-center justify-between font-mono text-[8px] sm:text-[9px] font-bold text-[#F5C518]"><span>04 · CODE</span><span class="lg:hidden">✓</span></div>
             <h4 class="font-display font-extrabold text-xs sm:text-sm mt-0.5">VS Code</h4>
-            <p class="text-[10px] sm:text-[11px] text-white/90 leading-tight mt-0.5">Clean HTML/CSS/JS build.</p>
+            <p class="text-[9px] sm:text-[11px] text-white/90 leading-tight mt-0.5">HTML/CSS/JS.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 06 / CONTACT (Sin las píldoras rodeadas en la captura) -->
-  <section id="contact" class="pt-10 lg:pt-14 pb-4 border-t bdr scroll-mt-20">
-    <div class="surf rounded-[2rem] lg:rounded-[2.5rem] p-6 sm:p-10 lg:p-14 border-2 bdr shadow-md mb-6 lg:mb-8 relative overflow-hidden">
-      <div class="absolute top-0 left-0 right-0 h-2 bg-[#1956B4]"></div>
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center pt-2">
-        <div class="lg:col-span-7">
-          <div class="flex flex-wrap items-center gap-3 mb-4 lg:mb-5">
-            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#12944B] text-white font-mono text-[10px] lg:text-[11px] font-bold uppercase tracking-widest rounded-full shadow-sm"><span class="w-2 h-2 rounded-full bg-white animate-pulse"></span><span>OPEN TO WORK</span></span>
-            <span class="font-mono text-xs txt-muted font-bold">Madrid &middot; Remote</span>
-          </div>
-          <h2 class="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl tracking-tight leading-[0.95]">“THANKS FOR<br>WATCHING.”</h2>
-          <p class="txt-muted mt-4 lg:mt-5 max-w-xl text-xs sm:text-sm lg:text-base leading-relaxed">
-            <strong class="text-[#12944B]">Open to work</strong> for roles in <strong>3D Art, Environment Art, Props, 3D Generalist, and Graphic Design</strong>. Let's build something memorable together.
-          </p>
+</main>
+
+<!-- 06 / PIE DE PÁGINA EN AZUL COBALTO CON BOTONES MINI-APP EN MÓVIL -->
+<footer id="contact" class="footer-blue w-full pt-7 lg:pt-14 pb-5 scroll-mt-14 border-t-4 border-[#F5C518]">
+  <div class="font-display font-extrabold text-[18vw] leading-none text-white/[0.04] absolute -bottom-4 left-1/2 -translate-x-1/2 select-none pointer-events-none whitespace-nowrap">
+    contact
+  </div>
+
+  <div class="max-w-[1540px] mx-auto px-3 sm:px-6 md:px-8 lg:px-10 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-10 items-center pb-5 lg:pb-10 border-b border-white/15">
+      <div class="lg:col-span-7">
+        <div class="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 bg-[#12944B] text-white font-mono text-[9px] lg:text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">
+            <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+            <span>OPEN TO WORK</span>
+          </span>
+          <span class="font-editorial italic text-base sm:text-xl text-white/85">“Thanks for watching.”</span>
+          <span class="font-mono text-[9px] uppercase tracking-widest text-white/60">&middot; Madrid &amp; Remote</span>
         </div>
-        <div class="lg:col-span-5 flex flex-col items-start lg:items-end justify-center gap-3">
-          <a href="mailto:candelagamboasanchez@gmail.com" class="group inline-flex items-center gap-4 bg-[#F5C518] hover:bg-[#12944B] text-[#141413] hover:text-white px-7 py-3.5 lg:px-8 lg:py-4 rounded-full font-display font-extrabold text-sm lg:text-base transition-all shadow-sm">
-            <span>Contact me</span>
-            <span class="w-7 h-7 lg:w-8 lg:h-8 rounded-full surf text-[#141413] font-mono text-xs font-bold flex items-center justify-center group-hover:bg-[#141413] group-hover:text-white transition-colors">&#8599;</span>
-          </a>
-          <a href="mailto:candelagamboasanchez@gmail.com" class="font-mono text-xs font-bold underline decoration-[#E04328] underline-offset-4 hover:text-[#E04328] transition-colors lg:mr-2 break-all">
-            candelagamboasanchez@gmail.com
-          </a>
-        </div>
+
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl lg:text-7xl tracking-tight leading-[0.94] text-white">
+          Let's work <span class="text-[#F5C518]">together.</span>
+        </h2>
+
+        <p class="text-white/85 mt-2 lg:mt-3.5 max-w-xl text-[11px] sm:text-sm lg:text-base leading-relaxed">
+          Available for roles in <strong class="text-white">3D Art, Environment Art, Props, 3D Generalist, and Graphic Design</strong>.
+        </p>
+      </div>
+
+      <div class="lg:col-span-5 flex flex-row sm:flex-col items-center sm:items-start lg:items-end justify-between sm:justify-center gap-2.5 pt-1 lg:pt-0">
+        <a href="mailto:candelagamboasanchez@gmail.com" class="group inline-flex items-center gap-2.5 sm:gap-4 bg-[#F5C518] hover:bg-white text-[#141413] px-5 py-2.5 sm:px-8 sm:py-4 lg:px-10 lg:py-5 rounded-full font-display font-extrabold text-xs sm:text-base lg:text-xl transition-all shadow-lg hover:scale-[1.02] flex-shrink-0">
+          <span>Contact me</span>
+          <span class="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full bg-[#141413] text-white font-mono text-[10px] sm:text-sm font-bold flex items-center justify-center group-hover:bg-[#E04328] transition-colors">&#8599;</span>
+        </a>
+        <button type="button" id="copy-email-btn" class="font-mono text-[10px] sm:text-xs font-bold text-white/90 underline decoration-[#F5C518] decoration-2 underline-offset-4 hover:text-[#F5C518] transition-colors lg:mr-3 truncate cursor-pointer" title="Click to copy email">
+          candelagamboasanchez@gmail.com
+        </button>
       </div>
     </div>
 
-    <div class="grid grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-4 font-mono text-xs uppercase tracking-wider">
-      <div class="p-3 sm:p-5 rounded-2xl bg-[#141413] text-white flex flex-col justify-between min-h-[68px] lg:min-h-[96px]"><span class="w-5 lg:w-6 h-1 bg-[#12944B]"></span><div><span class="text-[8px] lg:text-[9px] text-neutral-400 block">DIRECT LINKS</span><span class="font-bold text-[10px] sm:text-xs lg:text-sm tracking-widest">FIND ME</span></div></div>
-      <a href="https://www.linkedin.com/in/candela-gamboa-s%C3%A1nchez-blanco" target="_blank" rel="noopener noreferrer" class="p-3 sm:p-5 rounded-2xl tone-1 border-t-4 border-[#1956B4] flex flex-col justify-between min-h-[68px] lg:min-h-[96px] hover:-translate-y-1 hover:shadow-md transition-all group"><div class="flex justify-between items-center"><span class="text-[8px] lg:text-[10px] font-bold text-[#1956B4]">NETWORK</span><span class="w-6 h-6 lg:w-7 lg:h-7 rounded-full surf flex items-center justify-center font-bold group-hover:bg-[#1956B4] group-hover:text-white transition-colors">&#8599;</span></div><span class="font-display font-extrabold text-xs sm:text-sm lg:text-base tracking-tight">LINKEDIN</span></a>
-      <a href="https://cande_gamboa_sb.artstation.com" target="_blank" rel="noopener noreferrer" class="p-3 sm:p-5 rounded-2xl tone-0 border-t-4 border-[#E04328] flex flex-col justify-between min-h-[68px] lg:min-h-[96px] hover:-translate-y-1 hover:shadow-md transition-all group"><div class="flex justify-between items-center"><span class="text-[8px] lg:text-[10px] font-bold text-[#E04328]">PORTFOLIO</span><span class="w-6 h-6 lg:w-7 lg:h-7 rounded-full surf flex items-center justify-center font-bold group-hover:bg-[#E04328] group-hover:text-white transition-colors">&#8599;</span></div><span class="font-display font-extrabold text-xs sm:text-sm lg:text-base tracking-tight">ARTSTATION</span></a>
-      <a href="mailto:candelagamboasanchez@gmail.com" class="p-3 sm:p-5 rounded-2xl tone-2 border-t-4 border-[#F5C518] flex flex-col justify-between min-h-[68px] lg:min-h-[96px] hover:-translate-y-1 hover:shadow-md transition-all group"><div class="flex justify-between items-center"><span class="text-[8px] lg:text-[10px] font-bold text-[#B47D00] dark:text-[#F5C518]">WRITE ME</span><span class="w-6 h-6 lg:w-7 lg:h-7 rounded-full surf flex items-center justify-center font-bold group-hover:bg-[#141413] group-hover:text-white transition-colors">&#8599;</span></div><span class="font-display font-extrabold text-xs sm:text-sm lg:text-base tracking-tight">EMAIL</span></a>
-      <a href="Candela_Gamboa_CV.pdf" download class="p-3 sm:p-5 rounded-2xl tone-3 border-t-4 border-[#12944B] flex flex-col justify-between min-h-[68px] lg:min-h-[96px] hover:-translate-y-1 hover:shadow-md transition-all group"><div class="flex justify-between items-center"><span class="text-[8px] lg:text-[10px] font-bold text-[#12944B]">RESUME ES</span><span class="w-6 h-6 lg:w-7 lg:h-7 rounded-full surf flex items-center justify-center font-bold group-hover:bg-[#12944B] group-hover:text-white transition-colors">&darr;</span></div><span class="font-display font-extrabold text-xs sm:text-sm lg:text-base tracking-tight">CV (ES)</span></a>
-      <a href="Candela_Gamboa_CV_English.pdf" download class="p-3 sm:p-5 rounded-2xl tone-1 border-t-4 border-[#1956B4] flex flex-col justify-between min-h-[68px] lg:min-h-[96px] hover:-translate-y-1 hover:shadow-md transition-all group"><div class="flex justify-between items-center"><span class="text-[8px] lg:text-[10px] font-bold text-[#1956B4]">RESUME EN</span><span class="w-6 h-6 lg:w-7 lg:h-7 rounded-full surf flex items-center justify-center font-bold group-hover:bg-[#1956B4] group-hover:text-white transition-colors">&darr;</span></div><span class="font-display font-extrabold text-xs sm:text-sm lg:text-base tracking-tight">CV (EN)</span></a>
+    <!-- Botones de enlaces muy compactos en móvil (3 columnas tipo botones de App) y amplios en Desktop -->
+    <div class="grid grid-cols-3 lg:grid-cols-6 gap-1.5 sm:gap-3.5 py-4 lg:py-6 font-mono uppercase tracking-wider">
+      <div class=" hidden lg:flex p-4 rounded-2xl bg-black/25 border border-white/10 text-white flex-col justify-between min-h-[84px]">
+        <span class="w-5 h-1 bg-[#F5C518]"></span>
+        <div>
+          <span class="text-[9px] text-white/60 block">DIRECT LINKS</span>
+          <span class="font-bold text-xs tracking-widest">FIND ME HERE</span>
+        </div>
+      </div>
+
+      <a href="https://www.linkedin.com/in/candela-gamboa-s%C3%A1nchez-blanco" target="_blank" rel="noopener noreferrer" class="footer-card px-2.5 py-2 sm:p-4 rounded-xl sm:rounded-2xl flex items-center lg:flex-col justify-between lg:items-stretch min-h-[40px] lg:min-h-[84px] group">
+        <span class="hidden lg:block f-sub text-[9px] font-bold">NETWORK</span>
+        <span class="font-display font-extrabold text-[11px] sm:text-sm lg:text-base tracking-tight">LINKEDIN</span>
+        <span class="f-icon w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-[10px] font-bold lg:self-end">&#8599;</span>
+      </a>
+
+      <a href="https://cande_gamboa_sb.artstation.com" target="_blank" rel="noopener noreferrer" class="footer-card px-2.5 py-2 sm:p-4 rounded-xl sm:rounded-2xl flex items-center lg:flex-col justify-between lg:items-stretch min-h-[40px] lg:min-h-[84px] group">
+        <span class="hidden lg:block f-sub text-[9px] font-bold">PORTFOLIO</span>
+        <span class="font-display font-extrabold text-[11px] sm:text-sm lg:text-base tracking-tight">ARTSTATION</span>
+        <span class="f-icon w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-[10px] font-bold lg:self-end">&#8599;</span>
+      </a>
+
+      <a href="mailto:candelagamboasanchez@gmail.com" class="footer-card px-2.5 py-2 sm:p-4 rounded-xl sm:rounded-2xl flex items-center lg:flex-col justify-between lg:items-stretch min-h-[40px] lg:min-h-[84px] group">
+        <span class="hidden lg:block f-sub text-[9px] font-bold">WRITE ME</span>
+        <span class="font-display font-extrabold text-[11px] sm:text-sm lg:text-base tracking-tight">EMAIL</span>
+        <span class="f-icon w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-[10px] font-bold lg:self-end">&#8599;</span>
+      </a>
+
+      <a href="Candela_Gamboa_CV.pdf" download class="footer-card px-2.5 py-2 sm:p-4 rounded-xl sm:rounded-2xl flex items-center lg:flex-col justify-between lg:items-stretch min-h-[40px] lg:min-h-[84px] group">
+        <span class="hidden lg:block f-sub text-[9px] font-bold">RESUME ES</span>
+        <span class="font-display font-extrabold text-[11px] sm:text-sm lg:text-base tracking-tight">CV (ES)</span>
+        <span class="f-icon w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-[10px] font-bold lg:self-end">&darr;</span>
+      </a>
+
+      <a href="Candela_Gamboa_CV_English.pdf" download class="footer-card px-2.5 py-2 sm:p-4 rounded-xl sm:rounded-2xl flex items-center lg:flex-col justify-between lg:items-stretch min-h-[40px] lg:min-h-[84px] group">
+        <span class="hidden lg:block f-sub text-[9px] font-bold">RESUME EN</span>
+        <span class="font-display font-extrabold text-[11px] sm:text-sm lg:text-base tracking-tight">CV (EN)</span>
+        <span class="f-icon w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-[10px] font-bold lg:self-end">&darr;</span>
+      </a>
     </div>
 
-    <div class="mt-4 pt-4 border-t bdr flex flex-row justify-between items-center text-[10px] sm:text-xs font-mono txt-muted uppercase tracking-wider gap-2">
+    <div class="pt-3 border-t border-white/15 flex flex-row justify-between items-center text-[9px] sm:text-xs font-mono text-white/70 uppercase tracking-wider gap-2">
       <div>&copy; 2026 CANDELA GAMBOA</div>
       <div class="text-[10px] lowercase hidden sm:block">Madrid, Spain &middot; 2026 Edition</div>
-      <a href="#" class="hover:text-[#E04328] transition-colors flex items-center gap-1 font-bold">TOP <span>&uarr;</span></a>
+      <a href="#" class="text-white hover:text-[#F5C518] transition-colors flex items-center gap-1 font-bold">TOP <span>&uarr;</span></a>
     </div>
-  </section>
-</main>
+  </div>
+</footer>
 
 <!-- MODAL DE PROYECTO -->
 <div id="projectModal" class="fixed inset-0 z-[60] flex items-center justify-center bg-black/75 backdrop-blur-sm opacity-0 invisible">
@@ -553,10 +670,14 @@ function wrapMedia(htmlContent) {
   });
 }
 
+// PROYECTOS CON TÍTULO RESUMIDO PARA VISTA MÓVIL (shortTitle) Y TÍTULO COMPLETO PARA ORDENADOR
 const PROJECTS = [
   {
-    id: 'kingscross', aspect: 'aspect-[4/3]',
+    id: 'kingscross', aspect: 'aspect-[4/3] sm:aspect-[16/10]',
+    shortTitle: "King's Cross WWII",
     title: "King's Cross Station: WWII Field Hospital", category: '3D Environment / VIDEOGAMES',
+    shortCat: 'Environment',
+    badges: ['Unreal Engine 5', 'Modular Kit', 'Real-Time'],
     date: '05 / 2026', dateLabel: 'Completed', cover: 'KingsCross/KingsCross_Render_01.jpeg',
     media: ['KingsCross/KingsCross_Render_01.jpeg','KingsCross/KingsCross_Render_02.jpeg','KingsCross/KingsCross_Video_01.mp4','KingsCross/KingsCross_Video_02.mp4','KingsCross/KingsCross_Video_03_WIP.mp4'],
     description: "A real-time environment recreating an alternate WWII scenario where King’s Cross Station has been repurposed into a frontline triage base and medical train depot for wounded soldiers.\n\nDeveloped over an academic year as a university project, the entire scene was built from scratch. Feel free to reach out if you have any questions or want to know more about the breakdown and workflow!",
@@ -580,8 +701,11 @@ const PROJECTS = [
     ]
   },
   {
-    id: 'revolver', aspect: 'aspect-[4/3]',
+    id: 'revolver', aspect: 'aspect-[4/3] sm:aspect-[16/10]',
+    shortTitle: 'S&W Model 327',
     title: 'Smith & Wesson PERFORMANCE CENTER MODEL 327', category: '3D Props / HARD-SURFACE',
+    shortCat: 'Hard-Surface',
+    badges: ['3ds Max', 'PBR Texturing', 'Marmoset'],
     date: '2025', dateLabel: 'Completed', cover: 'revolver/render_03.jpg',
     media: ['revolver/render_03.jpg','revolver/render_02.jpg','revolver/render_05.jpg','revolver/render_01_wireframe.jpg'],
     description: "Smith & Wesson PERFORMANCE CENTER MODEL 327 Revolver, modeled, textured, and rendered for the 3D Modeling course in the Video Game Design degree. First Hard-Surface project.",
@@ -601,8 +725,11 @@ const PROJECTS = [
     ]
   },
   {
-    id: 'bebe', aspect: 'aspect-[4/3]',
+    id: 'bebe', aspect: 'aspect-[4/3] sm:aspect-[16/10]',
+    shortTitle: 'Bebe Character',
     title: '3D Character - Bebe', category: '3D Character / VIDEOGAMES',
+    shortCat: 'Character',
+    badges: ['Blender', 'Stylized PBR', 'Character Rig'],
     date: '03 / 2026', dateLabel: 'Completed', cover: 'Bebe/Bebe_01.png',
     media: ['Bebe/Bebe_01.png','Bebe/Bebe_02.png','Bebe/Bebe_03.png','Bebe/Bebe_04.png','Bebe/bebe3.png','Bebe/Bebe_Video.mp4'],
     description: "3D Model of Bebe.\nThis piece was created as part of an academic project where the goal was to translate a 2D concept art into a full 3D character. A huge thank you to anbudehuang for designing such an inspiring and original character!",
@@ -620,8 +747,11 @@ const PROJECTS = [
     ]
   },
   {
-    id: 'chubby', aspect: 'aspect-[4/3]',
+    id: 'chubby', aspect: 'aspect-[4/3] sm:aspect-[16/10]',
+    shortTitle: 'Chubby Gummies',
     title: 'Chubby Gummies - Blind Box', category: '3D Character / PRODUCT DESIGN',
+    shortCat: 'Product 3D',
+    badges: ['Bachelor Thesis', 'Art Toy Series', 'WebGL .GLB'],
     date: '06 / 2026', dateLabel: 'Published', cover: 'chubby_gummies/CG_01.png',
     media: ['chubby_gummies/CG_01.png','chubby_gummies/CG_02.png','chubby_gummies/CG_03.png','chubby_gummies/final_render_20.png','chubby_gummies/CG_poster.png'],
     description: "Meet the Chubby Gummies, a new blind box designer toy collection set in a colorful candy world! The series features a quirky family of bubblegum characters, each inspired by a different flavor.\n\nThis project originated as the practical application for my university bachelor's thesis (TFG) focused on the blind box toy market and designer toy culture. I've always had a huge passion for collectible figures and vinyl art toys, so designing this original lineup from concept to 3D has been an amazing experience.",
@@ -640,7 +770,9 @@ const PROJECTS = [
 
 const OTHER = [
   {
+    shortTitle: 'Characters',
     title: 'Character Design', category: '2D Exploration', date: '2023',
+    badges: ['Concept Art', 'Silhouette'],
     cover: 'personajes_worldbuilding/Gamboa.Candela_CA_3.2_Personajes_Color.jpg',
     media: ['personajes_worldbuilding/Gamboa.Candela_CA_3.2_Personajes_Color.jpg', 'personajes_worldbuilding/Gamboa.Candela_CA_3.2_Personajes_BN.JPG', 'personajes_worldbuilding/Gamboa.Candela_CA_3.2_Personajes_Video_WIP.mov'],
     description: '2D character design concepts, silhouette studies, and color exploration for worldbuilding projects.',
@@ -649,7 +781,9 @@ const OTHER = [
     breakdown: ['Silhouette & Shape Language: Explored distinct character proportions and costume silhouettes in black and white.', 'Color & Personality: Developed final color palettes and rendering to reflect each character’s role in the world.']
   },
   {
-    title: 'ESTATE Corkscrew Model', category: '3D Props / HARD-SURFACE', date: '05 / 2025',
+    shortTitle: 'Corkscrew',
+    title: 'ESTATE Corkscrew Model', category: '3D Props', date: '05 / 2025',
+    badges: ['3ds Max', 'Antique Prop'],
     cover: 'estate_sacacorchos/estate_01.webp',
     media: ['estate_sacacorchos/estate_01.webp', 'estate_sacacorchos/estate_02.webp', 'estate_sacacorchos/estate_03_wireframe.webp', 'estate_sacacorchos/estate_video_turnaround.mp4'],
     description: 'Late 19th-Century Estate Corkscrew Model. My first approach to Hard-Surface modeling, focusing on antique mechanical pieces, engraved brass details, and wooden handle wear. Project completed in May 2025.',
@@ -658,13 +792,15 @@ const OTHER = [
     breakdown: ['Mechanical Reference Analysis: Studied late 19th-century ESTATE corkscrew mechanisms and ornamental engravings.', 'Hard-Surface Modeling: Modeled the clamp, lever, worm, and body in 3ds Max as my first contact with hard-surface workflows.', 'Texturing & Rendering: Textured aged brass patina, ornamental relief patterns, and worn wood in Substance 3D Painter, rendered in Marmoset Toolbag.']
   },
   {
-    title: 'Lighting Tests', category: 'Rendering', date: '2025',
-    cover: 'https://placehold.co/600x600/FCE373/141413?text=Lighting+tests',
-    media: ['https://placehold.co/800x600/FCE373/141413?text=Lighting+Tests+in+UE5'],
-    description: 'Playing with mood, volumetric fog, and cinematic atmosphere in Unreal Engine.',
+    shortTitle: 'UE5 Lighting',
+    title: 'Atmospheric Lighting Studies', category: 'UE5 Rendering', date: '2026',
+    badges: ['Unreal Engine 5', 'Lumen & Fog'],
+    cover: 'KingsCross/KingsCross_Render_02.jpeg',
+    media: ['KingsCross/KingsCross_Render_02.jpeg', 'KingsCross/KingsCross_Video_02.mp4'],
+    description: 'Playing with mood, god rays, volumetric fog, and cinematic atmosphere in Unreal Engine 5 using real-time Lumen lighting.',
     specs: [['Type', 'Lighting & Mood Studies'], ['Engine', 'Unreal Engine 5']],
     software: [['Unreal Engine 5', 'Lumen Lighting, Post-Process & Atmosphere']],
-    breakdown: ['Mood & Color Grading: Experimented with directional light angles, volumetric fog density, and post-process LUTs to establish different narrative moods.']
+    breakdown: ['Mood & Color Grading: Experimented with directional light angles, volumetric fog density, and post-process LUTs to establish cinematic narrative moods.']
   }
 ];
 
@@ -698,12 +834,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const renderSkills = (filter = activeSkillFilter) => {
     activeSkillFilter = filter;
     skillsContainer.innerHTML = SKILLS.filter(item => filter === 'all' || item[4] === filter).map(([n, l, c, use]) => `
-      <div class="flex justify-between items-center py-2 lg:py-3 border-b bdr gap-2">
-        <div class="flex items-center gap-2.5 sm:gap-3 min-w-0">
-          <img src="${getLogo(n)}" decoding="async" onerror="tryFallbackImg(this)" alt="${n}" class="w-5 h-5 lg:w-7 lg:h-7 object-contain flex-shrink-0">
-          <div class="flex flex-col min-w-0"><span class="font-display text-xs lg:text-sm font-bold truncate">${n}</span><span class="hidden sm:block font-mono text-[9px] txt-muted uppercase tracking-wider truncate">${use}</span></div>
+      <div class="flex justify-between items-center py-1.5 lg:py-3 border-b bdr gap-2">
+        <div class="flex items-center gap-2 sm:gap-3 min-w-0">
+          <img src="${getLogo(n)}" decoding="async" onerror="tryFallbackImg(this)" alt="${n}" class="w-4 h-4 sm:w-5 sm:h-5 lg:w-7 lg:h-7 object-contain flex-shrink-0">
+          <div class="flex flex-col min-w-0"><span class="font-display text-[11px] sm:text-xs lg:text-sm font-bold truncate">${n}</span><span class="hidden sm:block font-mono text-[9px] txt-muted uppercase tracking-wider truncate">${use}</span></div>
         </div>
-        <div class="flex items-center gap-1.5 flex-shrink-0"><span class="w-2.5 h-2.5 rounded-full" style="background-color:${c}"></span><span class="hidden sm:inline font-mono text-[10px] uppercase tracking-widest font-bold" style="color:${c}">${l}</span></div>
+        <div class="flex items-center gap-1.5 flex-shrink-0"><span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full" style="background-color:${c}"></span><span class="hidden sm:inline font-mono text-[10px] uppercase tracking-widest font-bold" style="color:${c}">${l}</span></div>
       </div>`).join('');
   };
 
@@ -729,7 +865,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
   const boxV = $('box-viewer'), charV = $('character-viewer'), nameLabel = $('character-name'), btn = $('open-box-btn');
   let pool = [...CHARACTERS], last = null, isOpen = false, busy = false;
-  const setBtn = open => { btn.innerHTML = open ? '<span>Try another</span><span>↻</span>' : '<span>Open the BlindBox</span><span>→</span>'; };
+  const setBtn = open => { btn.innerHTML = open ? '<span>Try another</span><span>↻</span>' : '<span>Open BlindBox</span><span>→</span>'; };
   const show = v => v.classList.replace('viewer-off', 'viewer-on'), hide = v => v.classList.replace('viewer-on', 'viewer-off');
 
   function pickRandom() {
@@ -789,10 +925,18 @@ document.addEventListener('DOMContentLoaded', () => {
     hide(charV); show(boxV); nameLabel.textContent = 'Mystery Box'; isOpen = false; setBtn(false);
   });
 
+  const copyBtn = $('copy-email-btn');
+  copyBtn?.addEventListener('click', () => {
+    navigator.clipboard?.writeText('candelagamboasanchez@gmail.com');
+    const orig = copyBtn.textContent;
+    copyBtn.textContent = 'Copied to clipboard ✓';
+    setTimeout(() => { copyBtn.textContent = orig; }, 2000);
+  });
+
   const nav = $('main-nav'), navC = $('nav-container');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('bdr', window.scrollY > 20);
-    navC.classList.toggle('py-2.5', window.scrollY > 20);
+    navC.classList.toggle('py-2', window.scrollY > 20);
   }, { passive: true });
 
   const mBtn = $('mobileMenuBtn'), mMenu = $('mobileMenu');
@@ -826,19 +970,41 @@ document.addEventListener('DOMContentLoaded', () => {
   lb.addEventListener('touchstart', e => { lbX = e.touches[0].clientX; }, { passive: true });
   lb.addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - lbX; if (Math.abs(dx) > 50 && lbList.length > 1) showLB(lbI + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1); });
 
-  // WORKS
+  // WORKS (En móvil van de 2 en 2 con título resumido shortTitle; en Desktop título completo y descripción)
   const grid = $('works-grid');
   const bindCard = (card, fn) => { card.tabIndex = 0; card.setAttribute('role', 'button'); card.addEventListener('click', fn); card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fn(); } }); };
+  const numColors = ['bg-[#E04328] text-white', 'bg-[#1956B4] text-white', 'bg-[#F5C518] text-[#141413]', 'bg-[#12944B] text-white'];
 
   PROJECTS.forEach((p, idx) => {
+    const cIdx = idx % 4;
     const card = document.createElement('div');
-    card.className = `group cursor-pointer project-card rounded-[2rem] p-4 sm:p-6 lg:p-7 tone-${idx % 4} border bdr transition-all duration-300 hover:-translate-y-1 hover:shadow-md flex flex-col justify-between`;
+    card.className = `work-card group cursor-pointer rounded-2xl sm:rounded-[2rem] p-2.5 sm:p-5 flex flex-col justify-between`;
     card.innerHTML = `
-      <div class="flex justify-between items-center mb-3 lg:mb-4 gap-2"><span class="font-mono text-[9px] lg:text-[10px] uppercase tracking-widest px-2.5 lg:px-3 py-1 rounded-full surf font-bold truncate">0${idx + 1} &middot; ${p.category}</span><span class="font-mono text-[10px] lg:text-[11px] opacity-75 flex-shrink-0">${p.date}</span></div>
-      <div class="relative w-full ${p.aspect} rounded-2xl overflow-hidden surf border bdr">
-        <div class="media-wrapper"><div class="media-loader"><span></span><span></span><span></span></div><img src="${p.cover}" decoding="async" ${idx < 2 ? 'fetchpriority="high"' : 'loading="lazy"'} onerror="tryFallbackImg(this)" onload="this.closest('.media-wrapper')?.classList.add('media-loaded')" class="w-full h-full object-cover project-img transition-transform duration-500 group-hover:scale-[1.02]" alt="${p.title}"></div>
+      <div class="absolute top-0 left-0 right-0 h-1.5 sm:h-2 accent-bar-${cIdx} z-20"></div>
+      <div>
+        <div class="flex justify-between items-center mb-1.5 sm:mb-3 pt-1 gap-1">
+          <div class="flex items-center gap-1.5 min-w-0">
+            <span class="font-mono text-[8px] sm:text-[10px] font-bold px-1.5 sm:px-2.5 py-0.5 rounded-full ${numColors[cIdx]}">0${idx + 1}</span>
+            <span class="sm:hidden font-mono text-[8px] uppercase tracking-wider txt-muted font-bold truncate">${p.shortCat}</span>
+            <span class="hidden sm:inline font-mono text-[9px] lg:text-[10px] uppercase tracking-widest txt-muted font-bold truncate">${p.category}</span>
+          </div>
+          <span class="hidden sm:inline font-mono text-[10px] txt-muted flex-shrink-0">${p.date}</span>
+        </div>
+        <div class="relative w-full ${p.aspect} rounded-xl sm:rounded-2xl overflow-hidden surf-alt border bdr">
+          <div class="media-wrapper"><div class="media-loader"><span></span><span></span><span></span></div><img src="${p.cover}" decoding="async" ${idx < 2 ? 'fetchpriority="high"' : 'loading="lazy"'} onerror="tryFallbackImg(this)" onload="this.closest('.media-wrapper')?.classList.add('media-loaded')" class="w-full h-full object-cover project-img transition-transform duration-500 group-hover:scale-[1.03]" alt="${p.title}"></div>
+        </div>
       </div>
-      <div class="mt-4 lg:mt-6 flex justify-between items-end gap-4"><div><h3 class="font-display text-lg sm:text-xl lg:text-2xl font-extrabold tracking-tight leading-snug">${p.title}</h3><p class="opacity-80 text-xs sm:text-sm mt-1 line-clamp-2 max-w-2xl">${p.description.replace(/\n+/g, ' ')}</p></div><span class="circle-arrow flex-shrink-0" aria-hidden="true">→</span></div>`;
+      <div class="mt-2 sm:mt-4 pt-0.5 flex justify-between items-end gap-1.5 sm:gap-4">
+        <div class="min-w-0">
+          <div class="hidden sm:flex flex-wrap gap-1.5 mb-2">
+            ${(p.badges || []).map(b => `<span class="px-2.5 py-0.5 rounded-md badge-accent-${cIdx} font-mono text-[9px] uppercase tracking-wider font-bold">${b}</span>`).join('')}
+          </div>
+          <h3 class="sm:hidden font-display text-xs font-extrabold tracking-tight truncate">${p.shortTitle}</h3>
+          <h3 class="hidden sm:block font-display text-lg sm:text-xl lg:text-2xl font-extrabold tracking-tight leading-snug">${p.title}</h3>
+          <p class="hidden sm:line-clamp-2 txt-muted text-xs sm:text-sm mt-1 max-w-2xl">${p.description.replace(/\n+/g, ' ')}</p>
+        </div>
+        <span class="circle-arrow circle-arrow-${cIdx} flex-shrink-0" aria-hidden="true">→</span>
+      </div>`;
     grid.appendChild(card);
 
     const hoverImgs = p.media.filter(f => !isVideo(f)), img = card.querySelector('.project-img');
@@ -863,13 +1029,26 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   OTHER.forEach((p, idx) => {
+    const cIdx = (idx + 1) % 4;
     const card = document.createElement('div');
-    card.className = `group cursor-pointer project-card rounded-[2rem] p-3.5 sm:p-5 tone-${(idx + 1) % 4} border bdr transition-all duration-300 hover:-translate-y-1 hover:shadow-md flex flex-col justify-between`;
+    card.className = `work-card group cursor-pointer rounded-xl sm:rounded-[2rem] p-2 sm:p-5 flex flex-col justify-between`;
     card.innerHTML = `
-      <div class="relative w-full aspect-square rounded-xl sm:rounded-2xl overflow-hidden surf border bdr">
+      <div class="absolute top-0 left-0 right-0 h-1 sm:h-1.5 accent-bar-${cIdx} z-20"></div>
+      <div class="relative w-full aspect-square sm:aspect-[4/3] rounded-lg sm:rounded-2xl overflow-hidden surf-alt border bdr mt-0.5 sm:mt-1">
         <div class="media-wrapper"><div class="media-loader"><span></span><span></span><span></span></div><img src="${p.cover}" decoding="async" loading="lazy" onerror="tryFallbackImg(this)" onload="this.closest('.media-wrapper')?.classList.add('media-loaded')" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="${p.title}"></div>
       </div>
-      <div class="mt-3 sm:mt-5 flex justify-between items-end gap-2"><div class="min-w-0"><p class="font-mono text-[8px] sm:text-[10px] opacity-70 tracking-widest uppercase truncate">${p.category} &middot; ${p.date}</p><h3 class="font-display text-xs sm:text-base lg:text-lg font-extrabold mt-0.5 truncate">${p.title}</h3><p class="hidden sm:block text-xs opacity-80 mt-1 line-clamp-2">${p.description}</p></div><span class="circle-arrow flex-shrink-0">→</span></div>`;
+      <div class="mt-2 sm:mt-4 flex justify-between items-end gap-1 sm:gap-2">
+        <div class="min-w-0">
+          <div class="hidden sm:flex flex-wrap items-center gap-1.5 mb-1">
+            <span class="px-2 py-0.5 rounded badge-accent-${cIdx} font-mono text-[8px] sm:text-[9px] uppercase tracking-wider font-bold">${p.category}</span>
+            <span class="font-mono text-[9px] txt-muted">${p.date}</span>
+          </div>
+          <h3 class="sm:hidden font-display text-[11px] font-extrabold truncate">${p.shortTitle}</h3>
+          <h3 class="hidden sm:block font-display text-sm sm:text-base lg:text-lg font-extrabold truncate">${p.title}</h3>
+          <p class="hidden sm:block text-xs txt-muted mt-1 line-clamp-2">${p.description}</p>
+        </div>
+        <span class="circle-arrow circle-arrow-${cIdx} flex-shrink-0">→</span>
+      </div>`;
     bindCard(card, () => openModal(OTHER, idx));
     $('other-grid').appendChild(card);
   });
@@ -1016,7 +1195,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // POLAROIDS
   const SKINS = ['fotos_candela/Foto_Perfil_CandelaGamboa.jpeg', 'fotos_candela/Candela_02.jpeg', 'fotos_candela/Candela_03.jpeg'];
-  const SLOTS = [{ x: 0, y: 0, r: 0, s: 1, z: 30 }, { x: -10, y: 7, r: -3.5, s: .96, z: 20 }, { x: 10, y: 12, r: 3.5, s: .92, z: 10 }];
+  const SLOTS = [{ x: 0, y: 0, r: 0, s: 1, z: 30 }, { x: -8, y: 5, r: -3.5, s: .96, z: 20 }, { x: 8, y: 9, r: 3.5, s: .92, z: 10 }];
   const stack = $('polaroid-stack'); let order = [0, 1, 2], pBusy = false;
   const pEls = SKINS.map((src, i) => {
     const el = document.createElement('div'); el.className = 'polaroid';
@@ -1055,13 +1234,44 @@ document.addEventListener('DOMContentLoaded', () => {
     $('proc-panel-design').classList.toggle('hidden', target !== 'design');
   }));
 
-  // MY JOURNEY
+  // MY JOURNEY (En Universidad (04) usa object-contain y fondo blanco a los lados para que se vea entera sin recortar nada)
   const QUESTS = [
-    { num: '01', label: 'May 2022', subtitle: 'Academic Education', title: 'Colegio Nuestra Señora del Loreto FESD', status: 'COMPLETED', img: 'fotos_candela/colegio_candela.jpeg', desc: 'Graduated from the Science & Technology Baccalaureate (Bachillerato Científico-Tecnológico) at Colegio Nuestra Señora del Loreto FESD. Activities and societies: Basketball team (8 years), theater, ballet, and computer science workshop.', chips: ['Average grade: 8.77 / 10', 'Education & Training', 'Completed — May 2022'] },
-    { num: '02', label: 'Aug 2021 - Present', subtitle: 'Work Experience', title: 'Waitress · El Laurel Catering', status: 'ACTIVE', img: 'fotos_candela/camarera_candela.jpeg', desc: 'Working since high school while balancing my academic studies with a position as a waitress, developing strong skills in team management, leadership, and customer service.', chips: ['Leadership', 'Commitment', 'Professionalism'] },
-    { num: '03', label: 'Jan 2025 - Apr 2025', subtitle: 'Curricular Internship', title: "Illustrated Children's Story Project", status: 'COMPLETED', img: 'fotos_candela/libro_ninos_Candela.png', desc: '2D animation and post-production for an illustrated story: internship focused on digitizing a musical story for young children, including layered asset breakdown in Photoshop, scene animation in After Effects, and final editing in Premiere Pro.', chips: ['Internship', '2D Art', 'Non-profit Project', 'Professional Learning', ['View project post', 'https://lnkd.in/dMHhzinr']] },
-    { num: '04', label: '2022 - 2026', subtitle: "Bachelor's Degree (UDIT)", title: 'University · Game Design & Virtual Environments', status: 'COMPLETED', img: 'fotos_candela/universidad_candela.jpeg', desc: 'Four years of study specializing in 3D Art at UDIT (University of Design, Innovation and Technology). Video game development in multidisciplinary teams, taking on responsibilities in level design, production, and technical asset integration in Unreal Engine and Unity.', chips: ['Average grade: 8.74 / 10', 'University Degree', 'Teamwork', 'Continuous Learning'] },
-    { num: '05', label: 'Feb 2026 - May 2026', subtitle: 'Extracurricular Internship', title: 'Gaya Studios · 3D Artist', status: 'COMPLETED', img: 'https://placehold.co/800x600/1956B4/FFFFFF?text=Gaya+Studios+%7C+3D+Internship', desc: 'Extensive hands-on experience in realistic hard-surface 3D modeling for production in Blender, covering the complete high-to-low-poly workflow, clean map baking, UV mapping, and PBR texturing with Substance 3D Painter.', chips: ['Internship', '3D Modeling', ['Visit Gaya Studios', 'https://www.gaya-studios.com/']] }
+    {
+      num: '01', label: 'May 2022', subtitle: 'Academic Education', title: 'Colegio Nuestra Señora del Loreto FESD', status: 'COMPLETED',
+      img: 'fotos_candela/colegio_candela.jpeg',
+      imgClass: 'object-cover object-top',
+      desc: 'Graduated from the Science & Technology Baccalaureate (Bachillerato Científico-Tecnológico) at Colegio Nuestra Señora del Loreto FESD. Activities and societies: Basketball team (8 years), theater, ballet, and computer science workshop.',
+      chips: ['Average grade: 8.77 / 10', 'Education & Training', 'Completed — May 2022']
+    },
+    {
+      num: '02', label: 'Aug 2021 - Present', subtitle: 'Work Experience', title: 'Waitress · El Laurel Catering', status: 'ACTIVE',
+      img: 'fotos_candela/camarera_candela.jpeg',
+      imgClass: 'object-cover object-center',
+      desc: 'Working since high school while balancing my academic studies with a position as a waitress, developing strong skills in team management, leadership, and customer service.',
+      chips: ['Leadership', 'Commitment', 'Professionalism', ['Visit El Laurel', 'https://www.laurelcatering.com/quienes-somos/']]
+    },
+    {
+      num: '03', label: 'Jan 2025 - Apr 2025', subtitle: 'Curricular Internship', title: "Illustrated Children's Story Project", status: 'COMPLETED',
+      img: 'fotos_candela/libro_ninos_Candela.png',
+      imgClass: 'object-cover object-center',
+      desc: '2D animation and post-production for an illustrated story: internship focused on digitizing a musical story for young children, including layered asset breakdown in Photoshop, scene animation in After Effects, and final editing in Premiere Pro.',
+      chips: ['Internship', '2D Art', 'Non-profit Project', 'Professional Learning', ['Watch Video', 'https://youtu.be/WtK3RkN5JwY?si=IkvKdU1qlCEIswe-&t=387'], ['View project post', 'https://lnkd.in/dMHhzinr']]
+    },
+    {
+      num: '04', label: '2022 - 2026', subtitle: "Bachelor's Degree (UDIT)", title: 'University · Game Design & Virtual Environments', status: 'COMPLETED',
+      img: 'fotos_candela/universidad_candela.jpeg',
+      imgClass: 'object-contain object-bottom bg-white',
+      wrapBg: 'bg-white',
+      desc: 'Four years of study specializing in 3D Art at UDIT (University of Design, Innovation and Technology). Video game development in multidisciplinary teams, taking on responsibilities in level design, production, and technical asset integration in Unreal Engine and Unity.',
+      chips: ['Average grade: 8.74 / 10', 'University Degree', 'Teamwork', 'Continuous Learning', ['Visit UDIT Degree', 'https://www.udit.es/grado-en-diseno-y-desarrollo-de-videojuegos/']]
+    },
+    {
+      num: '05', label: 'Feb 2026 - May 2026', subtitle: 'Extracurricular Internship', title: 'Gaya Studios · 3D Artist', status: 'COMPLETED',
+      img: 'fotos_candela/gaya_imagen.png',
+      imgClass: 'object-cover object-center',
+      desc: 'Extensive hands-on experience in realistic hard-surface 3D modeling for production in Blender, covering the complete high-to-low-poly workflow, clean map baking, UV mapping, and PBR texturing with Substance 3D Painter.',
+      chips: ['Internship', '3D Modeling', ['Visit Gaya Studios', 'https://www.gaya-studios.com/']]
+    }
   ];
 
   const jList = $('journey-list'), jNums = $('journey-nums'), jDetail = $('journey-detail');
@@ -1074,21 +1284,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const desktopOrder = [...QUESTS.keys()].reverse();
     jList.innerHTML = desktopOrder.map(i => {
       const q = QUESTS[i], isAct = i === curJ;
-      return `<button type="button" data-idx="${i}" class="journey-item ${isAct ? 'active' : ''} w-full text-left py-4 flex items-center justify-between gap-4 group cursor-pointer"><div class="flex items-center gap-4"><div class="w-12 h-12 rounded-xl overflow-hidden border bdr flex-shrink-0"><div class="media-wrapper"><div class="media-loader"><span></span><span></span><span></span></div><img src="${q.img}" decoding="async" onerror="tryFallbackImg(this)" onload="this.closest('.media-wrapper')?.classList.add('media-loaded')" alt="${q.title}" class="w-full h-full object-cover"></div></div><div><div class="flex items-center gap-2"><span class="font-mono text-[10px] font-bold ${isAct ? 'text-[#E04328]' : 'txt-muted'}">Part. ${q.num}</span><span class="font-mono text-[10px] uppercase tracking-widest txt-muted">&middot; ${q.label}</span></div><h4 class="font-display font-extrabold text-base lg:text-lg group-hover:text-[#1956B4] transition-colors">${q.title}</h4></div></div><span class="circle-arrow flex-shrink-0">→</span></button>`;
+      return `<button type="button" data-idx="${i}" class="journey-item ${isAct ? 'active' : ''} w-full text-left py-4 flex items-center justify-between gap-4 group cursor-pointer"><div class="flex items-center gap-4"><div class="w-12 h-12 rounded-xl overflow-hidden border bdr flex-shrink-0 bg-white"><div class="media-wrapper"><div class="media-loader"><span></span><span></span><span></span></div><img src="${q.img}" decoding="async" onerror="tryFallbackImg(this)" onload="this.closest('.media-wrapper')?.classList.add('media-loaded')" alt="${q.title}" class="w-full h-full object-cover object-top"></div></div><div><div class="flex items-center gap-2"><span class="font-mono text-[10px] font-bold ${isAct ? 'text-[#E04328]' : 'txt-muted'}">Part. ${q.num}</span><span class="font-mono text-[10px] uppercase tracking-widest txt-muted">&middot; ${q.label}</span></div><h4 class="font-display font-extrabold text-base lg:text-lg group-hover:text-[#1956B4] transition-colors">${q.title}</h4></div></div><span class="circle-arrow flex-shrink-0">→</span></button>`;
     }).join('');
 
     jNums.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { stopJourneyAuto(); curJ = +b.dataset.idx; renderJourney(); }));
     jList.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { stopJourneyAuto(); curJ = +b.dataset.idx; renderJourney(); }));
 
     const q = QUESTS[curJ];
-    jDetail.innerHTML = `${jAutoActive ? '<div class="journey-progress absolute top-0 left-0 z-20"></div>' : ''}<div class="tab-panel grid grid-cols-1 sm:grid-cols-12"><div class="sm:col-span-5 md:col-span-6 surf-alt h-48 sm:h-auto md:min-h-[380px] relative"><div class="media-wrapper"><div class="media-loader"><span></span><span></span><span></span></div><img src="${q.img}" decoding="async" onerror="tryFallbackImg(this)" onload="this.closest('.media-wrapper')?.classList.add('media-loaded')" alt="${q.title}" class="w-full h-full object-cover"></div><span class="absolute top-3 left-3 lg:top-4 lg:left-4 px-3 py-1 surf rounded-full font-mono text-[9px] lg:text-[10px] uppercase tracking-widest font-bold shadow-sm z-10">${q.label}</span></div><div class="sm:col-span-7 md:col-span-6 p-5 sm:p-7 lg:p-9 flex flex-col justify-between surf"><div><div class="flex items-baseline justify-between border-b bdr pb-3 lg:pb-4 mb-4 lg:mb-5"><div><span class="font-display font-bold text-xs lg:text-sm text-[#E04328]">Part.</span><span class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl ml-1">${q.num}</span></div><span class="font-mono text-[9px] lg:text-[10px] uppercase tracking-widest px-2.5 py-1 rounded bg-[#F5C518] text-[#141413] font-bold">${q.status}</span></div><p class="font-editorial italic text-lg lg:text-xl txt-muted">${q.subtitle}</p><h3 class="font-display font-extrabold text-xl sm:text-2xl lg:text-3xl mt-0.5 leading-snug">${q.title}</h3><p class="txt-muted text-xs sm:text-sm lg:text-base leading-relaxed mt-3 lg:mt-4">${q.desc}</p></div><div class="flex flex-wrap gap-1.5 lg:gap-2 pt-5 mt-5 border-t bdr">${q.chips.map(c => Array.isArray(c) ? `<a href="${c[1]}" ${c[1].startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''} class="px-3.5 py-1.5 lg:px-4 lg:py-2 rounded-full bg-[#E04328] text-white font-mono text-[10px] lg:text-[11px] uppercase tracking-wider font-bold hover:bg-[#1956B4] transition-colors">${c[0]} &#8599;</a>` : `<span class="px-2.5 py-1 lg:px-3 rounded-full surf-alt border bdr font-mono text-[9px] lg:text-[10px] uppercase tracking-wider font-bold">${c}</span>`).join('')}</div></div></div>`;
+    jDetail.innerHTML = `${jAutoActive ? '<div class="journey-progress absolute top-0 left-0 z-20"></div>' : ''}<div class="tab-panel grid grid-cols-1 sm:grid-cols-12"><div class="sm:col-span-5 md:col-span-6 ${q.wrapBg || 'surf-alt'} h-44 sm:h-auto md:min-h-[380px] relative"><div class="media-wrapper" style="${q.wrapBg ? 'background:#FFFFFF' : ''}"><div class="media-loader"><span></span><span></span><span></span></div><img src="${q.img}" decoding="async" onerror="tryFallbackImg(this)" onload="this.closest('.media-wrapper')?.classList.add('media-loaded')" alt="${q.title}" class="w-full h-full ${q.imgClass || 'object-cover'}"></div><span class="absolute top-2.5 left-2.5 lg:top-4 lg:left-4 px-2.5 py-0.5 sm:px-3 sm:py-1 surf rounded-full font-mono text-[8px] lg:text-[10px] uppercase tracking-widest font-bold shadow-sm z-10 border bdr">${q.label}</span></div><div class="sm:col-span-7 md:col-span-6 p-4 sm:p-7 lg:p-9 flex flex-col justify-between surf"><div><div class="flex items-baseline justify-between border-b bdr pb-2.5 lg:pb-4 mb-3 lg:mb-5"><div><span class="font-display font-bold text-xs lg:text-sm text-[#E04328]">Part.</span><span class="font-display font-extrabold text-xl sm:text-3xl lg:text-4xl ml-1">${q.num}</span></div><span class="font-mono text-[8px] lg:text-[10px] uppercase tracking-widest px-2 py-0.5 rounded bg-[#F5C518] text-[#141413] font-bold">${q.status}</span></div><p class="font-editorial italic text-base lg:text-xl txt-muted">${q.subtitle}</p><h3 class="font-display font-extrabold text-base sm:text-2xl lg:text-3xl mt-0.5 leading-snug">${q.title}</h3><p class="txt-muted text-[11px] sm:text-sm lg:text-base leading-relaxed mt-2 lg:mt-4">${q.desc}</p></div><div class="flex flex-wrap gap-1.5 lg:gap-2 pt-3.5 mt-3.5 border-t bdr">${q.chips.map(c => Array.isArray(c) ? `<a href="${c[1]}" ${c[1].startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''} class="px-3 py-1 lg:px-4 lg:py-2 rounded-full bg-[#E04328] text-white font-mono text-[9px] lg:text-[11px] uppercase tracking-wider font-bold hover:bg-[#1956B4] transition-colors">${c[0]} &#8599;</a>` : `<span class="px-2 py-0.5 lg:px-3 lg:py-1 rounded-full surf-alt border bdr font-mono text-[8px] lg:text-[10px] uppercase tracking-wider font-bold">${c}</span>`).join('')}</div></div></div>`;
   }
 
   renderJourney();
   jTimer = setInterval(() => { if (!jAutoActive) return; curJ = (curJ - 1 + QUESTS.length) % QUESTS.length; renderJourney(); }, 8000);
 
   const rv = new IntersectionObserver(en => en.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); rv.unobserve(x.target); } }), { threshold: .08 });
-  document.querySelectorAll('section > div, #works-grid > *, #other-grid > *').forEach(el => { el.classList.add('reveal'); rv.observe(el); });
+  document.querySelectorAll('section > div, footer > div, #works-grid > *, #other-grid > *').forEach(el => { el.classList.add('reveal'); rv.observe(el); });
 
   const preloadAssets = () => {
     const urls = [
